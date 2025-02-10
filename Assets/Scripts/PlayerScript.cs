@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,6 +18,12 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    Property getProperty(void) { return properties; }
+
+    void addMoney(int amount) { this.money += amount; }
+
+    void takeMoney(int amount) { this.money -= amount; }
 }
