@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      iron_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0: 887560634070644128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

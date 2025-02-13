@@ -1,11 +1,14 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class Engine : MonoBehaviour
 {
+    [SerializeField] private int maxPlayers = 5;
     [SerializeField] public List<Player> players;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
-    [SerializeField] private int maxPlayers = 5;
     [SerializeField] private BoardManager boardmanager;
     [SerializeField] private Dice dice;
     
@@ -13,23 +16,30 @@ public class Engine : MonoBehaviour
     private bool gameOver = false;
 
 
-    void Start
+    void Start()
     {
-        initializeGame();
+        if (players.count < 1 && players.count > maxPlayers)
+        {
+            initializeGame(List<Player> players);
+        }
+        else
+        {
+            debug.LogError("Invalid number of players");
+        }
     }
 
-    private void initializeGame(Player player)
+    private void initializeGame(List<Player> players)
     {
         foreach (var player in players)
         {
             player.AddMoney(startingMoney);
-            Debug.Log($"{player.PLayerName} has {player.money} starting money");
+            Debug.Log($"{player.PlayerName} has {player.money} starting money");
         }
     }   
     private void passGo(Player player)
     {
-        Debug.Log($"{player.PlayerName} passed Go")
-        player.Addmoney(passGoMoney);
+        Debug.Log($"{Player.PlayerName} passed Go");
+        Player.Addmoney(passGoMoney);
     }
     private void nextTurn()
     {
