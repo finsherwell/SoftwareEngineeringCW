@@ -1,20 +1,22 @@
-using UnityEngine;
+/**using UnityEngine;
 
 public class TileScript : MonoBehaviour
 {
     private Player[] playersOn;
-    public Player[] players;
+    public Player player;
     private string tileName;
     private string ID;
     private bool isProperty;
+    private Tile nextTile;
 
     void Start()
     {
-        playersOn = new Player[10];
+        
     }
 
     void Update()
     {
+
     }
 
     public string GetName()
@@ -24,7 +26,7 @@ public class TileScript : MonoBehaviour
 
     public TileScript GetNext()
     {
-        return null;
+        return this.nextTile;
     }
 
     public string GetID()
@@ -39,7 +41,14 @@ public class TileScript : MonoBehaviour
 
     public bool LandedOn()
     {
-        return playersOn != null && playersOn.Length > 0;
+        return (playersOn != null && playersOn.Length > 0);
+    }
+    private void updatePlayerOn()
+    {
+        if (player.currentTile == this)
+        {
+            palyersOn[player.id]=player;
+        }
     }
 
     public void SetName(string name)
@@ -57,14 +66,9 @@ public class TileScript : MonoBehaviour
         this.isProperty = isProperty;
     }
 
-    public void GetLandedOn()
+    public Player GetLandedOn()
     {
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (players[i].positionID == ID)
-            {
-                playersOn[i] = players[i];
-            }
-        }
+        return playersOn;
     }
 }
+**/
