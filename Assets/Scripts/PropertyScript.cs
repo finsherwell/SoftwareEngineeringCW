@@ -1,12 +1,12 @@
-using UnityEngine;
+/**using UnityEngine;
 
-public class PropertyScript
+public class PropertyScript : MonoBehaviour
 {
     public Tile tile;
     private int setID;
     private int price;
     private int rent;
-    private bool isOwned();
+    private bool isOwned;
 
     public bool isProperty()
     {
@@ -18,7 +18,7 @@ public class PropertyScript
     }
     public int getPrice()
     {
-        return this.price
+        return this.price;
     }
     public int getRent()
     {
@@ -35,5 +35,6 @@ public class PropertyScript
             //return player that owns property 
         }
     }
-    public void 
 }
+**/
+
