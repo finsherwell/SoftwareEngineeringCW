@@ -1,53 +1,53 @@
-using UnityEngine;
+// using UnityEngine;
 
-public class Engine : MonoBehaviour
-{
-    [SerializeField] public List<Player> players;
-    [SerializeField] private int startingMoney = 1500;
-    [SerializeField] private int passGoMoney = 200;
-    [SerializeField] private int maxPlayers = 5;
-    [SerializeField] private BoardManager boardmanager;
-    [SerializeField] private Dice dice;
-    
-    private int currentPlayerIndex = 0;
-    private bool gameOver = false;
+// public class Engine : MonoBehaviour
+// {
+//     [SerializeField] public List<Player> players;
+//     [SerializeField] private int startingMoney = 1500;
+//     [SerializeField] private int passGoMoney = 200;
+//     [SerializeField] private int maxPlayers = 5;
+//     [SerializeField] private BoardManager boardmanager;
+//     [SerializeField] private Dice dice;
+
+//     private int currentPlayerIndex = 0;
+//     private bool gameOver = false;
 
 
-    void Start
-    {
-        initializeGame();
-    }
+//     void Start
+//     {
+//         initializeGame();
+//     }
 
-    private void initializeGame(Player player)
-    {
-        foreach (var player in players)
-        {
-            player.AddMoney(startingMoney);
-            Debug.Log($"{player.PLayerName} has {player.money} starting money");
-        }
-    }   
-    private void passGo(Player player)
-    {
-        Debug.Log($"{player.PlayerName} passed Go")
-        player.Addmoney(passGoMoney);
-    }
-    private void nextTurn()
-    {
-        Player currentPlayer = players[currentPlayerIndex];
-    }
+//     private void initializeGame(Player player)
+//     {
+//         foreach (var player in players)
+//         {
+//             player.AddMoney(startingMoney);
+//             Debug.Log($"{player.PLayerName} has {player.money} starting money");
+//         }
+//     }   
+//     private void passGo(Player player)
+//     {
+//         Debug.Log($"{player.PlayerName} passed Go")
+//         player.Addmoney(passGoMoney);
+//     }
+//     private void nextTurn()
+//     {
+//         Player currentPlayer = players[currentPlayerIndex];
+//     }
 
-    private void RollAndMove(int diceValue, Player player)
-    {
+//     private void RollAndMove(int diceValue, Player player)
+//     {
 
-    }
+//     }
 
-    private void transactProperty(Player player, Property property)
-    {
+//     private void transactProperty(Player player, Property property)
+//     {
 
-    }
+//     }
 
-    private void transactHouses(Player player, Property property, int houses)
-    {
-        
-    }
-}
+//     private void transactHouses(Player player, Property property, int houses)
+//     {
+
+//     }
+// }

@@ -1,6 +1,6 @@
-using UnityEngine;
+// using UnityEngine;
 
-public class NewEmptyCSharpScript
-{
-    #helloworld#
-}
+// public class NewEmptyCSharpScript
+// {
+//     #helloworld#
+// }

@@ -1,29 +1,29 @@
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Tilemaps;
+// using UnityEditor;
+// using UnityEngine;
+// using UnityEngine.Tilemaps;
 
-public class PlayerScript : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        int money = 1500;
-        int playerID;
-        Property protperties[];
-        Tile currentTile = passGo;
-        bool inJail = false;
+// public class PlayerScript : MonoBehaviour
+// {
+//     // Start is called once before the first execution of Update after the MonoBehaviour is created
+//     void Start()
+//     {
+//         int money = 1500;
+//         int playerID;
+//         Property protperties[];
+//         Tile currentTile = passGo;
+//         bool inJail = false;
 
-    }
+//     }
 
-    // Update is called once per frame
-    void Update()
-    {
+//     // Update is called once per frame
+//     void Update()
+//     {
 
-    }
+//     }
 
-    Property getProperty(void) { return properties; }
+//     Property getProperty(void) { return properties; }
 
-    void addMoney(int amount) { this.money += amount; }
+//     void addMoney(int amount) { this.money += amount; }
 
-    void takeMoney(int amount) { this.money -= amount; }
-}
+//     void takeMoney(int amount) { this.money -= amount; }
+// }
