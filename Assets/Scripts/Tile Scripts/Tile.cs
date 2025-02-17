@@ -6,7 +6,7 @@ public class Tile : MonoBehaviour
     public Player[] players;
     [SerializeField] private string tileName;
     [SerializeField] private string ID;
-    [SerializeField]private bool isProperty;
+    [SerializeField] private bool isProperty;
 
     void Start()
     {
@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour
 
     void Update()
     {
+        
     }
 
     public string GetName()

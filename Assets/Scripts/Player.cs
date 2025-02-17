@@ -12,10 +12,8 @@ using UnityEditor;
     //Property properties[];
     Tile currentTile;
     bool inJail = false;
-    void Start()
-    {
-         
-    }
+
+    bool hasGOOJ = false;
     
     // Property getProperty(void) { return properties; }
 
