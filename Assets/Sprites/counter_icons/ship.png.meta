@@ -125,10 +125,10 @@ TextureImporter:
       name: ship_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 93
-        width: 34
-        height: 48
+        x: 57
+        y: 46
+        width: 88
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,77 +143,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ship_1
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 93
-        width: 36
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f847e9c0c32927360800000000000000
-      internalID: 7165950743707284623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ship_2
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 71
-        width: 82
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: caf61fb32773871d0800000000000000
-      internalID: -3352868958805856340
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ship_3
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 55
-        width: 82
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 138362c4825a471c0800000000000000
-      internalID: -4506795734596175823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5ccdbc4abb33aec41959fa16cdcaedc9
     internalID: 0
     vertices: []
     indices: 
@@ -222,7 +156,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ship_0: -4360530552843628718
+      ship_1: 7165950743707284623
+      ship_2: -3352868958805856340
+      ship_3: -4506795734596175823
+      ship_4: -866738729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
