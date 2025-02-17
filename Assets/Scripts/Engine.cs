@@ -22,20 +22,22 @@ using System.Collections.Generic;
      {
          foreach (var player in players)
          {
-             player.AddMoney(startingMoney);
-             Debug.Log($"{player.PLayerName} has {player.money} starting money");
+             player.addMoney(startingMoney);
+             Debug.Log($"{player.playerName} has {player.money} starting money");
          }
      }   
-     private void passGo(Player player)
+
+     public void passGo(Player player)
      {
-         Debug.Log($"{player.PlayerName} passed Go")
-         player.Addmoney(passGoMoney);
+         Debug.Log($"{player.playerName} passed Go");
+         player.addMoney(passGoMoney);
      }
      private void nextTurn()
      {
          Player currentPlayer = players[currentPlayerIndex];
      }
-
+ }
+/*
      private void RollAndMove(int diceValue, Player player)
      {
 
@@ -51,3 +53,4 @@ using System.Collections.Generic;
 
      }
  }
+ */
