@@ -22,10 +22,10 @@ public class Tile : MonoBehaviour
         return this.tileName;
     }
 
-    public TileScript GetNext()
-    {
-        return null;
-    }
+    // public TileScript GetNext()
+    // {
+    //     return null;
+    // }
 
     public string GetID()
     {
@@ -57,14 +57,14 @@ public class Tile : MonoBehaviour
         this.isProperty = isProperty;
     }
 
-    public void GetLandedOn()
-    {
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (players[i].positionID == ID)
-            {
-                playersOn[i] = players[i];
-            }
-        }
-    }
+    // public void GetLandedOn()
+    // {
+    //     for (int i = 0; i < players.Length; i++)
+    //     {
+    //         if (players[i].positionID == ID)
+    //         {
+    //             playersOn[i] = players[i];
+    //         }
+    //     }
+    // }
 }
