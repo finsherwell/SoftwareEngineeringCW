@@ -5,31 +5,43 @@ public class TileScript : MonoBehaviour
     private Player[] playersOn;
     public Player player;
     private string tileName;
-    private string ID;
+    private int ID;
     private bool isProperty;
+<<<<<<< Updated upstream:Assets/Scripts/TileScript.cs
     private Tile nextTile;
+=======
+    public Tile nextTile;
+    public Vector3 tilePosition;  // Position in world space where the tile is located
+>>>>>>> Stashed changes:Assets/Scripts/Tile.cs
 
     void Start()
     {
         
     }
 
+<<<<<<< Updated upstream:Assets/Scripts/TileScript.cs
     void Update()
     {
 
     }
 
+=======
+>>>>>>> Stashed changes:Assets/Scripts/Tile.cs
     public string GetName()
     {
         return this.tileName;
     }
 
-    public TileScript GetNext()
+    public Tile GetNext()
     {
+<<<<<<< Updated upstream:Assets/Scripts/TileScript.cs
         return this.nextTile;
+=======
+        return nextTile;
+>>>>>>> Stashed changes:Assets/Scripts/Tile.cs
     }
 
-    public string GetID()
+    public int GetID()
     {
         return this.ID;
     }
@@ -56,7 +68,7 @@ public class TileScript : MonoBehaviour
         this.tileName = name;
     }
 
-    public void SetID(string id)
+    public void SetID(int id)
     {
         this.ID = id;
     }
@@ -66,9 +78,16 @@ public class TileScript : MonoBehaviour
         this.isProperty = isProperty;
     }
 
+<<<<<<< Updated upstream:Assets/Scripts/TileScript.cs
     public Player GetLandedOn()
     {
         return playersOn;
+=======
+    // Get the position of the tile in world space
+    public Vector3 GetPosition()
+    {
+        return tilePosition;
+>>>>>>> Stashed changes:Assets/Scripts/Tile.cs
     }
 }
 **/

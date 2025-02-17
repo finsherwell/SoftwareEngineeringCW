@@ -6,12 +6,17 @@ public class PropertyScript : MonoBehaviour
     private int setID;
     private int price;
     private int rent;
+<<<<<<< Updated upstream:Assets/Scripts/PropertyScript.cs
     private bool isOwned;
 
     public bool isProperty()
     {
         return tile.isProperty();
     }
+=======
+    private bool owned;
+    
+>>>>>>> Stashed changes:Assets/Scripts/Property.cs
     public int getSet()
     {
         return this.setID;
@@ -26,8 +31,9 @@ public class PropertyScript : MonoBehaviour
     }
     private bool isOwned()
     {
-        return this.isOwned;
+        return this.owned;
     }
+<<<<<<< Updated upstream:Assets/Scripts/PropertyScript.cs
     public player OwnedBy()
     {
         if (isOwned())
@@ -35,6 +41,15 @@ public class PropertyScript : MonoBehaviour
             //return player that owns property 
         }
     }
+=======
+    //public player OwnedBy()
+    //{
+    //    if (isOwned())
+    //    {
+    //        //return player that owns property 
+    //    }
+    //}
+>>>>>>> Stashed changes:Assets/Scripts/Property.cs
 }
 **/
 
