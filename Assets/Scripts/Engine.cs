@@ -1,8 +1,11 @@
  using UnityEngine;
 using System.Collections.Generic;
- public class Engine : MonoBehaviour
+using Unity.Properties;
+public class Engine : MonoBehaviour
  {
     [SerializeField] public List<Player> players;
+
+    [SerializeField] public List<Property> properties;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;

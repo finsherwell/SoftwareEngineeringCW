@@ -8,7 +8,7 @@ using UnityEditor;
     public int money; 
 
     [SerializeField] public string playerName;
-    public int playerID;
+    [SerializeField] public int playerID;
     //Property properties[];
     Tile currentTile;
     bool inJail = false;
