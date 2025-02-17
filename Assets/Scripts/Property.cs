@@ -1,6 +1,6 @@
 // using UnityEngine;
 
-// public class PropertyScript
+// public class Property : MonoBehaviour
 // {
 //     public Tile tile;
 //     private int setID;
