@@ -1,0 +1,187 @@
+{
+    "Pot Luck" : {
+        "1" : {
+            "Description" : "You inherit £200",
+            "Action" : { "Type" : "pay_player", "Amount" : 200},
+            "Choice" : false
+            },
+        "2" : {
+            "Description" : "You have won 2nd prize in a beauty contest, collect £50",
+            "Action" : { "Type" : "pay_player", "Amount" : 50},
+            "Choice" : false
+            },
+        "3" : {
+            "Description" : "You are up the creek with no paddle - go back to the Old Creek",
+            "Action" : { "Type" : "pay_player", "Amount" : 200},
+            "Choice" : false
+            },
+        "4" : {
+            "Description" : "Student loan refund. Collect £20",
+            "Action" : { "Type" : "pay_player", "Amount" : 20},
+            "Choice" : false
+            },
+        "5" : {
+            "Description" : "Bank error in your favour. Collect £200",
+            "Action" : { "Type" : "pay_player", "Amount" : 200},
+            "Choice" : false
+            },
+        "6" : {
+            "Description" : "Pay bill for text books of £100",
+            "Action" : { "Type" : "pay_bank", "Amount" : 100},
+            "Choice" : false
+            },
+        "7" : {
+            "Description" : "Mega late night taxi bill pay £50",
+            "Action" : { "Type" : "pay_bank", "Amount" : 50},
+            "Choice" : false
+            },
+        "8" : {
+            "Description" : "Advance to go",
+            "Action" : { "Type" : "move", "Property" : "Go"},
+            "Choice" : false
+            },
+        "9" : {
+            "Description" : "From sale of Bitcoin you get £50",
+            "Action" : { "Type" : "pay_player", "Amount" : 50},
+            "Choice" : false
+            },
+        "10" : {
+            "Description" : "Bitcoin assets fall - pay off Bitcoin short fall",
+            "Action" : { "Type" : "pay_bank", "Amount" : 50},
+            "Choice" : false
+            },
+        "11" : {
+            "Description" : "Pay a £10 fine or take opportunity knocks",
+            "Action" : {
+                "Action1" : { "Type" : "pay_bank", "Amount" : 10},
+                "Action2" : { "Type": "opportunity_knocks" }
+            },
+            "Choice" : true
+            },
+        "12" : {
+            "Description" : "Pay insurance fee of £50",
+            "Action" : { "Type" : "put_free_parking", "Amount" : 50},
+            "Choice" : false
+            },
+        "13" : {
+            "Description" : "Savings bond matures, collect £100",
+            "Action" : { "Type" : "pay_player", "Amount" : 100},
+            "Choice" : false
+            },
+        "14" : {
+            "Description" : "Go to jail. Do not pass GO, do not collect £200",
+            "Action" : { "Type" : "jail" },
+            "Choice" : false
+            },
+        "15" : {
+            "Description" : "Received interest on shares of £25",
+            "Action" : { "Type" : "pay_player", "Amount" : 25},
+            "Choice" : false
+            },
+        "16" : {
+            "Description" : "It's your birthday. Collect £10 from each player",
+            "Action" : { "Type" : "receive_player", "Amount" : 10},
+            "Choice" : false
+            },
+        "17" : {
+            "Description" : "Get out of jail free",
+            "Action" : { "Type" : "avoid_jail" },
+            "Choice" : false
+            }
+    }, 
+
+    "Opportunity Knocks" : {
+        "1" : {
+            "Description" : "Bank pays you dividend of £50",
+            "Action" : { "Type" : "pay_player", "Amount" : 50},
+            "Choice" : false
+            },
+        "2" : {
+            "Description" : "You have won a lip sync battle. Collect £100",
+            "Action" : { "Type" : "pay_player", "Amount" : 100},
+            "Choice" : false
+            },
+        "3" : {
+            "Description" : "Advance to Turing Heights",
+            "Action" : { "Type" : "move", "Property" : "Turing Heights"},
+            "Choice" : false
+            },
+        "4" : {
+            "Description" : "Advance to Han Xin Gardens. If you pass GO, collect £200",
+            "Action" : {
+                "Action1" : { "Type" : "move", "Property" : "Han Xin Gardens"},
+                "Action2" : { "Type" : "pay_player", "Amount" : 200 }
+            },
+            "Choice" : true
+            },
+        "5" : {
+            "Description" : "Fined £15 for speeding",
+            "Action" : { "Type" : "put_free_parking", "Amount" : 15},
+            "Choice" : false
+            },
+        "6" : {
+            "Description" : "Pay university fees of £150",
+            "Action" : { "Type" : "pay_bank", "Amount" : 150},
+            "Choice" : false
+            },
+        "7" : {
+            "Description" : "Take a trip to Hove station. If you pass GO collect £200",
+            "Action" : {
+                "Action1" : { "Type" : "move", "Property" : "Hove Station"},
+                "Action2" : { "Type" : "pay_player", "Amount" : 200 }
+            },
+            "Choice" : true
+            },
+        "8" : {
+            "Description" : "Loan matures, collect £150",
+            "Action" : { "Type" : "pay_player", "Amount" : 50},
+            "Choice" : false
+            },
+        "9" : {
+            "Description" : "You are assessed for repairs, £40/house, £115/hotel",
+            "Action" : {
+                "Action1" : { "Type" : "pay_bank_per_house", "Amount" : 40},
+                "Action2" : { "Type": "pay_bank_per_hotel", "Amount" : 115 }
+            },
+            "Choice" : true
+            },
+        "10" : {
+            "Description" : "Advance to go",
+            "Action" : { "Type" : "move", "Property" : "Go"},
+            "Choice" : false
+            },
+        "11" : {
+            "Description" : "You are assessed for repairs, £25/house, £100/hotel",
+            "Action" : {
+                "Action1" : { "Type" : "pay_bank_per_house", "Amount" : 25},
+                "Action2" : { "Type": "pay_bank_per_hotel", "Amount" : 100 }
+            },
+            "Choice" : true
+            },
+        "12" : {
+            "Description" : "Go back 3 spaces",
+            "Action" : { "Type" : "move_back", "Spaces" : 3},
+            "Choice" : false
+            },
+        "13" : {
+            "Description" : "Savings bond matures, collect £100",
+            "Action" : { "Type" : "pay_player", "Amount" : 100},
+            "Choice" : false
+            },
+        "14" : {
+            "Description" : "Go to jail. Do not pass GO, do not collect £200",
+            "Action" : { "Type" : "jail" },
+            "Choice" : false
+            },
+        "15" : {
+            "Description" : "Received interest on shares of £25",
+            "Action" : { "Type" : "pay_player", "Amount" : 25},
+            "Choice" : false
+            },
+        "16" : {
+            "Description" : "It's your birthday. Collect £10 from each player",
+            "Action" : { "Type" : "receive_player", "Amount" : 10},
+            "Choice" : false
+            }
+    }
+}
