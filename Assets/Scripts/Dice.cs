@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DiceScript : MonoBehaviour
+public class Dice : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite[] sprites;

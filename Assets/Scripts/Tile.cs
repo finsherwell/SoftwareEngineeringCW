@@ -1,6 +1,6 @@
 // using UnityEngine;
 
-// public class TileScript : MonoBehaviour
+// public class Tile : MonoBehaviour
 // {
 //     private Player[] playersOn;
 //     public Player[] players;
