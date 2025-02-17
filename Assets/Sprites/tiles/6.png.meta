@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 615f64f7324921a4bb0ed60a8ece64a0
+guid: 02d45caa5cbb21244b86b8f990242747
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7590664363401100751
-    second: iron_24dp_5F6368_FILL0_wght400_GRAD0_opsz24_0
+      213: 3465286685962602723
+    second: 6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iron_24dp_5F6368_FILL0_wght400_GRAD0_opsz24_0
+      name: 6_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 23
-        width: 82
-        height: 50
+        x: 0
+        y: 0
+        width: 500
+        height: 700
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fcd3dbd7505775960800000000000000
-      internalID: 7590664363401100751
+      spriteID: 3e801b981eb271030800000000000000
+      internalID: 3465286685962602723
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      iron_24dp_5F6368_FILL0_wght400_GRAD0_opsz24_0: 7590664363401100751
+      6_0: 3465286685962602723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
