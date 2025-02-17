@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class DiceScript : MonoBehaviour
+public class Dice : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;   //reference to sprite renderer in the dice game object
     public Sprite[] sprites;                 //sprite sheet reference
