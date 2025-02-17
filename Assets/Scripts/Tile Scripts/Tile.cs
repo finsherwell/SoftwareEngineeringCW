@@ -1,12 +1,12 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
     private Player[] playersOn;
     public Player[] players;
-    private string tileName;
-    private string ID;
-    private bool isProperty;
+    [SerializeField] private string tileName;
+    [SerializeField] private string ID;
+    [SerializeField] private bool isProperty;
 
     void Start()
     {
@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour
 
     void Update()
     {
+        
     }
 
     public string GetName()
@@ -68,3 +69,4 @@ public class Tile : MonoBehaviour
     //     }
     // }
 }
+*/
