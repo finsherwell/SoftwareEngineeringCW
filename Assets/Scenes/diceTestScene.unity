@@ -237,6 +237,7 @@ MonoBehaviour:
   - {fileID: -6026472790986402927, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
   - {fileID: -2358022466763609599, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
   diceNum: 1
+  finalValue: 0
 --- !u!212 &495184497
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -479,7 +480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -880, y: -525}
+  m_AnchoredPosition: {x: -417, y: -190}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1239334695
@@ -803,6 +804,7 @@ MonoBehaviour:
   - {fileID: -6026472790986402927, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
   - {fileID: -2358022466763609599, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
   diceNum: 1
+  finalValue: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
