@@ -5,7 +5,7 @@ public class Engine : MonoBehaviour
  {
     [SerializeField] public List<Player> players;
 
-    [SerializeField] public List<Property> properties;
+    //[SerializeField] public List<Property> properties;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
@@ -23,10 +23,13 @@ public class Engine : MonoBehaviour
 
      private void initializeGame()
      {
+         int i = 0;
          foreach (var player in players)
          {
              player.addMoney(startingMoney);
              Debug.Log($"{player.playerName} has {player.money} starting money");
+             player.setID(i);
+             i++;
          }
      }   
 

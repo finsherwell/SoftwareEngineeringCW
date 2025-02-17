@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class Property : MonoBehaviour
 {
@@ -37,3 +37,4 @@ public class Property : MonoBehaviour
     }
     public void 
 }
+*/

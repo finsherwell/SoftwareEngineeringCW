@@ -8,7 +8,7 @@ using UnityEditor;
     public int money; 
 
     [SerializeField] public string playerName;
-    [SerializeField] public int playerID;
+    [SerializeField] private int playerID;
     //Property properties[];
     Tile currentTile;
     bool inJail = false;
@@ -19,8 +19,11 @@ using UnityEditor;
     
     // Property getProperty(void) { return properties; }
 
+     public int getID(int playerID){return this.playerID;  }
+     public void setID(int playerID){this.playerID = playerID;  }
+
      public void addMoney(int amount) { this.money += amount; }
 
-      void takeMoney(int amount) { this.money -= amount; }
+     void takeMoney(int amount) { this.money -= amount; }
     
  }
