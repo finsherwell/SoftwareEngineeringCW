@@ -2,51 +2,75 @@ using UnityEngine;
 
 public class Property : MonoBehaviour
 {
-    [SerializeField] private string propertyName;
+    [SerializeField] private string propertyName; // Name of the property (e.g. "The Old Creek")
     [SerializeField] private string group; // Color set (e.g., "Brown", "Blue")
-    [SerializeField] private int price;
-    [SerializeField] private int houseCost;
+    [SerializeField] private int price; // Original cost to buy the property
+    [SerializeField] private int houseCost; // 
     [SerializeField] private int[] rentLevels; // Rent for different levels (0-4 houses + hotel)
     
-    private bool isOwned = false;
-    private int houses = 0;
-    private Player owner = null;
+    private bool isOwned = false; // Will be true if the property is owned
+    private int houses = 0; // Updates if you upgrade houses
+    private Player owner = null; // Assigned to the player that owns the property
 
+    /*
+    Returns the name of the property.
+    */
     public string GetPropertyName()
     {
         return propertyName;
     }
 
+    /*
+    Returns the group that the property is in.
+    */
     public string GetGroup()
     {
         return group;
     }
 
+    /*
+    Returns the price of the property.
+    */
     public int GetPrice()
     {
         return price;
     }
 
+    /*
+    Returns the cost of the house.
+    */
     public int GetHouseCost()
     {
         return houseCost;
     }
 
+    /*
+    Returns the rent of the property.
+    */
     public int GetRent()
     {
         return rentLevels[houses];
     }
 
+    /*
+    Returns whether the property is owned or not.
+    */
     public bool IsOwned()
     {
         return isOwned;
     }
 
+    /*
+    Returns the owner of the property.
+    */
     public Player GetOwner()
     {
         return owner;
     }
 
+    /*
+    Allows a user to buy the property as long as it isn't owned and they have the funds to buy it.
+    */
     public void PurchaseProperty(Player buyer)
     {
         if (!isOwned && buyer.money >= price)
@@ -57,6 +81,9 @@ public class Property : MonoBehaviour
         }
     }
 
+    /*
+    Allows a player to upgrade their property as long as it does not exceed the boundaries for that property.
+    */
     public void UpgradeProperty()
     {
         if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
@@ -66,6 +93,9 @@ public class Property : MonoBehaviour
         }
     }
 
+    /*
+    Handles rent payment between the tenant and the owner of the property.
+    */
     public void PayRent(Player tenant)
     {
         if (isOwned && tenant != owner)
