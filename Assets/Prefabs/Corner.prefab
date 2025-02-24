@@ -185,7 +185,11 @@ GameObject:
   - component: {fileID: 6235260114637235755}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 1103514629372616339}
+=======
+  - component: {fileID: 160061213136983024}
+>>>>>>> Stashed changes
 =======
   - component: {fileID: 160061213136983024}
 >>>>>>> Stashed changes
@@ -218,7 +222,11 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!114 &1103514629372616339
+=======
+--- !u!114 &160061213136983024
+>>>>>>> Stashed changes
 =======
 --- !u!114 &160061213136983024
 >>>>>>> Stashed changes
@@ -239,6 +247,12 @@ MonoBehaviour:
   players: []
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  tileName: 
+  ID: 
+  isProperty: 0
+>>>>>>> Stashed changes
 =======
   tileName: 
   ID: 
