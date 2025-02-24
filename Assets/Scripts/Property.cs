@@ -1,108 +1,108 @@
-using UnityEngine;
+//using UnityEngine;
 
-public class Property : MonoBehaviour
-{
-    [SerializeField] private string propertyName; // Name of the property (e.g. "The Old Creek")
-    [SerializeField] private string group; // Color set (e.g., "Brown", "Blue")
-    [SerializeField] private int price; // Original cost to buy the property
-    [SerializeField] private int houseCost; // 
-    [SerializeField] private int[] rentLevels; // Rent for different levels (0-4 houses + hotel)
-    
-    private bool isOwned = false; // Will be true if the property is owned
-    private int houses = 0; // Updates if you upgrade houses
-    private Player owner = null; // Assigned to the player that owns the property
+//public class Property : MonoBehaviour
+//{
+//    [SerializeField] private string propertyName; // Name of the property (e.g. "The Old Creek")
+//    [SerializeField] private string group; // Color set (e.g., "Brown", "Blue")
+//    [SerializeField] private int price; // Original cost to buy the property
+//    [SerializeField] private int houseCost; // 
+//    [SerializeField] private int[] rentLevels; // Rent for different levels (0-4 houses + hotel)
 
-    /*
-    Returns the name of the property.
-    */
-    public string GetPropertyName()
-    {
-        return propertyName;
-    }
+//    private bool isOwned = false; // Will be true if the property is owned
+//    private int houses = 0; // Updates if you upgrade houses
+//    private Player owner = null; // Assigned to the player that owns the property
 
-    /*
-    Returns the group that the property is in.
-    */
-    public string GetGroup()
-    {
-        return group;
-    }
+//    /*
+//    Returns the name of the property.
+//    */
+//    public string GetPropertyName()
+//    {
+//        return propertyName;
+//    }
 
-    /*
-    Returns the price of the property.
-    */
-    public int GetPrice()
-    {
-        return price;
-    }
+//    /*
+//    Returns the group that the property is in.
+//    */
+//    public string GetGroup()
+//    {
+//        return group;
+//    }
 
-    /*
-    Returns the cost of the house.
-    */
-    public int GetHouseCost()
-    {
-        return houseCost;
-    }
+//    /*
+//    Returns the price of the property.
+//    */
+//    public int GetPrice()
+//    {
+//        return price;
+//    }
 
-    /*
-    Returns the rent of the property.
-    */
-    public int GetRent()
-    {
-        return rentLevels[houses];
-    }
+//    /*
+//    Returns the cost of the house.
+//    */
+//    public int GetHouseCost()
+//    {
+//        return houseCost;
+//    }
 
-    /*
-    Returns whether the property is owned or not.
-    */
-    public bool IsOwned()
-    {
-        return isOwned;
-    }
+//    /*
+//    Returns the rent of the property.
+//    */
+//    public int GetRent()
+//    {
+//        return rentLevels[houses];
+//    }
 
-    /*
-    Returns the owner of the property.
-    */
-    public Player GetOwner()
-    {
-        return owner;
-    }
+//    /*
+//    Returns whether the property is owned or not.
+//    */
+//    public bool IsOwned()
+//    {
+//        return isOwned;
+//    }
 
-    /*
-    Allows a user to buy the property as long as it isn't owned and they have the funds to buy it.
-    */
-    public void PurchaseProperty(Player buyer)
-    {
-        if (!isOwned && buyer.money >= price)
-        {
-            buyer.takeMoney(price);
-            owner = buyer;
-            isOwned = true;
-        }
-    }
+//    /*
+//    Returns the owner of the property.
+//    */
+//    public Player GetOwner()
+//    {
+//        return owner;
+//    }
 
-    /*
-    Allows a player to upgrade their property as long as it does not exceed the boundaries for that property.
-    */
-    public void UpgradeProperty()
-    {
-        if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
-        {
-            owner.takeMoney(houseCost);
-            houses++;
-        }
-    }
+//    /*
+//    Allows a user to buy the property as long as it isn't owned and they have the funds to buy it.
+//    */
+//    public void PurchaseProperty(Player buyer)
+//    {
+//        if (!isOwned && buyer.money >= price)
+//        {
+//            buyer.takeMoney(price);
+//            owner = buyer;
+//            isOwned = true;
+//        }
+//    }
 
-    /*
-    Handles rent payment between the tenant and the owner of the property.
-    */
-    public void PayRent(Player tenant)
-    {
-        if (isOwned && tenant != owner)
-        {
-            int rent = GetRent();
-            tenant.takeMoney(rent);
-            owner.addMoney(rent);
-        }
-    }
-}
+//    /*
+//    Allows a player to upgrade their property as long as it does not exceed the boundaries for that property.
+//    */
+//    public void UpgradeProperty()
+//    {
+//        if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
+//        {
+//            owner.takeMoney(houseCost);
+//            houses++;
+//        }
+//    }
+
+//    /*
+//    Handles rent payment between the tenant and the owner of the property.
+//    */
+//    public void PayRent(Player tenant)
+//    {
+//        if (isOwned && tenant != owner)
+//        {
+//            int rent = GetRent();
+//            tenant.takeMoney(rent);
+//            owner.addMoney(rent);
+//        }
+//    }
+//}
