@@ -700,8 +700,13 @@ MonoBehaviour:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_CorrespondingSourceObject: {fileID: 2770354639544142164, guid: 24cf1317a9143cd4f8001e43bc3ee700, type: 3}
   m_PrefabInstance: {fileID: 8365029291052283880}
+=======
+  m_CorrespondingSourceObject: {fileID: 6898319231609860819, guid: ca4ac06bd798732469da85b7fefdb844, type: 3}
+  m_PrefabInstance: {fileID: 97452238547185995}
+>>>>>>> Stashed changes
 =======
   m_CorrespondingSourceObject: {fileID: 6898319231609860819, guid: ca4ac06bd798732469da85b7fefdb844, type: 3}
   m_PrefabInstance: {fileID: 97452238547185995}
@@ -724,7 +729,11 @@ MonoBehaviour:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1001 &8365029291052283880
+=======
+--- !u!1001 &97452238547185995
+>>>>>>> Stashed changes
 =======
 --- !u!1001 &97452238547185995
 >>>>>>> Stashed changes
@@ -741,6 +750,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -793,6 +803,8 @@ PrefabInstance:
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 145407714201669417, guid: ca4ac06bd798732469da85b7fefdb844, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -839,6 +851,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -851,7 +866,11 @@ PrefabInstance:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_SourcePrefab: {fileID: 100100000, guid: 24cf1317a9143cd4f8001e43bc3ee700, type: 3}
+=======
+  m_SourcePrefab: {fileID: 100100000, guid: ca4ac06bd798732469da85b7fefdb844, type: 3}
+>>>>>>> Stashed changes
 =======
   m_SourcePrefab: {fileID: 100100000, guid: ca4ac06bd798732469da85b7fefdb844, type: 3}
 >>>>>>> Stashed changes
@@ -869,7 +888,11 @@ SceneRoots:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 8365029291052283880}
+=======
+  - {fileID: 97452238547185995}
+>>>>>>> Stashed changes
 =======
   - {fileID: 97452238547185995}
 >>>>>>> Stashed changes

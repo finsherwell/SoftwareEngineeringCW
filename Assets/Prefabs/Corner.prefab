@@ -186,7 +186,11 @@ GameObject:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 1103514629372616339}
+=======
+  - component: {fileID: 160061213136983024}
+>>>>>>> Stashed changes
 =======
   - component: {fileID: 160061213136983024}
 >>>>>>> Stashed changes
@@ -223,7 +227,11 @@ Transform:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!114 &1103514629372616339
+=======
+--- !u!114 &160061213136983024
+>>>>>>> Stashed changes
 =======
 --- !u!114 &160061213136983024
 >>>>>>> Stashed changes
@@ -248,6 +256,12 @@ MonoBehaviour:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  tileName: 
+  ID: 
+  isProperty: 0
+>>>>>>> Stashed changes
 =======
   tileName: 
   ID: 
