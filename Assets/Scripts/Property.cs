@@ -75,7 +75,7 @@ public class Property : MonoBehaviour
     {
         if (!isOwned && buyer.money >= price)
         {
-            buyer.money -= price;
+            buyer.takeMoney(price);
             owner = buyer;
             isOwned = true;
         }
@@ -88,7 +88,7 @@ public class Property : MonoBehaviour
     {
         if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
         {
-            owner.money -= houseCost;
+            owner.takeMoney(houseCost);
             houses++;
         }
     }
@@ -101,8 +101,8 @@ public class Property : MonoBehaviour
         if (isOwned && tenant != owner)
         {
             int rent = GetRent();
-            tenant.money -= rent;
-            owner.money += rent;
+            tenant.takeMoney(rent);
+            owner.addMoney(rent);
         }
     }
 }
