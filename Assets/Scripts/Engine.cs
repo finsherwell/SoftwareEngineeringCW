@@ -1,6 +1,8 @@
- using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using Unity.Properties;
+//using TMPro;
 public class Engine : MonoBehaviour
  {
     [SerializeField] public List<Player> players;
@@ -13,6 +15,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private Dice dice;
 
     [SerializeField] private int currentPlayerIndex = 0;
+    //[SerializeField] private TextMeshProUGUI currentPlayerText;
      private bool gameOver = false;
 
 
@@ -39,14 +42,14 @@ public class Engine : MonoBehaviour
          Debug.Log($"{player.playerName} passed Go");
          player.addMoney(passGoMoney);
      }
-     private void nextTurn()//increment current player index and wrap when maxxed
+     public void nextTurn()//increment current player index and wrap when maxxed
      {
         currentPlayerIndex++;
         if (currentPlayerIndex == maxPlayers)
         {
              currentPlayerIndex = 0;
         }
-
+        //currentPlayerText.text = $"Current Player: Player {players[currentPlayerIndex].playerName}";
      }
  }
 /*
