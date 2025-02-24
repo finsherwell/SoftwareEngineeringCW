@@ -4,13 +4,16 @@ using System.Collections.Generic;
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
-    //[SerializeField] public List<Property> properties;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
+
+    // Choose which dice objects to keep (dice1/dice2 vs dice):
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
-    [SerializeField] private Tile currentTile;
+    [SerializeField] private BoardManager boardmanager;
+    [SerializeField] private GameObject currentPlayerTextObject;
+
     public Player currentPlayer;
     private int currentPlayerIndex = 0;
     private bool gameOver = false;
@@ -34,18 +37,19 @@ public class Engine : MonoBehaviour
         }
     }
 
-    private void initializeGame()
+    private void initializeGame() // Create players, initialize money, and set starting position
     {
+        int i = 0;
         foreach (var player in players)
         {
             player.addMoney(startingMoney);
             Debug.Log($"{player.playerName} has {player.money} starting money");
-
-            // Set the starting tile for each player, assuming the first tile (ID = 0) is the starting point
+            player.setID(i);
+            i++;
         }
     }
 
-    public void passGo(Player player)
+    public void passGo(Player player) // When player lands on Go, add money to their account
     {
         Debug.Log($"{player.playerName} passed Go");
         player.addMoney(passGoMoney);
@@ -65,7 +69,7 @@ public class Engine : MonoBehaviour
                 player.setCurrentTile(nextTile);
 
                 // Move the player's GameObject to the new tile position
-                player.transform.position = nextTile.transform.position;  // This updates the player's position in the world
+                player.transform.position = nextTile.transform.position; // This updates the player's position in the world
 
                 Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
             }
@@ -82,15 +86,13 @@ public class Engine : MonoBehaviour
     {
         Debug.Log($"{currentPlayer.playerName} has landed on a tile.");
     }
+
+    private void nextTurn() // Increment current player index and wrap when maxxed
+    {
+        currentPlayerIndex++;
+        if (currentPlayerIndex == maxPlayers)
+        {
+            currentPlayerIndex = 0;
+        }
+    }
 }
-
-
-     //private void transactProperty(Player player, Property property)
-     //{
-
-     //}
-
-     //private void transactHouses(Player player, Property property, int houses)
-     //{
-
-     //}

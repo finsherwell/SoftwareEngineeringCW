@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
-    // Enum to store the different types of actions that you can land on.
+    // Enum to store the different types of actions that you can land on
     public enum ActionType {
         Go,
         GoToJail,
@@ -17,7 +17,7 @@ public class ActionSpace : MonoBehaviour
     [SerializeField] private ActionType actionType;
 
     /*
-    Returns the action type
+    Returns the action type.
     */
     public ActionType GetActionType()
     {
@@ -25,15 +25,46 @@ public class ActionSpace : MonoBehaviour
     }
 
     /*
-    Handles the action type for the space that you land on
+    Handles the action type for the space that you land on.
     */
     public void LandedOn(Player player)
     {
         switch (actionType)
         {
             case ActionType.Go:
-                player.addMoney(200);
+            // Implements game engine go method
                 break;
+            
+            case ActionType.GoToJail:
+            // Checks if user has GOOJ, otherwise jails them
+                break;
+
+            case ActionType.Jail:
+            // Nothing, allows you to pass if not in jail
+                break;
+
+            case ActionType.FreeParking:
+            // Nothing, collect fines
+                break;
+
+            case ActionType.IncomeTax:
+            // Simple mathematical deduction
+            // If they can't pay, they get put into bankrupcy
+                break;
+
+            case ActionType.SuperTax:
+            // Simple mathematical deduction
+            // If they can't pay, they get put into bankrupcy
+                break;
+
+            case ActionType.PotLuck:
+            // Use Action Card Class
+                break;
+
+            case ActionType.OpportunityKnocks:
+            // Use Action Card Class
+                break;
+
         }
     }
 }

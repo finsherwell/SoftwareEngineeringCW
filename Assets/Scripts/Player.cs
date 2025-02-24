@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // Initialize the player’s starting tile if needed.
+        // Initialize the playerâ€™s starting tile if needed.
     }
 
     // Returns the player's current position ID
@@ -21,14 +21,14 @@ public class Player : MonoBehaviour
         return positionID;
     }
 
-    // Adds money to the player’s account
+    // Adds money to the playerâ€™s account
     public void addMoney(int amount)
     {
         this.money += amount;
     }
 
-    // Removes money from the player’s account
-    void takeMoney(int amount)
+    // Removes money from the playerâ€™s account
+    public void takeMoney(int amount)
     {
         this.money -= amount;
     }
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     {
         return currentTile;
     }
+
     public Tile getTile()
     {
         return currentTile;
@@ -53,8 +54,9 @@ public class Player : MonoBehaviour
     {
         currentTile = tile;
     }
+
     public bool isInJail()
     {
-        return false;
+        return inJail;
     }
 }
