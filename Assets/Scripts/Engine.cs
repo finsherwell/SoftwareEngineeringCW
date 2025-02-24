@@ -1,6 +1,7 @@
  using UnityEngine;
 using System.Collections.Generic;
 using Unity.Properties;
+using TMPro;
 public class Engine : MonoBehaviour
  {
     [SerializeField] public List<Player> players;
@@ -21,7 +22,7 @@ public class Engine : MonoBehaviour
          initializeGame();
      }
 
-     private void initializeGame()
+     private void initializeGame() //create players, initialize money, and set starting position
      {
          int i = 0;
          foreach (var player in players)
@@ -34,18 +35,20 @@ public class Engine : MonoBehaviour
          }
      }   
 
-     public void passGo(Player player)
+     public void passGo(Player player) //when player lands on Go, add money to their account
      {
          Debug.Log($"{player.playerName} passed Go");
          player.addMoney(passGoMoney);
      }
-     public void nextTurn()
+     private void nextTurn()//increment current player index and wrap when maxxed
      {
-        currentPlayerIndex += 1;
-         if (currentPlayerIndex >= players.Count)
-         {
+        currentPlayerIndex++;
+        if (currentPlayerIndex == maxPlayers)
+        {
              currentPlayerIndex = 0;
-         }
+        }
+        currentPlayerText.text = $"Current Player: {players[currentPlayerIndex].playerName}";
+
      }
  }
 /*
