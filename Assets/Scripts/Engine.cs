@@ -9,10 +9,15 @@ public class Engine : MonoBehaviour
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [SerializeField] private BoardManager boardmanager;
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
     [SerializeField] private Tile currentTile;
+=======
+    [SerializeField] private Dice dice1;
+    [SerializeField] private Dice dice2;
+>>>>>>> Stashed changes
 =======
     [SerializeField] private Dice dice1;
     [SerializeField] private Dice dice2;
@@ -158,5 +163,9 @@ public class Engine : MonoBehaviour
      //{
 
      //}
+<<<<<<< Updated upstream
+ }
+>>>>>>> Stashed changes
+=======
  }
 >>>>>>> Stashed changes
