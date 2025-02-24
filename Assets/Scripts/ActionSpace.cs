@@ -32,7 +32,7 @@ public class ActionSpace : MonoBehaviour
         switch (actionType)
         {
             case ActionType.Go:
-                player.addMoney(200);
+            // Implements game engine go method
                 break;
             
             case ActionType.GoToJail:
@@ -49,10 +49,12 @@ public class ActionSpace : MonoBehaviour
 
             case ActionType.IncomeTax:
             // Simple mathematical deduction
+            // If they can't pay, they get put into bankrupcy
                 break;
 
             case ActionType.SuperTax:
             // Simple mathematical deduction
+            // If they can't pay, they get put into bankrupcy
                 break;
 
             case ActionType.PotLuck:
