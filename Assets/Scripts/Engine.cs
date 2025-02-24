@@ -12,7 +12,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private BoardManager boardmanager;
     [SerializeField] private Dice dice;
 
-     private int currentPlayerIndex = 0;
+    [SerializeField] private int currentPlayerIndex = 0;
      private bool gameOver = false;
 
 
@@ -30,6 +30,7 @@ public class Engine : MonoBehaviour
              Debug.Log($"{player.playerName} has {player.money} starting money");
              player.setID(i);
              i++;
+             currentPlayerIndex = 0;
          }
      }   
 
@@ -38,9 +39,13 @@ public class Engine : MonoBehaviour
          Debug.Log($"{player.playerName} passed Go");
          player.addMoney(passGoMoney);
      }
-     private void nextTurn()
+     public void nextTurn()
      {
-         Player currentPlayer = players[currentPlayerIndex];
+        currentPlayerIndex += 1;
+         if (currentPlayerIndex >= players.Count)
+         {
+             currentPlayerIndex = 0;
+         }
      }
  }
 /*
