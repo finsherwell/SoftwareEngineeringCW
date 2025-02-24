@@ -1,0 +1,72 @@
+using UnityEngine;
+
+public class Tile : MonoBehaviour
+{
+    private Player[] playersOn;
+    public Player[] players;
+    [SerializeField] private string tileName;
+    [SerializeField] private string ID;
+    [SerializeField] private bool isProperty;
+    public Tile nextTile;
+
+    void Start()
+    {
+        playersOn = new Player[10];
+    }
+
+    void Update()
+    {
+        
+    }
+
+    public string GetName()
+    {
+        return this.tileName;
+    }
+
+    public Tile GetNext()
+    {
+        return nextTile;
+    }
+
+    public string GetID()
+    {
+        return this.ID;
+    }
+
+    public bool IsProperty()
+    {
+        return this.isProperty;
+    }
+
+    public bool LandedOn()
+    {
+        return playersOn != null && playersOn.Length > 0;
+    }
+
+    public void SetName(string name)
+    {
+        this.tileName = name;
+    }
+
+    public void SetID(string id)
+    {
+        this.ID = id;
+    }
+
+    public void SetIsProperty(bool isProperty)
+    {
+        this.isProperty = isProperty;
+    }
+
+    // public void GetLandedOn()
+    // {
+    //     for (int i = 0; i < players.Length; i++)
+    //     {
+    //         if (players[i].positionID == ID)
+    //         {
+    //             playersOn[i] = players[i];
+    //         }
+    //     }
+    // }
+}

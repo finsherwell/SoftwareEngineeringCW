@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< Updated upstream
---- !u!1 &2776222378132670450
-=======
---- !u!1 &1598169448325080553
->>>>>>> Stashed changes
+--- !u!1 &3151897599342206565
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,37 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream
-  - component: {fileID: 8804226656173050405}
-  - component: {fileID: 2728461804685122512}
-  - component: {fileID: 2770354639544142164}
-=======
-  - component: {fileID: 145407714201669417}
-  - component: {fileID: 5257951879801190586}
-  - component: {fileID: 6898319231609860819}
->>>>>>> Stashed changes
+  - component: {fileID: 9140639221458725767}
+  - component: {fileID: 1307618215651422721}
+  - component: {fileID: 2349799642323335149}
   m_Layer: 0
-  m_Name: Dice
+  m_Name: 'Tile '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< Updated upstream
---- !u!4 &8804226656173050405
-=======
---- !u!4 &145407714201669417
->>>>>>> Stashed changes
+--- !u!4 &9140639221458725767
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 2776222378132670450}
-=======
-  m_GameObject: {fileID: 1598169448325080553}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3151897599342206565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -51,21 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
---- !u!212 &2728461804685122512
-=======
---- !u!212 &5257951879801190586
->>>>>>> Stashed changes
+--- !u!212 &1307618215651422721
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 2776222378132670450}
-=======
-  m_GameObject: {fileID: 1598169448325080553}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3151897599342206565}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -103,48 +77,31 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2872444331674190694, guid: 2cf7e03316982c6449650d6cb1e26253, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.8, y: 19.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
---- !u!114 &2770354639544142164
-=======
---- !u!114 &6898319231609860819
->>>>>>> Stashed changes
+--- !u!114 &2349799642323335149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 2776222378132670450}
-=======
-  m_GameObject: {fileID: 1598169448325080553}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3151897599342206565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b494ff57b93bc4691479a6a7a0762b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ab34fba20b183242bd1cbcc650bd506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-  spriteRenderer: {fileID: 2728461804685122512}
-=======
-  spriteRenderer: {fileID: 5257951879801190586}
->>>>>>> Stashed changes
-  sprites:
-  - {fileID: -6134037146909088797, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
-  - {fileID: 2504424002195306781, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
-  - {fileID: -214964691459294586, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
-  - {fileID: 4387009435867300910, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
-  - {fileID: -6026472790986402927, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
-  - {fileID: -2358022466763609599, guid: 5f41ac9266fd92b449da431519e75463, type: 3}
-  diceNum: 1
-  finalValue: 0
+  players: []
+  tileName: 
+  ID: 
+  isProperty: 0
+  nextTile: {fileID: 0}

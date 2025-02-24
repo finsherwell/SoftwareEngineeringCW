@@ -8,10 +8,15 @@ public class Engine : MonoBehaviour
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
+<<<<<<< Updated upstream
     [SerializeField] private BoardManager boardmanager;
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
     [SerializeField] private Tile currentTile;
+=======
+    [SerializeField] private Dice dice1;
+    [SerializeField] private Dice dice2;
+>>>>>>> Stashed changes
     public Player currentPlayer;
 
     private int currentPlayerIndex = 0;
@@ -32,6 +37,7 @@ public class Engine : MonoBehaviour
             int dice2Value = dice2.getValue();
             int totalDiceValue = dice1Value + dice2Value;
 
+<<<<<<< Updated upstream
             // Call the RollAndMove function to move the player
             RollAndMove(totalDiceValue, currentPlayer);
             Debug.Log($"Player has moved {totalDiceValue} positions.");
@@ -90,3 +96,67 @@ public class Engine : MonoBehaviour
         // You can add logic here for what happens after a player lands on a tile (e.g., buying a property, paying rent, etc.)
     }
 }
+=======
+     private void initializeGame()
+     {
+         int i = 0;
+         foreach (var player in players)
+         {
+             player.addMoney(startingMoney);
+             Debug.Log($"{player.playerName} has {player.money} starting money");
+             player.setID(i);
+             i++;
+         }
+     }
+     private void Update()
+     {
+        if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
+        {
+            dice1.rollButtonPressed();
+            dice2.rollButtonPressed();
+            StartCoroutine(dice1.returnRoll((result1) =>
+            {
+                StartCoroutine(dice2.returnRoll((result2) =>
+                {
+                    int totalRoll = result1 + result2;
+                    Debug.Log($"Dice roll completed: {result1} + {result2} = {totalRoll}");
+                    RollAndMove(totalRoll, currentPlayer);
+                }));
+            }));
+        }
+     }
+        
+     public void passGo(Player player)
+     {
+         Debug.Log($"{player.playerName} passed Go");
+         player.addMoney(passGoMoney);
+     }
+     private void nextTurn()
+     {
+         Player currentPlayer = players[currentPlayerIndex];
+     }
+     private void RollAndMove(int diceValue, Player player)
+     {
+        Tile currentTile = player.getTile();
+        Debug.Log($"Starting position: {player.transform.position} on tile: {currentTile.name}");
+        for (int i = 0; i < diceValue; i++)
+        {
+            currentTile = currentTile.GetNext();
+            Debug.Log($"Tile '{currentTile.name}' transform.position: {currentTile.transform.position}");
+            player.transform.position = currentTile.transform.position;
+            Debug.Log($"Player {player.playerName} moved to position: {player.transform.position}");
+            player.setTile(currentTile);
+        }
+     }
+
+     //private void transactProperty(Player player, Property property)
+     //{
+
+     //}
+
+     //private void transactHouses(Player player, Property property, int houses)
+     //{
+
+     //}
+ }
+>>>>>>> Stashed changes

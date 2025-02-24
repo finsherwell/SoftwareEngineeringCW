@@ -5,7 +5,14 @@ public class Player : MonoBehaviour
     public int money;
 
     [SerializeField] public string playerName;
+<<<<<<< Updated upstream
     [SerializeField] public int playerID;
+=======
+    [SerializeField] private int playerID;
+    [SerializeField] private Tile currentTile;
+    //Property properties[];
+    bool inJail = false;
+>>>>>>> Stashed changes
 
     public Tile currentTile;  // The tile the player is currently on
     private bool inJail = false;
@@ -23,6 +30,7 @@ public class Player : MonoBehaviour
         return positionID;
     }
 
+<<<<<<< Updated upstream
     // Adds money to the player’s account
     public void addMoney(int amount)
     {
@@ -54,3 +62,17 @@ public class Player : MonoBehaviour
         transform.position = tile.GetPosition();  // Move the player’s GameObject to the tile’s position
     }
 }
+=======
+     void takeMoney(int amount) { this.money -= amount; }
+     
+    public Tile getTile()
+    {
+        return currentTile;
+    }
+    public void setTile(Tile tile)
+    {
+        currentTile= tile;
+    }
+    
+ }
+>>>>>>> Stashed changes
