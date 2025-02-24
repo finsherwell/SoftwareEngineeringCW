@@ -22,7 +22,7 @@ using UnityEditor;
 
      public void addMoney(int amount) { this.money += amount; }
 
-     void takeMoney(int amount) { this.money -= amount; }
+     public void takeMoney(int amount) { this.money -= amount; }
 
      public bool isInJail(){return this.inJail;}
     

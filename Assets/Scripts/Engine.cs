@@ -1,7 +1,6 @@
  using UnityEngine;
 using System.Collections.Generic;
 using Unity.Properties;
-using TMPro;
 public class Engine : MonoBehaviour
  {
     [SerializeField] public List<Player> players;
@@ -14,7 +13,6 @@ public class Engine : MonoBehaviour
     [SerializeField] private Dice dice;
 
     [SerializeField] private GameObject currentPlayerTextObject; 
-    private TextMeshProUGUI currentPlayerText; 
 
     [SerializeField] private int currentPlayerIndex = 0;
      private bool gameOver = false;
@@ -49,7 +47,6 @@ public class Engine : MonoBehaviour
         {
              currentPlayerIndex = 0;
         }
-        currentPlayerText.text = $"Current Player: {players[currentPlayerIndex].playerName}";
      }
  }
 /*
