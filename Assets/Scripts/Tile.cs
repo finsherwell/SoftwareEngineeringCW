@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
@@ -7,6 +7,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private string tileName;
     [SerializeField] private string ID;
     [SerializeField] private bool isProperty;
+    public Tile nextTile;
 
     void Start()
     {
@@ -23,10 +24,10 @@ public class Tile : MonoBehaviour
         return this.tileName;
     }
 
-    // public TileScript GetNext()
-    // {
-    //     return null;
-    // }
+    public Tile GetNext()
+    {
+        return nextTile;
+    }
 
     public string GetID()
     {
@@ -69,4 +70,3 @@ public class Tile : MonoBehaviour
     //     }
     // }
 }
-*/

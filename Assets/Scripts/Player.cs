@@ -1,29 +1,62 @@
-using JetBrains.Annotations;
-using UnityEditor;
- using UnityEngine;
- using UnityEngine.Tilemaps;
+using UnityEngine;
 
- public class Player : MonoBehaviour
- {
-    public int money; 
+public class Player : MonoBehaviour
+{
+    public int money;
 
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
-    //Property properties[];
-    Tile currentTile;
+    [SerializeField] private Tile currentTile;
     bool inJail = false;
+    private int positionID;
 
-    bool hasGOOJ = false;
-    
-    // Property getProperty(void) { return properties; }
+    void Start()
+    {
+        // Initialize the player’s starting tile if needed.
+    }
 
-     public int getID(int playerID){return this.playerID;  }
-     public void setID(int playerID){this.playerID = playerID;  }
+    // Returns the player's current position ID
+    public int getPositionID()
+    {
+        return positionID;
+    }
 
-     public void addMoney(int amount) { this.money += amount; }
+    // Adds money to the player’s account
+    public void addMoney(int amount)
+    {
+        this.money += amount;
+    }
 
-     void takeMoney(int amount) { this.money -= amount; }
+    // Removes money from the player’s account
+    public void takeMoney(int amount)
+    {
+        this.money -= amount;
+    }
 
-     public bool isInJail(){return this.inJail;}
-    
- }
+    // Sets the current tile the player is on
+    public void setCurrentTile(Tile tile)
+    {
+        currentTile = tile;
+    }
+
+    // Gets the current tile the player is on
+    public Tile getCurrentTile()
+    {
+        return currentTile;
+    }
+
+    public Tile getTile()
+    {
+        return currentTile;
+    }
+
+    public void setTile(Tile tile)
+    {
+        currentTile = tile;
+    }
+
+    public bool isInJail()
+    {
+        return inJail;
+    }
+}
