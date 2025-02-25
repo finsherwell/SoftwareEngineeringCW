@@ -59,4 +59,9 @@ public class Player : MonoBehaviour
     {
         return inJail;
     }
+
+    public void setID(int id)
+    {
+        playerID = id;
+    }
 }
