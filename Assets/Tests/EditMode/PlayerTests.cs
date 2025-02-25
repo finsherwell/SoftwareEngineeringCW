@@ -13,5 +13,13 @@ public class NewTestScript
         Assert.AreEqual(tPlayer.isInJail(), false);
     }
 
+    [Test]
+    public void IdWorks()
+    {
+        Player tplayer = new Player();
+        tplayer.setID(5);
+        Assert.AreEqual(tplayer.getID(), 5);
+    }
+
 
 }
