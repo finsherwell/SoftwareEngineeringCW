@@ -64,4 +64,9 @@ public class Player : MonoBehaviour
     {
         playerID = id;
     }
+
+    public int getID()
+    {
+        return playerID;
+    }
 }
