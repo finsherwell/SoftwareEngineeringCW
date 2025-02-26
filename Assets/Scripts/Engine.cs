@@ -1,5 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+
 
 public class Engine : MonoBehaviour
 {
@@ -7,12 +11,18 @@ public class Engine : MonoBehaviour
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
+    [SerializeField] private int playerCount = 0; 
 
-    // Choose which dice objects to keep (dice1/dice2 vs dice):
+
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
-    [SerializeField] private BoardManager boardmanager;
-    [SerializeField] private GameObject currentPlayerTextObject;
+
+
+    [SerializeField] private TextMeshProUGUI currentPlayerText;
+
+
+    [SerializeField] private Button rollButton;
+    [SerializeField] private Button nextTurnButton;
 
     public Player currentPlayer;
     private int currentPlayerIndex = 0;
@@ -25,17 +35,35 @@ public class Engine : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            dice1.rollButtonPressed();
-            dice2.rollButtonPressed();
-            int dice1Value = dice1.getValue();
-            int dice2Value = dice2.getValue();
-            int totalDiceValue = dice1Value + dice2Value;
-            RollAndMove(totalDiceValue, currentPlayer);
-            Debug.Log($"Player has moved {totalDiceValue} positions.");
-        }
+
     }
+    public void rollDice()
+    {
+        rollButton.gameObject.SetActive(false);
+        // Start the dice rolls and use callbacks to handle the results once they finish
+        dice1.rollAndReturn(value1 =>
+        {
+            int dice1Value = value1;
+            Debug.Log($"Dice 1 rolled: {dice1Value}");
+
+            dice2.rollAndReturn(value2 =>
+            {
+                int dice2Value = value2;
+                Debug.Log($"Dice 2 rolled: {dice2Value}");
+
+                // Calculate total dice value
+                int totalDiceValue = dice1Value + dice2Value;
+                Debug.Log($"Total Dice Value: {totalDiceValue}");
+
+                // Move the player based on the total dice value
+                movePlayer(totalDiceValue, currentPlayer);
+                Debug.Log($"Player has moved {totalDiceValue} positions.");
+            });
+        });
+        nextTurnButton.gameObject.SetActive(true);
+    }
+
+
 
     private void initializeGame() // Create players, initialize money, and set starting position
     {
@@ -45,8 +73,12 @@ public class Engine : MonoBehaviour
             player.addMoney(startingMoney);
             Debug.Log($"{player.playerName} has {player.money} starting money");
             player.setID(i);
+            players[i] = player;
             i++;
+            playerCount++;
         }
+        nextTurnButton.gameObject.SetActive(false);
+        rollButton.gameObject.SetActive(true);
     }
 
     public void passGo(Player player) // When player lands on Go, add money to their account
@@ -55,7 +87,7 @@ public class Engine : MonoBehaviour
         player.addMoney(passGoMoney);
     }
 
-    private void RollAndMove(int diceValue, Player player)
+    private void movePlayer(int diceValue, Player player)
     {
         Debug.Log($"{player.playerName} is moving.");
 
@@ -87,12 +119,20 @@ public class Engine : MonoBehaviour
         Debug.Log($"{currentPlayer.playerName} has landed on a tile.");
     }
 
-    private void nextTurn() // Increment current player index and wrap when maxxed
+    public void nextTurn() // Increment current player index and wrap when maxxed
     {
         currentPlayerIndex++;
-        if (currentPlayerIndex == maxPlayers)
+        if (currentPlayerIndex == playerCount+1)
         {
             currentPlayerIndex = 0;
         }
+        currentPlayer=players[currentPlayerIndex];
+        nextTurnButton.gameObject.SetActive(false);
+        rollButton.gameObject.SetActive(true);
+    }
+    private void updateTurnText(Player player)
+    {
+        string name = player.getName();
+        currentPlayerText.text = $"Current Player: {name}";
     }
 }

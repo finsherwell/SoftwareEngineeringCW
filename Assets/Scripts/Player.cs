@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         this.money -= amount;
     }
 
-    public int getMoney() {return money;}
+    public int getMoney() { return money; }
 
     // Sets the current tile the player is on
     public void setCurrentTile(Tile tile)
@@ -70,5 +70,10 @@ public class Player : MonoBehaviour
     public int getID()
     {
         return playerID;
+    }
+
+    public string getName()
+    {
+        return playerName;
     }
 }
