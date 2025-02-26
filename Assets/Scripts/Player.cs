@@ -59,4 +59,21 @@ public class Player : MonoBehaviour
     {
         return inJail;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void setID(int id)
+    {
+        playerID = id;
+    }
+
+    public int getID()
+    {
+        return playerID;
+    }
+    public string getName()
+    {
+        return playerName;
+    }
+>>>>>>> Stashed changes
 }
