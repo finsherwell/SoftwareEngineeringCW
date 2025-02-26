@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int money;
+    public int money = 0;
 
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
         this.money -= amount;
     }
 
+    public int getMoney() { return money; }
+
     // Sets the current tile the player is on
     public void setCurrentTile(Tile tile)
     {
@@ -59,8 +61,6 @@ public class Player : MonoBehaviour
     {
         return inJail;
     }
-<<<<<<< Updated upstream
-=======
 
     public void setID(int id)
     {
@@ -71,9 +71,9 @@ public class Player : MonoBehaviour
     {
         return playerID;
     }
+
     public string getName()
     {
         return playerName;
     }
->>>>>>> Stashed changes
 }
