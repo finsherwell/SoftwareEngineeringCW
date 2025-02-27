@@ -17,11 +17,11 @@ public class BoardManager : MonoBehaviour
         }
     return foundTile;
     }    
-    private void Start()
+    public void Start()
     {
-        FindTiles();
+       FindTiles();
     }
-   private void FindTiles()
+   public void FindTiles()
 {
     GameObject[] tileObjects = GameObject.FindGameObjectsWithTag("Tile");
     List<Tile> unsortedTiles = new List<Tile>();
