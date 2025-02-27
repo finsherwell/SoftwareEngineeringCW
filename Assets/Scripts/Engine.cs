@@ -83,12 +83,14 @@ public class Engine : MonoBehaviour
     }
 
 
-     private void initializeGame()
+    private void initializeGame()
     {
+        boardmanager.FindTiles();
         nextTurnButton.gameObject.SetActive(false);
-        FindPlayers();
-
+        Debug.Log("Initializing game...1");
         Tile startTile = boardmanager.GetTile(0);
+        FindPlayers();
+        Debug.Log("Initializing game...2");
         foreach (Player player in players)
         {
             player.addMoney(startingMoney);
@@ -96,7 +98,6 @@ public class Engine : MonoBehaviour
             player.setID(players.IndexOf(player));
             player.setCurrentTile(startTile);
             player.transform.position = startTile.transform.position;
-
         }
 
         if (players.Count > 0)
@@ -108,7 +109,6 @@ public class Engine : MonoBehaviour
         {
             Debug.LogError("No players found in the scene!");
         }
-        
     }
 
  
@@ -131,7 +131,6 @@ public class Engine : MonoBehaviour
                 // Move the player to the next tile
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
-
                 // Move the player's GameObject to the new tile position
                 player.transform.position = nextTile.transform.position; // This updates the player's position in the world
 
