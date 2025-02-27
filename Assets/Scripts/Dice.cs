@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Dice : MonoBehaviour
@@ -15,52 +15,35 @@ public class Dice : MonoBehaviour
         diceRolling = false;
     }
 
-    // This function is called when the roll button is pressed
-    public void rollButtonPressed()
+    // This function will start the roll and set up a coroutine to wait for completion
+    public void rollAndReturn(System.Action<int> onRollComplete)
     {
-        if (diceRolling == false)
-        {
-            diceRolling = true;
-            StartCoroutine(roll());
-        }
+        if (diceRolling) return; // Don't start another roll if it's already rolling
+
+        StartCoroutine(RollDice(onRollComplete)); // Start the roll and wait for it to complete
     }
 
-    // Coroutine that handles the dice roll animation
-    public IEnumerator roll()
+    // Coroutine to simulate the dice roll over time
+    private IEnumerator RollDice(System.Action<int> onRollComplete)
     {
-        for (int i = 0; i < 20; i++)
+        diceRolling = true; // Set the dice as rolling
+        for (int i = 0; i < 20; i++) // Simulate 20 roll steps
         {
-            changeDiceRandomly();
-            yield return new WaitForSeconds(0.01f * i); // Simulate delay
+            changeDiceRandomly(); // Change the dice appearance
+            yield return new WaitForSeconds(0.05f); // Wait between changes
         }
-        diceRolling = false;
-        finalValue = diceNum; // Set final value after roll is finished
+        diceRolling = false; // Dice roll is finished
+        finalValue = diceNum; // Store the final rolled value
+
+        // After roll is finished, trigger the callback to return the final value
+        onRollComplete(finalValue);
     }
 
-    // Randomly change the dice number and sprite
+    // Change the dice sprite randomly
     private void changeDiceRandomly()
     {
         int randomNumber = UnityEngine.Random.Range(0, 6);
         spriteRenderer.sprite = sprites[randomNumber];
-        diceNum = randomNumber + 1;
-    }
-
-    // Coroutine that waits until the dice roll is finished and then returns the final value
-    public IEnumerator returnRoll(System.Action<int> onRollComplete)
-    {
-        // Wait until the roll is complete
-        yield return StartCoroutine(WaitForRoll());
-
-        // Call the callback with the final value
-        onRollComplete(finalValue);
-    }
-
-    // Wait for the dice roll to finish
-    private IEnumerator WaitForRoll()
-    {
-        while (diceRolling)
-        {
-            yield return null; // Wait until diceRolling is false
-        }
+        diceNum = randomNumber + 1; // Set dice number to 1-6
     }
 }
