@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
-    [SerializeField] private Tile currentTile;
+    [SerializeField] public Tile currentTile;
     bool inJail = false;
     private int positionID;
 

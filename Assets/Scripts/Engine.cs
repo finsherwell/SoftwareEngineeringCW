@@ -87,6 +87,7 @@ public class Engine : MonoBehaviour
     {
         nextTurnButton.gameObject.SetActive(false);
         FindPlayers();
+
         Tile startTile = boardmanager.GetTile(0);
         foreach (Player player in players)
         {
