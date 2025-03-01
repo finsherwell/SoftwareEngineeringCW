@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int money;
+    public int money = 0;
 
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
-    [SerializeField] private Tile currentTile;
+    [SerializeField] public Tile currentTile;
     bool inJail = false;
     private int positionID;
 
@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
         this.money -= amount;
     }
 
+    public int getMoney() { return money; }
+
     // Sets the current tile the player is on
     public void setCurrentTile(Tile tile)
     {
@@ -58,5 +60,20 @@ public class Player : MonoBehaviour
     public bool isInJail()
     {
         return inJail;
+    }
+
+    public void setID(int id)
+    {
+        playerID = id;
+    }
+
+    public int getID()
+    {
+        return playerID;
+    }
+
+    public string getName()
+    {
+        return playerName;
     }
 }

@@ -5,7 +5,7 @@ public class Tile : MonoBehaviour
     private Player[] playersOn;
     public Player[] players;
     [SerializeField] private string tileName;
-    [SerializeField] private string ID;
+    [SerializeField] private int ID;
     [SerializeField] private bool isProperty;
     public Tile nextTile;
 
@@ -29,7 +29,7 @@ public class Tile : MonoBehaviour
         return nextTile;
     }
 
-    public string GetID()
+    public int GetID()
     {
         return this.ID;
     }
@@ -49,7 +49,7 @@ public class Tile : MonoBehaviour
         this.tileName = name;
     }
 
-    public void SetID(string id)
+    public void SetID(int id)
     {
         this.ID = id;
     }
@@ -59,14 +59,14 @@ public class Tile : MonoBehaviour
         this.isProperty = isProperty;
     }
 
-    // public void GetLandedOn()
-    // {
-    //     for (int i = 0; i < players.Length; i++)
-    //     {
-    //         if (players[i].positionID == ID)
-    //         {
-    //             playersOn[i] = players[i];
-    //         }
-    //     }
-    // }
+     public void GetLandedOn()
+     {
+         for (int i = 0; i < players.Length; i++)
+         {
+            if (players[i].getPositionID() == ID)
+             {
+                 playersOn[i] = players[i];
+             }
+        }
+     }
 }
