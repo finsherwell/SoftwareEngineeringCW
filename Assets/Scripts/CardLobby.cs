@@ -2,29 +2,10 @@ using Codice.Client.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using MenuEnums;
 
 public class CardLobby : MonoBehaviour
 {
-    public enum Icon
-    {
-        Empty,
-        Cat,
-        Ship,
-        HatStand,
-        Iron,
-        Boot
-    }
-
-    public enum Colours
-    {
-        Green,
-        Blue,
-        Red,
-        Yellow,
-        Purple,
-        Grey
-    }
-
     public Icon icon = Icon.Empty;
     public string playerName = "";
     public Colours cardColour = Colours.Grey;
