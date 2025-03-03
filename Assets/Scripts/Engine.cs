@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 
 
 public class Engine : MonoBehaviour
@@ -18,7 +17,7 @@ public class Engine : MonoBehaviour
     [SerializeField] public Dice dice2;
 
 
-    [SerializeField] private TextMeshProUGUI currentPlayerText;
+   // [SerializeField] private TextMeshProUGUI currentPlayerText;
 
 
     [SerializeField] private Button rollButton;
@@ -133,6 +132,6 @@ public class Engine : MonoBehaviour
     private void updateTurnText(Player player)
     {
         string name = player.getName();
-        currentPlayerText.text = $"Current Player: {name}";
+       // currentPlayerText.text = $"Current Player: {name}";
     }
 }
