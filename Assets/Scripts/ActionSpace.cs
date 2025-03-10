@@ -36,6 +36,10 @@ public class ActionSpace : MonoBehaviour
             // Implements game engine go method
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                gameEngine.passGo(player);
+>>>>>>> Stashed changes
 =======
                 gameEngine.passGo(player);
 >>>>>>> Stashed changes
