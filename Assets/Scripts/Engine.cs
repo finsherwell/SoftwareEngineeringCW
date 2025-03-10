@@ -19,6 +19,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button rollButton;
     [SerializeField] private Button nextTurnButton;
     [SerializeField] private Tile startTile;
+    private bool doubleRolled=false;
+    private int doubleCount;
 
     public Player currentPlayer;
 
@@ -53,6 +55,20 @@ public class Engine : MonoBehaviour
 
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
+                if (dice1Value == dice2Value)
+                {
+                    doubleRolled = true;
+                    doubleCount++;
+                    if (doubleCount == 3)
+                    {
+                        GoToJail();
+                    }
+                }
+                else
+                {
+                    doubleRolled = false;
+                    doubleCount = 0;
+                }
                 movePlayer(totalDiceValue, currentPlayer);
             });
         });
@@ -130,11 +146,14 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
-        currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255);
-        currentPlayerIndex++;
-        if (currentPlayerIndex == playerCount)
+        if (!doubleRolled)
         {
-            currentPlayerIndex = 0;
+            currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255);
+            currentPlayerIndex++;
+            if (currentPlayerIndex == playerCount)
+            {
+                currentPlayerIndex = 0;
+            }
         }
         currentPlayer = players[currentPlayerIndex];
         nextTurnButton.gameObject.SetActive(false);
