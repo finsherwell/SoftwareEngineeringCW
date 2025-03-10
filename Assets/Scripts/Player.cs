@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
     [SerializeField] public Tile currentTile;
+    [SerializeField] protected List<Property> ownedproperties;
     public bool inJail = false;
     public bool hasGOOJ = false;
     private int positionID;
@@ -77,4 +79,10 @@ public class Player : MonoBehaviour
     {
         return playerName;
     }
+
+    public void addProperty(Property property)
+    {
+        ownedproperties.Add(property);
+    }
 }
+

@@ -7,6 +7,7 @@ using TMPro;
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
+
     [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
@@ -55,7 +56,11 @@ public class Engine : MonoBehaviour
                 movePlayer(totalDiceValue, currentPlayer);
             });
         });
-        nextTurnButton.gameObject.SetActive(true);
+        if (currentPlayer.currentTile.GetComponent<Property>() != null)
+        {
+            purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
+        }
+        //nextTurnButton.gameObject.SetActive(true);
     }
 
     private void FindPlayers()
@@ -100,6 +105,25 @@ public class Engine : MonoBehaviour
             Debug.LogError("No players found in the scene!");
         }
     }
+    private void intializeProperties()
+    {
+        
+    }
+    private void purchasePropertyUI(Player player, Tile tile)
+    {
+        Property property = tile.GetComponent<Property>();
+        if (property != null && !property.IsOwned())
+
+        {
+            purchaseProperty(player, property);
+        }
+    }
+    private void purchaseProperty(Player player, Property property)
+    {
+        player.takeMoney(property.GetPrice());
+        property.SetOwner(player);
+    }
+
 
     private void movePlayer(int diceValue, Player player)
     {

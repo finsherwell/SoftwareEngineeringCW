@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
@@ -16,17 +17,17 @@ public class ActionSpace : MonoBehaviour
 
     [SerializeField] private ActionType actionType;
 
-    /*
-    Returns the action type.
-    */
+    
+    //Returns the action type.
+    
     public ActionType GetActionType()
     {
         return actionType;
     }
 
-    /*
-    Handles the action type for the space that you land on.
-    */
+    
+    //Handles the action type for the space that you land on.
+    
     public void LandedOn(Player player)
     {
         switch (actionType)
@@ -75,7 +76,7 @@ public class ActionSpace : MonoBehaviour
     }
 
     public void GoToJail(Player player){
-       // player.setCurrentTile(/*jails tile ID*/)
+       // player.setCurrentTile(*jails tile ID*)
        print("send player to jail");
     }
 
@@ -92,3 +93,4 @@ public class ActionSpace : MonoBehaviour
         actionType = type;
     }
 }
+*/
