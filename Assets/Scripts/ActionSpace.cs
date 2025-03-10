@@ -66,13 +66,6 @@ public class ActionSpace : MonoBehaviour
                 break;
         }
     }
-
-    public void GoToJail(Player player)
-    {
-        // player.setCurrentTile(/*jail tile ID*/);
-        print("Send player to jail");
-    }
-
     public void EscapeJail(Player player)
     {
         // Implement logic for escaping jail
@@ -81,7 +74,7 @@ public class ActionSpace : MonoBehaviour
     public void CollectFines(Player player)
     {
         // Display message about fines collected
-        player.addMoney(gameEngine.CollectFines());
+        player.addMoney(finesTotal);
     }
 
     public void SetActionType(ActionType type)
