@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
+    public Engine gameEngine; 
     // Enum to store the different types of actions that you can land on
     public enum ActionType {
         Go,
@@ -33,6 +34,10 @@ public class ActionSpace : MonoBehaviour
         {
             case ActionType.Go:
             // Implements game engine go method
+<<<<<<< Updated upstream
+=======
+                gameEngine.passGo(player);
+>>>>>>> Stashed changes
                 break;
             
             case ActionType.GoToJail:
@@ -67,4 +72,25 @@ public class ActionSpace : MonoBehaviour
 
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public void GoToJail(Player player){
+       // player.setCurrentTile(/*jails tile ID*/)
+       print("send player to jail");
+    }
+
+    public void EscapeJail(Player player){
+        //dice rolls no longer move the player and instead they must roll a double to escape 
+    }
+
+    public void CollectFines(Player player){
+        //display message to player about how much they have gained
+        player.addMoney(gameEngine.CollectFines());
+    }
+
+    public void setActionType(ActionType type){
+        actionType = type;
+    }
+>>>>>>> Stashed changes
 }

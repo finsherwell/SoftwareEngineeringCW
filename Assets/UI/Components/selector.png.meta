@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d489c478b66c55742a1b92724f9e3651
+guid: 3243ae4b68ee9894bb90f094ad4725ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 887560634070644128
-    second: iron_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0
+      213: 5211086781936739708
+    second: selector_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iron_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0
+      name: selector_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 23
-        width: 82
-        height: 50
+        x: 18
+        y: 15
+        width: 164
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a5b666b1bf315c00800000000000000
-      internalID: 887560634070644128
+      spriteID: c75a21391df715840800000000000000
+      internalID: 5211086781936739708
       vertices: []
       indices: 
       edges: []
@@ -148,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<< Updated upstream:Assets/Sprites/counter_icons/iron_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png.meta
-      iron_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0: 887560634070644128
-=======
-      background_0: -7443756053782179069
->>>>>>> Stashed changes:Assets/UI/Components/background.png.meta
+      selector_0: 5211086781936739708
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
