@@ -2,6 +2,7 @@ using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class ActionData
@@ -76,16 +77,17 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    /*
     private ActionData.Action ParseAction()
     {
-        /*
         return new ActionData.Action
         {
             
         }
-        */
     }
+    */
 
+    /*
     public ActionCard DrawOpportunityKnocks()
     {
         // draw card, read it, return to bottom
@@ -106,4 +108,5 @@ public class CardManager : MonoBehaviour
         potLuckCards.OrderBy(item => rnd.Next());
         opportunityKnocksCards.OrderBy(item => rnd2.Next());
     }
+    */
 }
