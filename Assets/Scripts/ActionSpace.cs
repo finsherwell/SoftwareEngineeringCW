@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
-    public Engine gameEngine;
-
-    public enum ActionType
-    {
+    public Engine gameEngine; 
+    
+    public enum ActionType {
         Go,
         GoToJail,
         Jail,
@@ -30,13 +29,17 @@ public class ActionSpace : MonoBehaviour
             case ActionType.Go:
                 gameEngine.passGo(player);
                 break;
-
+            
             case ActionType.GoToJail:
-                GoToJail(player);
+                if (!player.hasGOOJ) {
+                    GoToJail(player);
+                }
                 break;
 
             case ActionType.Jail:
-                // Nothing happens unless player is sent to jail
+                if (player.inJail) {
+                    EscapeJail(player);
+                }
                 break;
 
             case ActionType.FreeParking:
@@ -44,11 +47,11 @@ public class ActionSpace : MonoBehaviour
                 break;
 
             case ActionType.IncomeTax:
-                // Deduct income tax from player
+                player.takeMoney(20);
                 break;
 
             case ActionType.SuperTax:
-                // Deduct super tax from player
+                player.takeMoney(100);
                 break;
 
             case ActionType.PotLuck:
@@ -83,3 +86,4 @@ public class ActionSpace : MonoBehaviour
         actionType = type;
     }
 }
+

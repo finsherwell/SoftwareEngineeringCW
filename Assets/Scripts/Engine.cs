@@ -7,6 +7,7 @@ using TMPro;
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
+    [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
@@ -145,9 +146,14 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
+
+    public void setParkingFines(int amount)
+    {
+        parkingFines = amount;
+    }
+
     public int CollectFines()
     {
-        //todo 
-        return 0; 
+        return parkingFines;
     }
 }
