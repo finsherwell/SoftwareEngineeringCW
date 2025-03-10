@@ -119,7 +119,7 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
-        Invoke("OnTileLanded", 0.5f);
+        CheckForActionEvent(player);
     }
 
     private void OnTileLanded()
@@ -150,4 +150,37 @@ public class Engine : MonoBehaviour
         //todo 
         return 0; 
     }
+    private void CheckForActionEvent(Player player)
+    {
+        Tile currentTile = player.getCurrentTile();
+        if (currentTile != null)
+        {
+            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component
+            if (actionSpace != null)
+            {
+                actionSpace.LandedOn(player); // Trigger the action event
+            }
+        }
+    }
+    public void GoToJail()
+    {
+        if (currentPlayer != null)
+        {
+            // Find the Jail tile by tag
+            GameObject jailTile = GameObject.FindGameObjectWithTag("Jail");
+
+            if (jailTile != null)
+            {
+                // Move player to Jail tile
+                currentPlayer.setCurrentTile(jailTile.GetComponent<Tile>());
+                currentPlayer.transform.position = jailTile.transform.position;
+
+                // Set player status to jailed
+                currentPlayer.setInJail(true);
+
+                Debug.Log($"{currentPlayer.playerName} has been sent to Jail!");
+            }
+        }
+    }
+
 }

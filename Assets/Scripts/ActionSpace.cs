@@ -3,6 +3,7 @@ using UnityEngine;
 public class ActionSpace : MonoBehaviour
 {
     public Engine gameEngine;
+    private int finesTotal; 
 
     public enum ActionType
     {
@@ -32,7 +33,7 @@ public class ActionSpace : MonoBehaviour
                 break;
 
             case ActionType.GoToJail:
-                GoToJail(player);
+                gameEngine.GoToJail();
                 break;
 
             case ActionType.Jail:
@@ -44,11 +45,13 @@ public class ActionSpace : MonoBehaviour
                 break;
 
             case ActionType.IncomeTax:
-                // Deduct income tax from player
+                player.takeMoney(100);
+                addtoFinesTotal(100);
                 break;
 
             case ActionType.SuperTax:
-                // Deduct super tax from player
+                player.takeMoney(200);
+                addtoFinesTotal(200);
                 break;
 
             case ActionType.PotLuck:
@@ -81,5 +84,12 @@ public class ActionSpace : MonoBehaviour
     public void SetActionType(ActionType type)
     {
         actionType = type;
+    }
+    public void addtoFinesTotal(int fine)
+    {
+        finesTotal = +fine; 
+    }
+    public int getFinesTotal() {
+        return finesTotal; 
     }
 }
