@@ -145,4 +145,9 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
+    public int CollectFines()
+    {
+        //todo 
+        return 0; 
+    }
 }

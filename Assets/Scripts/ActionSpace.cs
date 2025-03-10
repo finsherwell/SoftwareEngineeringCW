@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
-    public Engine gameEngine; 
-    // Enum to store the different types of actions that you can land on
-    public enum ActionType {
+    public Engine gameEngine;
+
+    public enum ActionType
+    {
         Go,
         GoToJail,
         Jail,
@@ -17,88 +18,68 @@ public class ActionSpace : MonoBehaviour
 
     [SerializeField] private ActionType actionType;
 
-    /*
-    Returns the action type.
-    */
     public ActionType GetActionType()
     {
         return actionType;
     }
 
-    /*
-    Handles the action type for the space that you land on.
-    */
     public void LandedOn(Player player)
     {
         switch (actionType)
         {
             case ActionType.Go:
-            // Implements game engine go method
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
                 gameEngine.passGo(player);
->>>>>>> Stashed changes
-=======
-                gameEngine.passGo(player);
->>>>>>> Stashed changes
-=======
-                gameEngine.passGo(player);
->>>>>>> Stashed changes
                 break;
-            
+
             case ActionType.GoToJail:
-            // Checks if user has GOOJ, otherwise jails them
+                GoToJail(player);
                 break;
 
             case ActionType.Jail:
-            // Nothing, allows you to pass if not in jail
+                // Nothing happens unless player is sent to jail
                 break;
 
             case ActionType.FreeParking:
-            // Nothing, collect fines
+                CollectFines(player);
                 break;
 
             case ActionType.IncomeTax:
-            // Simple mathematical deduction
-            // If they can't pay, they get put into bankrupcy
+                // Deduct income tax from player
                 break;
 
             case ActionType.SuperTax:
-            // Simple mathematical deduction
-            // If they can't pay, they get put into bankrupcy
+                // Deduct super tax from player
                 break;
 
             case ActionType.PotLuck:
-            // Use Action Card Class
+                // Draw Pot Luck card
                 break;
 
             case ActionType.OpportunityKnocks:
-            // Use Action Card Class
+                // Draw Opportunity Knocks card
                 break;
-
         }
     }
-<<<<<<< Updated upstream
-=======
 
-    public void GoToJail(Player player){
-       // player.setCurrentTile(/*jails tile ID*/)
-       print("send player to jail");
+    public void GoToJail(Player player)
+    {
+        // player.setCurrentTile(/*jail tile ID*/);
+        print("Send player to jail");
     }
 
-    public void EscapeJail(Player player){
-        //dice rolls no longer move the player and instead they must roll a double to escape 
+    public void EscapeJail(Player player)
+    {
+        // Implement logic for escaping jail
     }
 
-    public void CollectFines(Player player){
-        //display message to player about how much they have gained
+    public void CollectFines(Player player)
+    {
+        // Display message about fines collected
         player.addMoney(gameEngine.CollectFines());
     }
 
-    public void setActionType(ActionType type){
+    public void SetActionType(ActionType type)
+    {
         actionType = type;
     }
->>>>>>> Stashed changes
 }
