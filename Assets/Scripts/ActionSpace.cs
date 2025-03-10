@@ -6,7 +6,8 @@ public class ActionSpace : MonoBehaviour
     private int finesTotal; 
 
     public enum ActionType
-    {
+    {  
+    public enum ActionType {
         Go,
         GoToJail,
         Jail,
@@ -15,6 +16,7 @@ public class ActionSpace : MonoBehaviour
         SuperTax,
         PotLuck,
         OpportunityKnocks
+    }
     }
 
     [SerializeField] private ActionType actionType;
@@ -31,13 +33,15 @@ public class ActionSpace : MonoBehaviour
             case ActionType.Go:
                 gameEngine.passGo(player);
                 break;
-
+            
             case ActionType.GoToJail:
                 gameEngine.GoToJail();
                 break;
 
             case ActionType.Jail:
-                // Nothing happens unless player is sent to jail
+                if (player.inJail) {
+                    EscapeJail(player);
+                }
                 break;
 
             case ActionType.FreeParking:
@@ -92,4 +96,6 @@ public class ActionSpace : MonoBehaviour
     public int getFinesTotal() {
         return finesTotal; 
     }
+    
 }
+

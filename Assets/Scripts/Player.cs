@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
     [SerializeField] public Tile currentTile;
-    bool inJail = false;
+    public bool inJail = false;
+    public bool hasGOOJ = false;
     private int positionID;
 
     void Start()

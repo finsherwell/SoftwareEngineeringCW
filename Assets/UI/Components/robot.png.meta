@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9d2a63e5e64fb6a4a989ed87ecbaa64c
+guid: 8e219a128299c2a4581b9d89be10936f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1075993247170539406
-    second: cat_0
+      213: -2185472608353246101
+    second: robot_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -87,12 +87,12 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cat_0
+      name: robot_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1
         width: 200
-        height: 200
+        height: 199
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8fa15e4822beee00800000000000000
-      internalID: 1075993247170539406
+      spriteID: b6422c8ed34aba1e0800000000000000
+      internalID: -2185472608353246101
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a221c3fbb4a39744e913264578aa0f72
+    spriteID: e5ef381e4d8b99e438136227ac2a0fa4
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cat_0: 1075993247170539406
+      robot_0: -2185472608353246101
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
