@@ -149,7 +149,7 @@
             "Action1" : { "Type" : "move", "Property" : "Hove Station"},
             "Action2" : { "Type" : "pay_player", "Amount" : 200 }
         },
-        "Choice" : true,
+        "Choice" : false,
         "Type": "Opportunity Knocks"
         },
     "25" : {
@@ -164,7 +164,7 @@
             "Action1" : { "Type" : "pay_bank_per_house", "Amount" : 40},
             "Action2" : { "Type": "pay_bank_per_hotel", "Amount" : 115 }
         },
-        "Choice" : true,
+        "Choice" : false,
         "Type": "Opportunity Knocks"
         },
     "27" : {
@@ -179,7 +179,7 @@
             "Action1" : { "Type" : "pay_bank_per_house", "Amount" : 25},
             "Action2" : { "Type": "pay_bank_per_hotel", "Amount" : 100 }
         },
-        "Choice" : true,
+        "Choice" : false,
         "Type": "Opportunity Knocks"
         },
     "29" : {
