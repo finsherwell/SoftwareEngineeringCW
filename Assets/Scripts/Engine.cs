@@ -147,10 +147,13 @@ public class Engine : MonoBehaviour
         currentPlayerText.text = $"Current Player: {name}";
     }
 
-    public void setParkingFines(int amnt){
-        parkingFines = amnt;
+    public void setParkingFines(int amount)
+    {
+        parkingFines = amount;
     }
 
-    public int CollectFines(){return parkingFines;}
-
+    public int CollectFines()
+    {
+        return parkingFines;
+    }
 }
