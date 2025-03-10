@@ -6,12 +6,13 @@ public class MenuPlayer
     public Colours colour;
     public Icon icon;
 
-    public MenuPlayer(string pName, Colours pColour, Icon pIcon)
+    public bool isAI;
+
+    public MenuPlayer(string pName, Colours pColour, Icon pIcon, bool pisIA)
     {
         name = pName;
         colour = pColour;
         icon = pIcon;
-        Debug.Log("new menu player made");
+        isAI = pisIA;
     }
-
 }

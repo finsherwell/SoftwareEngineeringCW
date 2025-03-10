@@ -10,7 +10,9 @@ namespace MenuEnums
         Ship,
         HatStand,
         Iron,
-        Boot
+        Boot,
+        Smartphone,
+        Robot
     }
 
     public enum Colours
@@ -20,7 +22,8 @@ namespace MenuEnums
         Red,
         Yellow,
         Purple,
-        Grey
+        Grey,
+        Cyan
     }
 
 }

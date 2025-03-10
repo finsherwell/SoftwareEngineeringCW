@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ddd08373dd9bf184186a4990d504fad0
+guid: 8e219a128299c2a4581b9d89be10936f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 229760778989957583
-    second: iron 1_0
+      213: -2185472608353246101
+    second: robot_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iron 1_0
+      name: robot_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1
         width: 200
-        height: 200
+        height: 199
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc1730f0636403300800000000000000
-      internalID: 229760778989957583
+      spriteID: b6422c8ed34aba1e0800000000000000
+      internalID: -2185472608353246101
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0e7120896c2bcbd46b9d9114007407be
+    spriteID: e5ef381e4d8b99e438136227ac2a0fa4
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      iron 1_0: 229760778989957583
+      robot_0: -2185472608353246101
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

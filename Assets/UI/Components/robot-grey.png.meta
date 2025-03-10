@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ddd08373dd9bf184186a4990d504fad0
+guid: 9c60ea96f62cc9947ad71b5b0cbd8343
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 229760778989957583
-    second: iron 1_0
+      213: -6827554055799644778
+    second: robot-grey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iron 1_0
+      name: robot-grey_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc1730f0636403300800000000000000
-      internalID: 229760778989957583
+      spriteID: 69dd84b92c7af31a0800000000000000
+      internalID: -6827554055799644778
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0e7120896c2bcbd46b9d9114007407be
+    spriteID: 7f5133aec41015640b401efd7d7eaa19
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      iron 1_0: 229760778989957583
+      robot-grey_0: -6827554055799644778
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

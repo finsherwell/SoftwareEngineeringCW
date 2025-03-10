@@ -20,13 +20,14 @@ public class CardLobby : MonoBehaviour
     public Sprite hatStandSprite;
     public Sprite ironSprite;
     public Sprite bootSprite;
+    public Sprite smartphoneSprite;
+    public Sprite robotSprite;
 
 
     public void refreshCard()
     {
         cardText.text = playerName;
-
-
+        //Debug.Log(cardText.text);
         Sprite s;
         switch (icon)
         {
@@ -47,6 +48,12 @@ public class CardLobby : MonoBehaviour
                 break;
             case Icon.Boot:
                 s = bootSprite;
+                break;
+            case Icon.Smartphone:
+                s = smartphoneSprite;
+                break;
+            case Icon.Robot:
+                s = robotSprite;
                 break;
             default:
                 s = emptySprite;
@@ -76,6 +83,10 @@ public class CardLobby : MonoBehaviour
             case Colours.Red:
                 ColorUtility.TryParseHtmlString("#FF5733", out c);
                 break;
+            case Colours.Cyan:
+                ColorUtility.TryParseHtmlString("#00FFFF", out c);
+                break;
+
 
         }
         cardBackground.color = c;
