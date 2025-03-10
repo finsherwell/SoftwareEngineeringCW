@@ -7,14 +7,9 @@ using TMPro;
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
-    [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
-
-    [SerializeField] private BoardManager boardmanager;
-    [SerializeField] private Dice dice;
-
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
     private bool gameOver = false;
@@ -23,6 +18,7 @@ public class Engine : MonoBehaviour
     [SerializeField] public Dice dice2;
     [SerializeField] private Button rollButton;
     [SerializeField] private Button nextTurnButton;
+    [SerializeField] private Tile startTile;
 
     public Player currentPlayer;
 
@@ -40,11 +36,16 @@ public class Engine : MonoBehaviour
     public void rollDice()
     {
         rollButton.gameObject.SetActive(false);
+
+        // Trigger animation on dice1 before rolling
+        dice1.GetComponent<Animation>().Play("diceGo1");
         dice1.rollAndReturn(value1 =>
         {
             int dice1Value = value1;
             Debug.Log($"Dice 1 rolled: {dice1Value}");
 
+            // Trigger animation on dice2 before rolling
+            dice2.GetComponent<Animation>().Play("diceGo2");
             dice2.rollAndReturn(value2 =>
             {
                 int dice2Value = value2;
@@ -55,8 +56,8 @@ public class Engine : MonoBehaviour
                 movePlayer(totalDiceValue, currentPlayer);
             });
         });
-        nextTurnButton.gameObject.SetActive(true);
     }
+
 
     private void FindPlayers()
     {
@@ -75,12 +76,9 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
-        boardmanager.FindTiles();
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
-        Tile startTile = boardmanager.GetTile(0);
-        FindPlayers();
-        
+        FindPlayers();        
         foreach (Player player in players)
         {
             player.addMoney(startingMoney);
@@ -94,6 +92,7 @@ public class Engine : MonoBehaviour
         {
             currentPlayer = players[0];
             updateTurnText(currentPlayer);
+            currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
         }
         else
         {
@@ -121,6 +120,7 @@ public class Engine : MonoBehaviour
             }
         }
         CheckForActionEvent(player);
+        nextTurnButton.gameObject.SetActive(true);
     }
 
     private void OnTileLanded()
@@ -130,6 +130,7 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
+        currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255);
         currentPlayerIndex++;
         if (currentPlayerIndex == playerCount)
         {
@@ -139,22 +140,16 @@ public class Engine : MonoBehaviour
         nextTurnButton.gameObject.SetActive(false);
         rollButton.gameObject.SetActive(true);
         updateTurnText(currentPlayer);
+        // Assuming currentPlayer is a reference to your Player class
+        currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+        // RGB values for black
+
     }
 
     private void updateTurnText(Player player)
     {
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
-    }
-
-    public void setParkingFines(int amount)
-    {
-        parkingFines = amount;
-    }
-
-    public int CollectFines()
-    {
-        return parkingFines;
     }
     private void CheckForActionEvent(Player player)
     {

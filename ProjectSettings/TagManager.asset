@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 3
   tags:
   - Tile
+  - 'goTile '
+  - potluck
+  - incomeTax
+  - opportunityKnocks
+  - Jail
+  - freeParking
+  - superTax
+  - goToJail
   layers:
   - Default
   - TransparentFX
