@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
-    public Engine gameEngine; 
-    
+    public Engine gameEngine;
+    private int finesTotal; 
+
+    public enum ActionType
+    {  
     public enum ActionType {
         Go,
         GoToJail,
@@ -13,6 +16,7 @@ public class ActionSpace : MonoBehaviour
         SuperTax,
         PotLuck,
         OpportunityKnocks
+    }
     }
 
     [SerializeField] private ActionType actionType;
@@ -31,9 +35,7 @@ public class ActionSpace : MonoBehaviour
                 break;
             
             case ActionType.GoToJail:
-                if (!player.hasGOOJ) {
-                    GoToJail(player);
-                }
+                gameEngine.GoToJail();
                 break;
 
             case ActionType.Jail:
@@ -47,11 +49,13 @@ public class ActionSpace : MonoBehaviour
                 break;
 
             case ActionType.IncomeTax:
-                player.takeMoney(20);
+                player.takeMoney(100);
+                addtoFinesTotal(100);
                 break;
 
             case ActionType.SuperTax:
-                player.takeMoney(100);
+                player.takeMoney(200);
+                addtoFinesTotal(200);
                 break;
 
             case ActionType.PotLuck:
@@ -85,5 +89,13 @@ public class ActionSpace : MonoBehaviour
     {
         actionType = type;
     }
+    public void addtoFinesTotal(int fine)
+    {
+        finesTotal = +fine; 
+    }
+    public int getFinesTotal() {
+        return finesTotal; 
+    }
+    
 }
 

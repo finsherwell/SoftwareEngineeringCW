@@ -77,4 +77,8 @@ public class Player : MonoBehaviour
     {
         return playerName;
     }
+    public void setInJail(bool state)
+    {
+        inJail = state;
+    }
 }
