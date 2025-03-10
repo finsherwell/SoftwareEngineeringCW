@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using JetBrains.Annotations;
 
 public class Engine : MonoBehaviour
 {
@@ -18,12 +19,15 @@ public class Engine : MonoBehaviour
 
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
+    [SerializeField] private TextMeshProUGUI propertyBuyText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0; 
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
     [SerializeField] private Button rollButton;
     [SerializeField] private Button nextTurnButton;
+
+    [SerializeField] private GameObject purchasePropertyPanel;
 
     public Player currentPlayer;
 
@@ -54,13 +58,17 @@ public class Engine : MonoBehaviour
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
                 movePlayer(totalDiceValue, currentPlayer);
+
+           
+                Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
+                if (currentPlayer.currentTile.IsProperty() == true)
+                {
+                    purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
+                }
+                nextTurnButton.gameObject.SetActive(true);
             });
         });
-        if (currentPlayer.currentTile.GetComponent<Property>() != null)
-        {
-            purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
-        }
-        //nextTurnButton.gameObject.SetActive(true);
+       
     }
 
     private void FindPlayers()
@@ -105,23 +113,34 @@ public class Engine : MonoBehaviour
             Debug.LogError("No players found in the scene!");
         }
     }
-    private void intializeProperties()
-    {
-        
-    }
+
     private void purchasePropertyUI(Player player, Tile tile)
     {
         Property property = tile.GetComponent<Property>();
-        if (property != null && !property.IsOwned())
+        if (!property.IsOwned())
 
         {
-            purchaseProperty(player, property);
+            propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
+            purchasePropertyPanel.gameObject.SetActive(true);
+            Debug.Log(currentPlayer.playerName+" is viewing property:" +currentPlayer.currentTile.name);
         }
+
+    }
+    public void OnpurchaseButtonClick()
+    {
+        Property property = currentPlayer.currentTile.GetComponent<Property>();
+        purchaseProperty(currentPlayer, property);
+    }
+    public void OnPassButtonClick()
+    {
+        purchasePropertyPanel.gameObject.SetActive(false);
     }
     private void purchaseProperty(Player player, Property property)
     {
         player.takeMoney(property.GetPrice());
         property.SetOwner(player);
+        Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
+        purchasePropertyPanel.gameObject.SetActive(false);
     }
 
 

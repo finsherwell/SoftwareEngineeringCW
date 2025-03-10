@@ -10,16 +10,13 @@ public class Property : Tile
 
     private bool isOwned = false; // Will be true if the property is owned
     private int houses = 0; // Updates if you upgrade houses
-    private Player owner = null; // Assigned to the player that owns the property
+    [SerializeField] private Player owner = null; // Assigned to the player that owns the property
 
     private void Awake()
     {
-        if (!isProperty)
-        {
-            enabled = false;
-            return;
-        }
+
         propertyName = tileName;
+
     }
     /*
     Returns the name of the property.

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    private Player[] playersOn;
+    protected Player[] playersOn;
     public Player[] players;
     [SerializeField] public string tileName;
     [SerializeField] private int ID;
