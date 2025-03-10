@@ -35,6 +35,10 @@ public class ActionSpace : MonoBehaviour
             case ActionType.Go:
             // Implements game engine go method
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                gameEngine.passGo(player);
+>>>>>>> Stashed changes
 =======
                 gameEngine.passGo(player);
 >>>>>>> Stashed changes
