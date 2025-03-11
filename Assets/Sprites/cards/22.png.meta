@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 18a2637bb8a83ca4b8371f92d6ecccc2
+guid: 3cf4e3b9356e27c42a20148c3e1a0c74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9099455033576705952
-    second: q-mark_0
-  - first:
-      213: 242692852098794895
-    second: q-mark_1
+      213: -7371509505491802261
+    second: 22_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: q-mark_0
+      name: 22_0
       rect:
         serializedVersion: 2
-        x: 366
-        y: 495
-        width: 266
-        height: 229
+        x: 0
+        y: 0
+        width: 700
+        height: 500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0603502abdd38b180800000000000000
-      internalID: -9099455033576705952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: q-mark_1
-      rect:
-        serializedVersion: 2
-        x: 440
-        y: 366
-        width: 104
-        height: 94
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f8500e6fcd73e5300800000000000000
-      internalID: 242692852098794895
+      spriteID: b67eeb2292323b990800000000000000
+      internalID: -7371509505491802261
       vertices: []
       indices: 
       edges: []
@@ -172,9 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      q-mark_0: -9099455033576705952
-      q-mark_1: 242692852098794895
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

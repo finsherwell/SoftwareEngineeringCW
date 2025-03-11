@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
-    public Engine gameEngine; 
-    
-    public enum ActionType {
+    public Engine gameEngine;
+    private int finesTotal;
+
+    public enum ActionType
+    {
         Go,
         GoToJail,
         Jail,
@@ -29,15 +31,14 @@ public class ActionSpace : MonoBehaviour
             case ActionType.Go:
                 gameEngine.passGo(player);
                 break;
-            
+
             case ActionType.GoToJail:
-                if (!player.hasGOOJ) {
-                    GoToJail(player);
-                }
+                gameEngine.GoToJail();
                 break;
 
             case ActionType.Jail:
-                if (player.inJail) {
+                if (player.inJail)
+                {
                     EscapeJail(player);
                 }
                 break;
@@ -47,11 +48,13 @@ public class ActionSpace : MonoBehaviour
                 break;
 
             case ActionType.IncomeTax:
-                player.takeMoney(20);
+                player.takeMoney(100);
+                addtoFinesTotal(100);
                 break;
 
             case ActionType.SuperTax:
-                player.takeMoney(100);
+                player.takeMoney(200);
+                addtoFinesTotal(200);
                 break;
 
             case ActionType.PotLuck:
@@ -63,13 +66,6 @@ public class ActionSpace : MonoBehaviour
                 break;
         }
     }
-
-    public void GoToJail(Player player)
-    {
-        // player.setCurrentTile(/*jail tile ID*/);
-        print("Send player to jail");
-    }
-
     public void EscapeJail(Player player)
     {
         // Implement logic for escaping jail
@@ -78,12 +74,21 @@ public class ActionSpace : MonoBehaviour
     public void CollectFines(Player player)
     {
         // Display message about fines collected
-        player.addMoney(gameEngine.CollectFines());
+        player.addMoney(finesTotal);
     }
 
     public void SetActionType(ActionType type)
     {
         actionType = type;
     }
-}
 
+    public void addtoFinesTotal(int fine)
+    {
+        finesTotal += fine; // Corrected the addition to finesTotal
+    }
+
+    public int getFinesTotal()
+    {
+        return finesTotal;
+    }
+}

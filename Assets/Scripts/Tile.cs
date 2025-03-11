@@ -4,9 +4,9 @@ public class Tile : MonoBehaviour
 {
     private Player[] playersOn;
     public Player[] players;
-    [SerializeField] private string tileName;
+//    [SerializeField] private string tileName; removed for inheritance 
     [SerializeField] private int ID;
-    [SerializeField] private bool isProperty;
+  //  [SerializeField] private bool isProperty;  removed for inheritance
     public Tile nextTile;
 
     void Start()
@@ -34,10 +34,13 @@ public class Tile : MonoBehaviour
         return this.ID;
     }
 
-    public bool IsProperty()
+   /* public bool IsProperty()
     {
         return this.isProperty;
     }
+    
+    removed for inheritance
+*/
 
     public bool LandedOn()
     {
@@ -53,12 +56,13 @@ public class Tile : MonoBehaviour
     {
         this.ID = id;
     }
-
+/*
     public void SetIsProperty(bool isProperty)
     {
         this.isProperty = isProperty;
     }
-
+    removed for inheritance
+*/
      public void GetLandedOn()
      {
          for (int i = 0; i < players.Length; i++)
