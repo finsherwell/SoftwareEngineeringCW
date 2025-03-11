@@ -5,26 +5,10 @@ using System;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class ActionData
+public class Action
 {
-    public string actionDescription;
-    public Action action1;
-    public Action action2 = null;
-    public bool actionChoice;
-    public string type;
-}
-
-
-[System.Serializable]
-public class ActionCard
-{
-    public int cardNum;
-    public string cardType;
-    public bool choice;
-    public string description;
-    public Action[] actionChoices;
-
-    public enum Action {
+    // Enum that stores all the possible actions, which will be used to process actions.
+    public enum Actions {
         pay_player,
         pay_bank,
         move,
@@ -37,6 +21,47 @@ public class ActionCard
         pay_bank_per_hotel,
         move_back
     }
+    
+    // Type of action, default is pay_player.
+    public Actions action = Actions.pay_player;
+    
+    // If the action requires an amount, it is defined here, otherwise it is 0 by default.
+    public int amount = 0;
+
+    // If the action has a property it needs to move to, then it will be stored here, default is null.
+    public string property = null;
+}
+
+[System.Serializable]
+public class ActionData
+{
+    // Stores the description of the action.
+    public string actionDescription;
+
+    // Stores the first action, which will always exist.
+    public Action action1;
+
+    // Stores the second action, which is only necessary when there is more than one action, it is null by default.
+    public Action action2 = null;
+
+    // Stores whether there is a choice between actions, in scenarios where there are 2 actions.
+    // False by default as most actions do not have a choice.
+    public bool actionChoice = false;
+
+    // Stores the type of the card, Pot Luck or Opportunity Knocks.
+    public string type;
+}
+
+
+[System.Serializable]
+public class ActionCard
+{
+    // Stores the number of the card, which is what it is indexed by in the card-data.json file.
+    // Will be used when displaying the card on the screen to the user.
+    public int cardNum;
+
+    // Stores the action data of the card.
+    public ActionData actionData;
 }
 
 public class CardManager : MonoBehaviour
@@ -62,16 +87,7 @@ public class CardManager : MonoBehaviour
 
                 if (hasChoice)
                 {
-                    // If the card is Pot Luck
-                    if (type == "Pot Luck")
-                    {
-
-                    }
-                    // If the card is Opportunity Knocks
-                    else
-                    {
-                        
-                    }
+                    
                 }
             }
         }
