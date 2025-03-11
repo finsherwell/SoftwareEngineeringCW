@@ -128,7 +128,7 @@
             "Action1" : { "Type" : "move", "Property" : "Han Xin Gardens"},
             "Action2" : { "Type" : "pay_player", "Amount" : 200 }
         },
-        "Choice" : true,
+        "Choice" : false,
         "Type": "Opportunity Knocks"
         },
     "22" : {
