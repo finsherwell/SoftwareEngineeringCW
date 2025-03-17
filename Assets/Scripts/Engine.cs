@@ -180,7 +180,7 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
-        //CheckForActionEvent(player);
+        CheckForActionEvent(player);
         nextTurnButton.gameObject.SetActive(true);
     }
 
@@ -215,18 +215,17 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
-    /*
     private void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
-        Debug.Log("Checking action space for tile "+currentTile.name);
+        Debug.Log("Checking action space for tile " + currentTile.name);
         if (currentTile != null)
         {
-            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component
+            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component 
             if (actionSpace != null)
             {
                 actionSpace.LandedOn(player); // Trigger the action event
-                Debug.Log("action space "+ actionSpace.name );
+                Debug.Log("action space " + actionSpace.name);
             }
         }
     }
@@ -245,7 +244,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
-    */
+    
     public void GoToJail()
     {
         if (currentPlayer != null)
