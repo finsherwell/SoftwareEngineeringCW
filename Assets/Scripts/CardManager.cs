@@ -240,9 +240,6 @@ public class CardManager : MonoBehaviour
             // If a card has a choice, the player will be required to choose between the two
             Debug.Log($"Card requires a choice between two actions: {card.description}");
             // After player selects an action, you would call ExecuteAction on either action1 or action2
-            // Temp, options are logged
-            Debug.Log($"Option 1: {GetActionDescription(card.action1)}");
-            Debug.Log($"Option 2: {GetActionDescription(card.action2)}");
         }
         else
         {
@@ -261,13 +258,11 @@ public class CardManager : MonoBehaviour
         switch (action.action)
         {
             case Action.Actions.pay_player:
-                // Logic to pay the current player the specified amount
                 Debug.Log($"Pay player {action.amount}");
                 gameEngine.currentPlayer.addMoney(action.amount);
                 break;
                 
             case Action.Actions.pay_bank:
-                // Logic to make the player pay the bank the specified amount
                 Debug.Log($"Player pays bank {action.amount}");
                 gameEngine.currentPlayer.takeMoney(action.amount);
                 break;
@@ -291,7 +286,6 @@ public class CardManager : MonoBehaviour
                 break;
                 
             case Action.Actions.jail:
-                // Logic to send player to jail
                 Debug.Log("Send player to jail");
                 if (!gameEngine.currentPlayer.hasGOOJ)
                 {
@@ -306,7 +300,6 @@ public class CardManager : MonoBehaviour
                 break;
                 
             case Action.Actions.avoid_jail:
-                // Logic to give the player a get out of jail free card
                 Debug.Log("Player gets a Get Out of Jail Free card");
                 gameEngine.currentPlayer.hasGOOJ = true;
                 break;
@@ -333,48 +326,6 @@ public class CardManager : MonoBehaviour
             default:
                 Debug.LogWarning($"Unknown action type: {action.action}");
                 break;
-        }
-    }
-
-    private string GetActionDescription(Action action)
-    {
-        switch (action.action)
-        {
-            case Action.Actions.pay_player:
-                return $"Receive £{action.amount}";
-                
-            case Action.Actions.pay_bank:
-                return $"Pay £{action.amount} to the bank";
-                
-            case Action.Actions.move:
-                return $"Move to {action.property}";
-                
-            case Action.Actions.opportunity_knocks:
-                return "Draw an Opportunity Knocks card";
-                
-            case Action.Actions.put_free_parking:
-                return $"Put £{action.amount} in free parking";
-                
-            case Action.Actions.jail:
-                return "Go to jail";
-                
-            case Action.Actions.receive_player:
-                return $"Receive £{action.amount} from each player";
-                
-            case Action.Actions.avoid_jail:
-                return "Get out of jail free";
-                
-            case Action.Actions.pay_bank_per_house:
-                return $"Pay £{action.amount} per house";
-                
-            case Action.Actions.pay_bank_per_hotel:
-                return $"Pay £{action.amount} per hotel";
-                
-            case Action.Actions.move_back:
-                return $"Move back {action.spaces} spaces";
-                
-            default:
-                return "Unknown action";
         }
     }
 
