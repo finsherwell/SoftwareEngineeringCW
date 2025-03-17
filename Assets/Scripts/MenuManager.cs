@@ -295,7 +295,56 @@ public class MenuManager : MonoBehaviour
     {
         if (menuPlayers.Count > 0)
         {
+            MenuPlayer temp = menuPlayers[menuPlayers.Count - 1];
             menuPlayers.RemoveAt(menuPlayers.Count - 1);
+            availibileColours.Add(temp.colour);
+            availibleIcons.Add(temp.icon);
+            switch (temp.colour)
+            {
+                case Colours.Red:
+                    colourButtons[0].gameObject.SetActive(true);
+                    break;
+                case Colours.Blue:
+                    colourButtons[1].gameObject.SetActive(true);
+                    break;
+                case Colours.Green:
+                    colourButtons[2].gameObject.SetActive(true);
+                    break;
+                case Colours.Purple:
+                    colourButtons[3].gameObject.SetActive(true);
+                    break;
+                case Colours.Yellow:
+                    colourButtons[4].gameObject.SetActive(true);
+                    break;
+                case Colours.Cyan:
+                    colourButtons[5].gameObject.SetActive(true);
+                    break;
+
+            }
+
+            switch (temp.icon)
+            {
+                case Icon.Boot:
+                    iconButtons[0].gameObject.SetActive(true);
+                    break;
+                case Icon.Ship:
+                    iconButtons[1].gameObject.SetActive(true);
+                    break;
+                case Icon.Cat:
+                    iconButtons[2].gameObject.SetActive(true);
+                    break;
+                case Icon.HatStand:
+                    iconButtons[3].gameObject.SetActive(true);
+                    break;
+                case Icon.Smartphone:
+                    iconButtons[4].gameObject.SetActive(true);
+                    break;
+                case Icon.Iron:
+                    iconButtons[5].gameObject.SetActive(true);
+                    break;
+
+            }
+
             drawCards();
 
         }
