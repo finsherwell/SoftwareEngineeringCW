@@ -2605,14 +2605,14 @@ MonoBehaviour:
   maxPlayers: 5
   currentPlayerIndex: 0
   currentPlayerText: {fileID: 1510947728}
-  propertyBuyText: {fileID: 1195760943}
+  propertyBuyText: {fileID: 0}
   playerCount: 0
   dice1: {fileID: 872099768}
   dice2: {fileID: 595035841}
   rollButton: {fileID: 1846077555}
   nextTurnButton: {fileID: 848842619}
   startTile: {fileID: 1121642056}
-  purchasePropertyPanel: {fileID: 927659787}
+  purchasePropertyPanel: {fileID: 0}
   currentPlayer: {fileID: 1343743539}
 --- !u!4 &1062590066
 Transform:
@@ -4315,6 +4315,54 @@ MonoBehaviour:
   houseCost: 0
   rentLevels: 
   owner: {fileID: 0}
+--- !u!1 &1863357746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863357748}
+  - component: {fileID: 1863357747}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1863357747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863357746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36aa3c2512938f43ad650843e2c2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardData: {fileID: 0}
+  potLuckCards: []
+  opportunityKnocksCards: []
+  gameEngine: {fileID: 1062590065}
+--- !u!4 &1863357748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863357746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4443675, y: -2.3809433, z: -0.919888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1871777335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1390029469623480972, guid: 724504761ec03804b875de301080b8d4, type: 3}
@@ -4582,3 +4630,4 @@ SceneRoots:
   - {fileID: 870785135}
   - {fileID: 238092134}
   - {fileID: 1203064744}
+  - {fileID: 1863357748}
