@@ -16,6 +16,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
     [SerializeField] private TextMeshProUGUI propertyBuyText;
+    [SerializeField] private TextMeshProUGUI logText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0; 
     [SerializeField] public Dice dice1;
@@ -33,6 +34,7 @@ public class Engine : MonoBehaviour
     public void passGo()
     {
         Debug.Log($"{currentPlayer.playerName} passed Go");
+        logText.text = $"{currentPlayer.playerName} passed Go" + "\n"+logText.text;
         currentPlayer.addMoney(passGoMoney);
     }
 
@@ -61,6 +63,7 @@ public class Engine : MonoBehaviour
 
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
+                logText.text = $"Total Dice Value: {totalDiceValue}" + "\n"+logText.text;
                 if (dice1Value == dice2Value)
                 {
                     doubleRolled = true;
@@ -108,6 +111,9 @@ public class Engine : MonoBehaviour
     {
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
+        logText.text = "Initializing game..." + "\n"+logText.text;
+        logText.text = "Game ready!" + "\n"+logText.text;
+
         FindPlayers();        
         foreach (Player player in players)
         {
@@ -156,6 +162,7 @@ public class Engine : MonoBehaviour
         player.takeMoney(property.GetPrice());
         property.SetOwner(player);
         Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
+        logText.text =$"{player.playerName} purchased property: {property.GetName()}" + "\n"+logText.text;
         purchasePropertyPanel.gameObject.SetActive(false);
     }
 
@@ -180,6 +187,7 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
+        logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n" + logText.text;
         CheckForActionEvent(player);
         nextTurnButton.gameObject.SetActive(true);
     }
@@ -261,6 +269,7 @@ public class Engine : MonoBehaviour
                 currentPlayer.setInJail(true);
 
                 Debug.Log($"{currentPlayer.playerName} has been sent to Jail!");
+                logText.text =$"{currentPlayer.playerName} has been sent to Jail!" + "\n"+ logText.text;
             }
         }
     }
