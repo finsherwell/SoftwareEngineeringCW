@@ -20,7 +20,6 @@ public class MenuManager : MonoBehaviour
     public CardLobby card4;
     public CardLobby card5;
     private CardLobby[] cardArray;
-
     public GameObject iconSelect;
     public GameObject colourSelect;
 
@@ -30,6 +29,10 @@ public class MenuManager : MonoBehaviour
     public GameObject newPlayerScreen;
 
     private List<MenuPlayer> menuPlayers = new List<MenuPlayer>();
+    private List<Icon> availibleIcons;
+    private List<Colours> availibileColours;
+
+
     public TMP_InputField playerNameInput;
 
     public MenuPlayer tempPlayer;
@@ -51,8 +54,6 @@ public class MenuManager : MonoBehaviour
         drawCards();
         iconSelect.SetActive(false);
         colourSelect.SetActive(false);
-
-
     }
 
     public void swtichToLobby()
@@ -61,6 +62,9 @@ public class MenuManager : MonoBehaviour
         lobbyScreen.SetActive(true);
         newPlayerScreen.SetActive(false);
         emptyPlayerList();
+        availibleIcons = new List<Icon>() { Icon.Boot, Icon.Cat, Icon.HatStand, Icon.Iron, Icon.Smartphone, Icon.Ship };
+        availibileColours = new List<Colours> { Colours.Green, Colours.Blue, Colours.Red, Colours.Yellow, Colours.Purple, Colours.Cyan };
+
     }
     public void switchToMenu()
     {
@@ -99,36 +103,42 @@ public class MenuManager : MonoBehaviour
                 iconSelect.transform.position = iconButtons[0].transform.position;
                 tempPlayer.icon = Icon.Boot;
                 tempSelectediconButton = iconButtons[0];
+                availibleIcons.Remove(Icon.Boot);
                 break;
             case "ship":
                 iconSelect.transform.SetParent(iconButtons[1].transform, false);
                 iconSelect.transform.position = iconButtons[1].transform.position;
                 tempPlayer.icon = Icon.Ship;
                 tempSelectediconButton = iconButtons[1];
+                availibleIcons.Remove(Icon.Ship);
                 break;
             case "cat":
                 iconSelect.transform.SetParent(iconButtons[2].transform, false);
                 iconSelect.transform.position = iconButtons[2].transform.position;
                 tempPlayer.icon = Icon.Cat;
                 tempSelectediconButton = iconButtons[2];
+                availibleIcons.Remove(Icon.Cat);
                 break;
             case "hat stand":
                 iconSelect.transform.SetParent(iconButtons[3].transform, false);
                 iconSelect.transform.position = iconButtons[3].transform.position;
                 tempPlayer.icon = Icon.HatStand;
                 tempSelectediconButton = iconButtons[3];
+                availibleIcons.Remove(Icon.HatStand);
                 break;
             case "smartphone":
                 iconSelect.transform.SetParent(iconButtons[4].transform, false);
                 iconSelect.transform.position = iconButtons[4].transform.position;
                 tempPlayer.icon = Icon.Smartphone;
                 tempSelectediconButton = iconButtons[4];
+                availibleIcons.Remove(Icon.Smartphone);
                 break;
             case "iron":
                 iconSelect.transform.SetParent(iconButtons[5].transform, false);
                 iconSelect.transform.position = iconButtons[5].transform.position;
                 tempPlayer.icon = Icon.Iron;
                 tempSelectediconButton = iconButtons[5];
+                availibleIcons.Remove(Icon.Iron);
                 break;
 
 
@@ -146,36 +156,42 @@ public class MenuManager : MonoBehaviour
                 colourSelect.transform.position = colourButtons[0].transform.position;
                 tempPlayer.colour = Colours.Red;
                 tempSelectedcolourButton = colourButtons[0];
+                availibileColours.Remove(Colours.Red);
                 break;
             case "blue":
                 colourSelect.transform.SetParent(colourButtons[1].transform, false);
                 colourSelect.transform.position = colourButtons[1].transform.position;
                 tempPlayer.colour = Colours.Blue;
                 tempSelectedcolourButton = colourButtons[1];
+                availibileColours.Remove(Colours.Blue);
                 break;
             case "green":
                 colourSelect.transform.SetParent(colourButtons[2].transform, false);
                 colourSelect.transform.position = colourButtons[2].transform.position;
                 tempPlayer.colour = Colours.Green;
                 tempSelectedcolourButton = colourButtons[2];
+                availibileColours.Remove(Colours.Green);
                 break;
             case "purple":
                 colourSelect.transform.SetParent(colourButtons[3].transform, false);
                 colourSelect.transform.position = colourButtons[3].transform.position;
                 tempPlayer.colour = Colours.Purple;
                 tempSelectedcolourButton = colourButtons[3];
+                availibileColours.Remove(Colours.Purple);
                 break;
             case "yellow":
                 colourSelect.transform.SetParent(colourButtons[4].transform, false);
                 colourSelect.transform.position = colourButtons[4].transform.position;
                 tempPlayer.colour = Colours.Yellow;
                 tempSelectedcolourButton = colourButtons[4];
+                availibileColours.Remove(Colours.Yellow);
                 break;
             case "cyan":
                 colourSelect.transform.SetParent(colourButtons[5].transform, false);
                 colourSelect.transform.position = colourButtons[5].transform.position;
                 tempPlayer.colour = Colours.Cyan;
                 tempSelectedcolourButton = colourButtons[5];
+                availibileColours.Remove(Colours.Cyan);
                 break;
         }
         colourSelect.SetActive(true);
@@ -277,22 +293,35 @@ public class MenuManager : MonoBehaviour
 
     public void removeLastPlayer()
     {
-        menuPlayers.RemoveAt(menuPlayers.Count - 1);
-        drawCards();
+        if (menuPlayers.Count > 0)
+        {
+            menuPlayers.RemoveAt(menuPlayers.Count - 1);
+            drawCards();
+
+        }
     }
 
     public void startGame()
     {
-        //give each AI player a unique name
-        int counter = 1;
-        foreach (MenuPlayer p in menuPlayers)
+        if (menuPlayers.Count > 1)
         {
-            if (p.isAI)
+            //give each AI player a unique name, colour, icon
+            int counter = 1;
+            foreach (MenuPlayer p in menuPlayers)
             {
-                p.name = "AI" + counter.ToString();
-                counter += 1;
+                if (p.isAI)
+                {
+                    p.name = "AI" + counter.ToString();
+                    p.icon = availibleIcons[0];
+                    availibleIcons.RemoveAt(0);
+                    p.colour = availibileColours[0];
+                    availibileColours.RemoveAt(0);
+
+                    counter += 1;
+                }
             }
+            drawCards();
+
         }
-        drawCards();
     }
 }
