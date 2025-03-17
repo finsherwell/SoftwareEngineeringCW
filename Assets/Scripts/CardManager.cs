@@ -67,6 +67,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private List<ActionCard> potLuckCards;
     [SerializeField] private List<ActionCard> opportunityKnocksCards;
     [SerializeField] private System.Random random;
+    [SerializeField] public Engine gameEngine;
 
     public void Awake()
     {
@@ -291,7 +292,7 @@ public class CardManager : MonoBehaviour
             case Action.Actions.jail:
                 // Logic to send player to jail
                 Debug.Log("Send player to jail");
-                Engine.GoToJail();
+                gameEngine.GoToJail();
                 break;
                 
             case Action.Actions.receive_player:
