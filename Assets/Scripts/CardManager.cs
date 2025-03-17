@@ -69,6 +69,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private System.Random random;
     [SerializeField] public Engine gameEngine;
 
+
     public void Awake()
     {
         Debug.LogError("Card manager awakening...");
@@ -262,13 +263,13 @@ public class CardManager : MonoBehaviour
             case Action.Actions.pay_player:
                 // Logic to pay the current player the specified amount
                 Debug.Log($"Pay player {action.amount}");
-                
+                gameEngine.currentPlayer.addMoney(action.amount);
                 break;
                 
             case Action.Actions.pay_bank:
                 // Logic to make the player pay the bank the specified amount
                 Debug.Log($"Player pays bank {action.amount}");
-                
+                gameEngine.currentPlayer.takeMoney(action.amount);
                 break;
                 
             case Action.Actions.move:
@@ -292,7 +293,10 @@ public class CardManager : MonoBehaviour
             case Action.Actions.jail:
                 // Logic to send player to jail
                 Debug.Log("Send player to jail");
-                gameEngine.GoToJail();
+                if (!gameEngine.currentPlayer.hasGOOJ)
+                {
+                    gameEngine.currentPlayer.setInJail(true);
+                }
                 break;
                 
             case Action.Actions.receive_player:
@@ -304,7 +308,7 @@ public class CardManager : MonoBehaviour
             case Action.Actions.avoid_jail:
                 // Logic to give the player a get out of jail free card
                 Debug.Log("Player gets a Get Out of Jail Free card");
-                
+                gameEngine.currentPlayer.hasGOOJ = true;
                 break;
                 
             case Action.Actions.pay_bank_per_house:
