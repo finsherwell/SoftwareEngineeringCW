@@ -171,7 +171,7 @@ public class Engine : MonoBehaviour
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
                 player.transform.position = nextTile.transform.position;
-                checkForPassGo(currentPlayer);
+                //checkForPassGo(currentPlayer);
                 Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
             }
             else
@@ -215,7 +215,7 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
-    
+    /*
     private void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
@@ -230,6 +230,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
+    
     private void checkForPassGo(Player player)
     {
         Tile currentTile = player.getCurrentTile();
@@ -244,6 +245,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
+    */
     public void GoToJail()
     {
         if (currentPlayer != null)
