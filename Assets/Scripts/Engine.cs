@@ -179,7 +179,7 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
-        CheckForActionEvent(player);
+        //CheckForActionEvent(player);
         nextTurnButton.gameObject.SetActive(true);
     }
 
@@ -214,6 +214,7 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
+    /*
     private void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
@@ -226,6 +227,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
+    */
     public void GoToJail()
     {
         if (currentPlayer != null)

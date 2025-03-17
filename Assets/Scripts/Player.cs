@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
     public void setInJail(bool state)
     {
         inJail = state;
-
+    }
     public void addProperty(Property property)
     {
         ownedproperties.Add(property);
