@@ -3,15 +3,19 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using JetBrains.Annotations;
 
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
+
+    [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
+    [SerializeField] private TextMeshProUGUI propertyBuyText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0; 
     [SerializeField] public Dice dice1;
@@ -21,6 +25,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Tile startTile;
     private bool doubleRolled=false;
     private int doubleCount;
+
+    [SerializeField] private GameObject purchasePropertyPanel;
 
     public Player currentPlayer;
 
@@ -70,6 +76,14 @@ public class Engine : MonoBehaviour
                     doubleCount = 0;
                 }
                 movePlayer(totalDiceValue, currentPlayer);
+
+           
+                Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
+                if (currentPlayer.currentTile.IsProperty() == true)
+                {
+                    purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
+                }
+                nextTurnButton.gameObject.SetActive(true);
             });
         });
     }
@@ -115,6 +129,36 @@ public class Engine : MonoBehaviour
             Debug.LogError("No players found in the scene!");
         }
     }
+
+    private void purchasePropertyUI(Player player, Tile tile)
+    {
+        Property property = tile.GetComponent<Property>();
+        if (!property.IsOwned())
+
+        {
+            propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
+            purchasePropertyPanel.gameObject.SetActive(true);
+            Debug.Log(currentPlayer.playerName+" is viewing property:" +currentPlayer.currentTile.name);
+        }
+
+    }
+    public void OnpurchaseButtonClick()
+    {
+        Property property = currentPlayer.currentTile.GetComponent<Property>();
+        purchaseProperty(currentPlayer, property);
+    }
+    public void OnPassButtonClick()
+    {
+        purchasePropertyPanel.gameObject.SetActive(false);
+    }
+    private void purchaseProperty(Player player, Property property)
+    {
+        player.takeMoney(property.GetPrice());
+        property.SetOwner(player);
+        Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
+        purchasePropertyPanel.gameObject.SetActive(false);
+    }
+
 
     private void movePlayer(int diceValue, Player player)
     {
