@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
@@ -19,19 +20,26 @@ public class ActionSpace : MonoBehaviour
 
     [SerializeField] private ActionType actionType;
 
+    
+    //Returns the action type.
+    
     public ActionType GetActionType()
     {
         return actionType;
     }
 
+    
+    //Handles the action type for the space that you land on.
+    
     public void LandedOn(Player player)
     {
         switch (actionType)
         {
             case ActionType.Go:
-                gameEngine.passGo(player);
+                gameEngine.passGo();
+                Debug.Log("player has passed go!");
                 break;
-
+                    
             case ActionType.GoToJail:
                 gameEngine.GoToJail();
                 break;
@@ -92,3 +100,4 @@ public class ActionSpace : MonoBehaviour
         return finesTotal;
     }
 }
+

@@ -3,15 +3,19 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using JetBrains.Annotations;
 
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
+
+    [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
     [SerializeField] private int maxPlayers = 5;
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
+    [SerializeField] private TextMeshProUGUI propertyBuyText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0; 
     [SerializeField] public Dice dice1;
@@ -22,12 +26,14 @@ public class Engine : MonoBehaviour
     private bool doubleRolled=false;
     private int doubleCount;
 
+    [SerializeField] private GameObject purchasePropertyPanel;
+
     public Player currentPlayer;
 
-    public void passGo(Player player)
+    public void passGo()
     {
-        Debug.Log($"{player.playerName} passed Go");
-        player.addMoney(passGoMoney);
+        Debug.Log($"{currentPlayer.playerName} passed Go");
+        currentPlayer.addMoney(passGoMoney);
     }
 
     private void Start()
@@ -70,6 +76,14 @@ public class Engine : MonoBehaviour
                     doubleCount = 0;
                 }
                 movePlayer(totalDiceValue, currentPlayer);
+
+           
+                Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
+                if (currentPlayer.currentTile.IsProperty() == true)
+                {
+                    purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
+                }
+                nextTurnButton.gameObject.SetActive(true);
             });
         });
     }
@@ -116,6 +130,36 @@ public class Engine : MonoBehaviour
         }
     }
 
+    private void purchasePropertyUI(Player player, Tile tile)
+    {
+        Property property = tile.GetComponent<Property>();
+        if (!property.IsOwned())
+
+        {
+            propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
+            purchasePropertyPanel.gameObject.SetActive(true);
+            Debug.Log(currentPlayer.playerName+" is viewing property:" +currentPlayer.currentTile.name);
+        }
+
+    }
+    public void OnpurchaseButtonClick()
+    {
+        Property property = currentPlayer.currentTile.GetComponent<Property>();
+        purchaseProperty(currentPlayer, property);
+    }
+    public void OnPassButtonClick()
+    {
+        purchasePropertyPanel.gameObject.SetActive(false);
+    }
+    private void purchaseProperty(Player player, Property property)
+    {
+        player.takeMoney(property.GetPrice());
+        property.SetOwner(player);
+        Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
+        purchasePropertyPanel.gameObject.SetActive(false);
+    }
+
+
     private void movePlayer(int diceValue, Player player)
     {
         Debug.Log($"{player.playerName} is moving.");
@@ -127,6 +171,7 @@ public class Engine : MonoBehaviour
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
                 player.transform.position = nextTile.transform.position;
+                checkForPassGo(currentPlayer);
                 Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
             }
             else
@@ -170,15 +215,32 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
+
     private void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
+        Debug.Log("Checking action space for tile " + currentTile.name);
         if (currentTile != null)
         {
-            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component
+            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component 
             if (actionSpace != null)
             {
                 actionSpace.LandedOn(player); // Trigger the action event
+                Debug.Log("action space " + actionSpace.name);
+            }
+        }
+    }
+    private void checkForPassGo(Player player)
+    {
+        Tile currentTile = player.getCurrentTile();
+
+        if (currentTile != null)
+        {
+            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>();
+
+            if (actionSpace != null && actionSpace.GetActionType() == ActionSpace.ActionType.Go)
+            {
+                actionSpace.LandedOn(player);
             }
         }
     }
