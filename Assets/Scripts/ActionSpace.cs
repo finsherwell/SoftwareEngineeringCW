@@ -1,4 +1,4 @@
-/*
+
 using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
@@ -100,4 +100,4 @@ public class ActionSpace : MonoBehaviour
         return finesTotal;
     }
 }
-*/
+
