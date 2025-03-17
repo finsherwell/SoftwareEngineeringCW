@@ -36,9 +36,10 @@ public class ActionSpace : MonoBehaviour
         switch (actionType)
         {
             case ActionType.Go:
-                gameEngine.passGo(player);
+                gameEngine.passGo();
+                Debug.Log("player has passed go!");
                 break;
-
+                    
             case ActionType.GoToJail:
                 gameEngine.GoToJail();
                 break;
