@@ -24,10 +24,10 @@ public class Engine : MonoBehaviour
 
     public Player currentPlayer;
 
-    public void passGo(Player player)
+    public void passGo()
     {
-        Debug.Log($"{player.playerName} passed Go");
-        player.addMoney(passGoMoney);
+        Debug.Log($"{currentPlayer.playerName} passed Go");
+        currentPlayer.addMoney(passGoMoney);
     }
 
     private void Start()
@@ -127,6 +127,7 @@ public class Engine : MonoBehaviour
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
                 player.transform.position = nextTile.transform.position;
+                checkForPassGo(currentPlayer);
                 Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
             }
             else
@@ -173,15 +174,32 @@ public class Engine : MonoBehaviour
     private void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
+        Debug.Log("Checking action space for tile "+currentTile.name);
         if (currentTile != null)
         {
             ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component
             if (actionSpace != null)
             {
                 actionSpace.LandedOn(player); // Trigger the action event
+                Debug.Log("action space "+ actionSpace.name );
             }
         }
     }
+    private void checkForPassGo(Player player)
+    {
+        Tile currentTile = player.getCurrentTile();
+
+        if (currentTile != null)
+        {
+            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>();
+
+            if (actionSpace != null && actionSpace.GetActionType() == ActionSpace.ActionType.Go)
+            {
+                actionSpace.LandedOn(player);
+            }
+        }
+    }
+
     public void GoToJail()
     {
         if (currentPlayer != null)
