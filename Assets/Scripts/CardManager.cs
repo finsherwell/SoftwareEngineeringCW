@@ -275,19 +275,19 @@ public class CardManager : MonoBehaviour
             case Action.Actions.move:
                 // Logic to move the player to the specified property
                 Debug.Log($"Move player to {action.property}");
-                
+                // Move player to tile, set using current tile?
                 break;
                 
             case Action.Actions.opportunity_knocks:
                 // Logic to draw an opportunity knocks card
                 Debug.Log("Draw an Opportunity Knocks card");
-                
+                // Draw them an opportunity knocks card, what will they do with this?
                 break;
                 
             case Action.Actions.put_free_parking:
                 // Logic to put money in free parking
                 Debug.Log($"Put {action.amount} in free parking");
-                
+                // Add money to a free parking variable?
                 break;
                 
             case Action.Actions.jail:
@@ -302,7 +302,7 @@ public class CardManager : MonoBehaviour
             case Action.Actions.receive_player:
                 // Logic to receive money from each player
                 Debug.Log($"Receive {action.amount} from each player");
-                
+                // Go through all players, deduct their money, give money to player
                 break;
                 
             case Action.Actions.avoid_jail:
@@ -326,7 +326,8 @@ public class CardManager : MonoBehaviour
             case Action.Actions.move_back:
                 // Logic to move back a certain number of spaces
                 Debug.Log($"Move back {action.spaces} spaces");
-                
+                // Use board indexing logic to move the player backwards
+                // Will not work using linked list board
                 break;
                 
             default:
