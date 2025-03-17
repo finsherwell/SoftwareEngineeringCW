@@ -22,11 +22,13 @@ public class Engine : MonoBehaviour
     [SerializeField] public Dice dice2;
     [SerializeField] private Button rollButton;
     [SerializeField] private Button nextTurnButton;
+    [SerializeField] private Button buyHouseButton;
     [SerializeField] private Tile startTile;
     private bool doubleRolled=false;
     private int doubleCount;
 
     [SerializeField] private GameObject purchasePropertyPanel;
+    [SerializeField] private GameObject buyHousePanel;
 
     public Player currentPlayer;
 
@@ -87,6 +89,20 @@ public class Engine : MonoBehaviour
             });
         });
     }
+    public void housePanelToggle()
+    {
+        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);   
+
+        TextMeshProUGUI buttonText = buyHouseButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (buyHousePanel.gameObject.activeSelf)
+        {
+            buttonText.text = "Done";
+        }
+        else
+        {
+            buttonText.text = "Buy Houses";
+        }
+    }
 
 
     private void FindPlayers()
@@ -106,6 +122,7 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
+
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
         FindPlayers();        

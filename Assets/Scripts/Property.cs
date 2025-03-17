@@ -1,4 +1,7 @@
+using Codice.Client.Common.GameUI;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Property : Tile 
 {
@@ -7,10 +10,11 @@ public class Property : Tile
     [SerializeField] private int price; // Original cost to buy the property
     [SerializeField] private int houseCost; // 
     [SerializeField] private int[] rentLevels; // Rent for different levels (0-4 houses + hotel)
-
-    private bool isOwned = false; // Will be true if the property is owned
-    private int houses = 0; // Updates if you upgrade houses
+    [SerializeField] private Button button; // Button to purchase or upgrade property
+    [SerializeField] private bool isOwned = false; // Will be true if the property is owned
+    [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
+    
 
     private void Awake()
     {
@@ -25,8 +29,10 @@ public class Property : Tile
     {
         return propertyName;
     }
-
-
+    private void Start()
+    {
+        UpdateButtonText();
+    }
     /*
     Returns the price of the property.
     */
@@ -86,7 +92,15 @@ public class Property : Tile
             isOwned = true;
         }
     }
+private void UpdateButtonText()
+{
+    if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
+    {
+        button.GetComponentInChildren<TextMeshProUGUI>().text = $"Purchase for ${houseCost}";
+    }
 }
+}
+
 
 //    /*
 //    Allows a player to upgrade their property as long as it does not exceed the boundaries for that property.
@@ -112,4 +126,5 @@ public class Property : Tile
 //            owner.addMoney(rent);
 //        }
 //    }
+
 //}
