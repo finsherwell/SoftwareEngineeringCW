@@ -51,7 +51,7 @@ public class BoardManager : MonoBehaviour
             break;
         }
     }
-
+    
     Debug.Log($"Found and sorted {tiles.Count} tiles.");
 }
 }

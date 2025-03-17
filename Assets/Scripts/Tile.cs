@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    private Player[] playersOn;
+    protected Player[] playersOn;
     public Player[] players;
-    [SerializeField] private string tileName;
+    [SerializeField] protected string tileName;
     [SerializeField] private int ID;
     [SerializeField] private bool isProperty;
     public Tile nextTile;
@@ -38,6 +38,7 @@ public class Tile : MonoBehaviour
     {
         return this.isProperty;
     }
+    
 
     public bool LandedOn()
     {
@@ -53,12 +54,13 @@ public class Tile : MonoBehaviour
     {
         this.ID = id;
     }
-
+/*
     public void SetIsProperty(bool isProperty)
     {
         this.isProperty = isProperty;
     }
-
+    removed for inheritance
+*/
      public void GetLandedOn()
      {
          for (int i = 0; i < players.Length; i++)
