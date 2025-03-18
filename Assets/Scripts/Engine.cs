@@ -92,8 +92,18 @@ public class Engine : MonoBehaviour
     public void housePanelToggle()
     {
         buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);   
-
+        foreach (Property property in currentPlayer.GetProperties())
+        {
+            property.ShowButtonCheck(currentPlayer);
+        }
         TextMeshProUGUI buttonText = buyHouseButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (buttonText.text == "Done")
+        {
+            foreach (Property property in currentPlayer.GetProperties())
+            {
+                property.HideButtonCheck(currentPlayer);
+            }
+        }
         if (buyHousePanel.gameObject.activeSelf)
         {
             buttonText.text = "Done";
@@ -102,7 +112,10 @@ public class Engine : MonoBehaviour
         {
             buttonText.text = "Buy Houses";
         }
+
     }
+
+
 
 
     private void FindPlayers()

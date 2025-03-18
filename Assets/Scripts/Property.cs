@@ -32,7 +32,46 @@ public class Property : Tile
     private void Start()
     {
         UpdateButtonText();
+        SetupButtonListener();
     }
+    private void SetupButtonListener()
+    {
+        if (button != null)
+        {
+            button.onClick.AddListener(OnButtonClick);
+        }
+    }
+    private void OnButtonClick()
+    {
+        if (isOwned && owner.money >= houseCost && houses < 5 ) // Max: 4 houses + hotel
+        {
+            UpgradeProperty();
+            UpdateButtonText();
+        }
+    }
+    public void UpgradeProperty() // allows player to buy houses for their property
+    {
+
+           owner.takeMoney(houseCost);
+           houses++;
+    }
+        private void UpdateButtonText()
+    {
+        if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
+        {
+            if (houses < 5)
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Purchase for ${houseCost}";
+            }
+            else
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Fully Upgraded";
+            }
+        }
+    }
+
+
+
     /*
     Returns the price of the property.
     */
@@ -80,6 +119,24 @@ public class Property : Tile
         isOwned = true;
     }
 
+    public void ShowButtonCheck(Player player)
+    {
+        if (player == owner)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    public void HideButtonCheck(Player player)
+    {
+        if (player == owner)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
+
+
     /*
     Allows a user to buy the property as long as it isn't owned and they have the funds to buy it.
     */
@@ -92,28 +149,14 @@ public class Property : Tile
             isOwned = true;
         }
     }
-private void UpdateButtonText()
-{
-    if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
-    {
-        button.GetComponentInChildren<TextMeshProUGUI>().text = $"Purchase for ${houseCost}";
-    }
+
+
+
+
+
+
+
 }
-}
-
-
-//    /*
-//    Allows a player to upgrade their property as long as it does not exceed the boundaries for that property.
-//    */
-//    public void UpgradeProperty()
-//    {
-//        if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
-//        {
-//            owner.takeMoney(houseCost);
-//            houses++;
-//        }
-//    }
-
 //    /*
 //    Handles rent payment between the tenant and the owner of the property.
 //    */

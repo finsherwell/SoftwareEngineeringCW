@@ -144,11 +144,11 @@ GameObject:
   - component: {fileID: 94713259}
   m_Layer: 5
   m_Name: Angels_Delight_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &94713258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -296,11 +296,11 @@ GameObject:
   - component: {fileID: 133376725}
   m_Layer: 5
   m_Name: Crusher_Creek_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &133376724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -689,11 +689,11 @@ GameObject:
   - component: {fileID: 174667445}
   m_Layer: 5
   m_Name: Rey_Lane_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &174667444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1353,11 +1353,11 @@ GameObject:
   - component: {fileID: 274049289}
   m_Layer: 5
   m_Name: James_Webb_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &274049288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1746,11 +1746,11 @@ GameObject:
   - component: {fileID: 310337009}
   m_Layer: 5
   m_Name: Old_creek_button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &310337008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2031,11 +2031,11 @@ GameObject:
   - component: {fileID: 493976812}
   m_Layer: 5
   m_Name: Shatner_Close_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &493976811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4654,11 +4654,11 @@ GameObject:
   - component: {fileID: 909515498}
   m_Layer: 5
   m_Name: Ibis_Close_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &909515497
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5261,11 +5261,11 @@ GameObject:
   - component: {fileID: 998604493}
   m_Layer: 5
   m_Name: Han_Xin_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &998604492
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5518,11 +5518,11 @@ GameObject:
   - component: {fileID: 1045186841}
   m_Layer: 5
   m_Name: Wookie_Hole_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1045186840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5859,11 +5859,11 @@ GameObject:
   - component: {fileID: 1131632481}
   m_Layer: 5
   m_Name: Potter_avenue_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1131632480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6630,11 +6630,11 @@ GameObject:
   - component: {fileID: 1192131062}
   m_Layer: 5
   m_Name: Mulan_Rouge_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1192131061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7103,11 +7103,11 @@ GameObject:
   - component: {fileID: 1210547390}
   m_Layer: 5
   m_Name: Gangster's_Paradise_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210547389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7224,11 +7224,11 @@ GameObject:
   - component: {fileID: 1214232308}
   m_Layer: 5
   m_Name: Turing_Heights_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1214232307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8187,11 +8187,11 @@ GameObject:
   - component: {fileID: 1422849068}
   m_Layer: 5
   m_Name: Sirat_Mews_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1422849067
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8308,11 +8308,11 @@ GameObject:
   - component: {fileID: 1424362990}
   m_Layer: 5
   m_Name: Yue_Fei_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1424362989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8460,11 +8460,11 @@ GameObject:
   - component: {fileID: 1478713324}
   m_Layer: 5
   m_Name: Granger_Drive_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1478713323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8581,11 +8581,11 @@ GameObject:
   - component: {fileID: 1488694317}
   m_Layer: 5
   m_Name: Picard_Avenue_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1488694316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8864,11 +8864,11 @@ GameObject:
   - component: {fileID: 1616831121}
   m_Layer: 5
   m_Name: Skywalker_Drive_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1616831120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9260,7 +9260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1718248585
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9393,11 +9393,11 @@ GameObject:
   - component: {fileID: 1721409292}
   m_Layer: 5
   m_Name: Bishop_Drive_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1721409291
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9647,11 +9647,11 @@ GameObject:
   - component: {fileID: 1840808211}
   m_Layer: 5
   m_Name: Ghengis_Crescent_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1840808210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10097,11 +10097,11 @@ GameObject:
   - component: {fileID: 1886695167}
   m_Layer: 5
   m_Name: Broyles_Lane_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1886695166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10351,11 +10351,11 @@ GameObject:
   - component: {fileID: 2062982906}
   m_Layer: 5
   m_Name: Dunham_Street_Button
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2062982905
 RectTransform:
   m_ObjectHideFlags: 0
