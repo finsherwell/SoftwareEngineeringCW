@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
+    public GameObject playerPrefab;
 
     [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
@@ -16,8 +17,9 @@ public class Engine : MonoBehaviour
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
     [SerializeField] private TextMeshProUGUI propertyBuyText;
+    [SerializeField] private TextMeshProUGUI logText;
     private bool gameOver = false;
-    [SerializeField] private int playerCount = 0; 
+    [SerializeField] private int playerCount = 0;
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
     [SerializeField] private Button rollButton;
@@ -25,7 +27,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button buyHouseButton;
     [SerializeField] private Button sellHouseButton;
     [SerializeField] private Tile startTile;
-    private bool doubleRolled=false;
+    private bool doubleRolled = false;
     private int doubleCount;
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -38,6 +40,7 @@ public class Engine : MonoBehaviour
     public void passGo()
     {
         Debug.Log($"{currentPlayer.playerName} passed Go");
+        logText.text = $"{currentPlayer.playerName} passed Go" + "\n" + logText.text;
         currentPlayer.addMoney(passGoMoney);
     }
 
@@ -66,6 +69,7 @@ public class Engine : MonoBehaviour
 
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
+                logText.text = $"Total Dice Value: {totalDiceValue}" + "\n" + logText.text;
                 if (dice1Value == dice2Value)
                 {
                     doubleRolled = true;
@@ -82,7 +86,7 @@ public class Engine : MonoBehaviour
                 }
                 movePlayer(totalDiceValue, currentPlayer);
 
-           
+
                 Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
                 if (currentPlayer.currentTile.IsProperty() == true)
                 {
@@ -151,8 +155,16 @@ public class Engine : MonoBehaviour
 
     }
 
-
-
+    private void MakePlayers()
+    {
+        foreach (MenuPlayer p in GameData.Players)
+        {
+            GameObject newPlayer = Instantiate(playerPrefab);
+            Player newPlayerScript = newPlayer.GetComponent<Player>();
+            newPlayerScript.playerName = p.name;
+            players.Add(newPlayerScript);
+        }
+    }
 
     private void FindPlayers()
     {
@@ -174,7 +186,11 @@ public class Engine : MonoBehaviour
 
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
-        FindPlayers();        
+        logText.text = "Initializing game..." + "\n" + logText.text;
+        logText.text = "Game ready!" + "\n" + logText.text;
+
+        FindPlayers();
+        //MakePlayers();
         foreach (Player player in players)
         {
             player.addMoney(startingMoney);
@@ -204,7 +220,7 @@ public class Engine : MonoBehaviour
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
             purchasePropertyPanel.gameObject.SetActive(true);
-            Debug.Log(currentPlayer.playerName+" is viewing property:" +currentPlayer.currentTile.name);
+            Debug.Log(currentPlayer.playerName + " is viewing property:" + currentPlayer.currentTile.name);
         }
 
     }
@@ -222,6 +238,7 @@ public class Engine : MonoBehaviour
         player.takeMoney(property.GetPrice());
         property.SetOwner(player);
         Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
+        logText.text = $"{player.playerName} purchased property: {property.GetName()}" + "\n" + logText.text;
         purchasePropertyPanel.gameObject.SetActive(false);
     }
 
@@ -246,6 +263,7 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
+        logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n" + logText.text;
         CheckForActionEvent(player);
         nextTurnButton.gameObject.SetActive(true);
     }
@@ -281,21 +299,23 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
-    private void CheckForActionEvent(Player player)
+
+    public void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
         Debug.Log("Checking action space for tile " + currentTile.name);
         if (currentTile != null)
         {
-            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>(); // Get ActionSpace component 
+            ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>();
             if (actionSpace != null)
             {
-                actionSpace.LandedOn(player); // Trigger the action event
+                actionSpace.LandedOn(player);
                 Debug.Log("action space " + actionSpace.name);
             }
         }
+
     }
-    
+
     private void checkForPassGo(Player player)
     {
         Tile currentTile = player.getCurrentTile();
@@ -310,7 +330,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
-    
+
     public void GoToJail()
     {
         if (currentPlayer != null)
@@ -328,6 +348,7 @@ public class Engine : MonoBehaviour
                 currentPlayer.setInJail(true);
 
                 Debug.Log($"{currentPlayer.playerName} has been sent to Jail!");
+                logText.text = $"{currentPlayer.playerName} has been sent to Jail!" + "\n" + logText.text;
             }
         }
     }

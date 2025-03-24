@@ -269,47 +269,76 @@ public class CardManager : MonoBehaviour
                 break;
                 
             case Action.Actions.move:
-                // Logic to move the player to the specified property
                 Debug.Log($"Move player to {action.property}");
-                // Move player to tile, set using current tile?
+                
+                Tile targetTile = null;
+
+                foreach (Tile tile in board.tiles)
+                {
+                    if (tile.GetName() == action.property)
+                    {
+                        targetTile = tile;
+                        break;
+                    }
+                }
+                
+                if (targetTile != null)
+                {
+                    Tile currentTile = gameEngine.currentPlayer.getCurrentTile();
+                    int currentTileIndex = board.tiles.IndexOf(currentTile);
+                    int targetTileIndex = board.tiles.IndexOf(targetTile);
+
+                    if (targetTileIndex < currentTileIndex)
+                    {
+                        gameEngine.passGo();
+                    }
+
+                    gameEngine.currentPlayer.setCurrentTile(targetTile);
+
+                    gameEngine.CheckForActionEvent(gameEngine.currentPlayer);
+                }
+                else
+                {
+                Debug.LogError($"Could not find property with name: {action.property}");
+                }
                 break;
+            
                 
             case Action.Actions.opportunity_knocks:
-                // Logic to draw an opportunity knocks card
                 Debug.Log("Draw an Opportunity Knocks card");
-                // Draw them an opportunity knocks card, what will they do with this?
+                DrawOpportunityKnocks();
                 break;
                 
             case Action.Actions.put_free_parking:
-                // Logic to put money in free parking
                 Debug.Log($"Put {action.amount} in free parking");
-                // Add money to a free parking variable?
-                // Use board manager to get tile where tile is action space of free parking,
-                // add money from player to free parking
-                // deduct from player, add to fp
-                /*
-                foreach (tile in board)
-                {
-                    if (!tile.isProperty && tile.getID() == 21)
-                    {
-                        tile.
-                    }
-                }
-                */
+                
+                gameEngine.parkingFines += action.amount;
+                gameEngine.currentPlayer.takeMoney(action.amount);
                 break;
                 
             case Action.Actions.jail:
                 Debug.Log("Send player to jail");
-                if (!gameEngine.currentPlayer.hasGOOJ)
+                if (gameEngine.currentPlayer.hasGOOJ)
                 {
-                    gameEngine.currentPlayer.setInJail(true);
+                    Debug.Log("Player used Get Out of Jail Free card");
+                    gameEngine.currentPlayer.hasGOOJ = false;
+                }
+                else
+                {
+                    gameEngine.GoToJail();
                 }
                 break;
                 
             case Action.Actions.receive_player:
-                // Logic to receive money from each player
                 Debug.Log($"Receive {action.amount} from each player");
-                // Go through all players, deduct their money, give money to player
+                foreach (Player player in gameEngine.players)
+                {
+                    if (player != gameEngine.currentPlayer)
+                    {
+                        player.takeMoney(action.amount);
+                        gameEngine.currentPlayer.addMoney(action.amount);
+                    }
+                }
                 break;
                 
             case Action.Actions.avoid_jail:
@@ -318,22 +347,58 @@ public class CardManager : MonoBehaviour
                 break;
                 
             case Action.Actions.pay_bank_per_house:
-                // Logic to pay bank per house owned
                 Debug.Log($"Pay {action.amount} per house");
+                int houseCount = 0;
                 
+                // Count all houses owned by the player
+                foreach (Property property in gameEngine.currentPlayer.GetProperties())
+                {
+                    if (property.GetHouseCount() > 0 && property.GetHouseCount() < 5)
+                    {
+                        houseCount += property.GetHouseCount();
+                    }
+                }
+                
+                int totalPayment = houseCount * action.amount;
+                Debug.Log($"Player pays {totalPayment} for {houseCount} houses");
+                gameEngine.currentPlayer.takeMoney(totalPayment);
                 break;
                 
             case Action.Actions.pay_bank_per_hotel:
-                // Logic to pay bank per hotel owned
                 Debug.Log($"Pay {action.amount} per hotel");
+                int hotelCount = 0;
                 
+                // Count all hotels owned by the player (assuming 5 houses = 1 hotel)
+                foreach (Property property in gameEngine.currentPlayer.GetProperties())
+                {
+                    if (property.GetHouseCount() == 5)
+                    {
+                        hotelCount++;
+                    }
+                }
+                
+                int totalHotelPayment = hotelCount * action.amount;
+                Debug.Log($"Player pays {totalHotelPayment} for {hotelCount} hotels");
+                gameEngine.currentPlayer.takeMoney(totalHotelPayment);
                 break;
                 
             case Action.Actions.move_back:
-                // Logic to move back a certain number of spaces
                 Debug.Log($"Move back {action.spaces} spaces");
-                // Use board indexing logic to move the player backwards
-                // Will not work using linked list board
+            
+                // Find current tile index
+                Tile playerTile = gameEngine.currentPlayer.getCurrentTile();
+                int playerTileIndex = board.tiles.IndexOf(playerTile);
+                
+                // Calculate target index
+                int targetIndex = (playerTileIndex - action.spaces + board.TotalTiles) % board.TotalTiles;
+                Tile backwardsTile = board.tiles[targetIndex];
+                
+                // Move the player to the target tile
+                gameEngine.currentPlayer.setCurrentTile(backwardsTile);
+                gameEngine.currentPlayer.transform.position = backwardsTile.transform.position;
+                
+                // Check for action on the new tile
+                gameEngine.CheckForActionEvent(gameEngine.currentPlayer);
                 break;
                 
             default:

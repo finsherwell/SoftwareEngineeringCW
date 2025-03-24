@@ -100,6 +100,16 @@ public class Property : Tile
         return price;
     }
 
+    public int GetHouseCount()
+    {
+        return houses;
+    }
+
+    public bool HasHotel()
+    {
+        return houses == 5;
+    }
+
     /*
 //    Returns the cost of the house.
 //    */
