@@ -53,6 +53,7 @@ public class Property : Tile
 
     private void OnbuyButtonClick()
     {
+        Debug.Log($"Buying house on:  {propertyName}");
         if (isOwned && owner.money >= houseCost && houses < 5 ) // Max: 4 houses + hotel
         {
             UpgradeProperty();
