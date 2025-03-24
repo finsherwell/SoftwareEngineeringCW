@@ -29,7 +29,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private Tile startTile;
     private bool doubleRolled = false;
     private int doubleCount;
-    public Image propertyBuyImage; 
+    public Image propertyBuyImage;
 
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -159,15 +159,23 @@ public class Engine : MonoBehaviour
 
     private void MakePlayers()
     {
+        print(GameData.Players);
         foreach (MenuPlayer p in GameData.Players)
         {
             GameObject newPlayer = Instantiate(playerPrefab);
             Player newPlayerScript = newPlayer.GetComponent<Player>();
             newPlayerScript.playerName = p.name;
+            newPlayerScript.colour = p.colour;
+            newPlayerScript.icon = p.icon;
+            newPlayerScript.setIcon();
             players.Add(newPlayerScript);
+            playerCount++;
         }
+        Debug.Log($"Found and added {players.Count} players");
     }
 
+
+    //THIS FUNCTION IS OLD - from when there where 5 player gameObjects already in the scene
     private void FindPlayers()
     {
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
@@ -183,6 +191,36 @@ public class Engine : MonoBehaviour
         Debug.Log($"Found and added {players.Count} players");
     }
 
+    private void addDebugPlayers()
+    {
+        GameObject newPlayer = Instantiate(playerPrefab);
+        Player newPlayerScript = newPlayer.GetComponent<Player>();
+        newPlayerScript.playerName = "boot";
+        newPlayerScript.colour = MenuEnums.Colours.Green;
+        newPlayerScript.icon = MenuEnums.Icon.Boot;
+        newPlayerScript.setIcon();
+        players.Add(newPlayerScript);
+        playerCount++;
+
+        GameObject newPlayer2 = Instantiate(playerPrefab);
+        Player newPlayerScript2 = newPlayer2.GetComponent<Player>();
+        newPlayerScript.playerName = "cat";
+        newPlayerScript.colour = MenuEnums.Colours.Red;
+        newPlayerScript.icon = MenuEnums.Icon.Cat;
+        newPlayerScript.setIcon();
+        players.Add(newPlayerScript);
+        playerCount++;
+
+        GameObject newPlayer3 = Instantiate(playerPrefab);
+        Player newPlayerScript3 = newPlayer3.GetComponent<Player>();
+        newPlayerScript.playerName = "ship";
+        newPlayerScript.colour = MenuEnums.Colours.Purple;
+        newPlayerScript.icon = MenuEnums.Icon.Ship;
+        newPlayerScript.setIcon();
+        players.Add(newPlayerScript);
+        playerCount++;
+    }
+
     private void initializeGame()
     {
 
@@ -191,8 +229,16 @@ public class Engine : MonoBehaviour
         logText.text = "Initializing game..." + "\n" + logText.text;
         logText.text = "Game ready!" + "\n" + logText.text;
 
-        FindPlayers();
-        //MakePlayers();
+        //FindPlayers();
+        MakePlayers();
+
+        //if there are no players in the game (so game scene is ran directly) add some players (for debugging)
+        if (playerCount == 0)
+        {
+            addDebugPlayers();
+        }
+
+
         foreach (Player player in players)
         {
             player.addMoney(startingMoney);

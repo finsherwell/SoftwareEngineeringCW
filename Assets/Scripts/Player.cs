@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Codice.Client.Common;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] protected List<Property> ownedproperties;
 
     public MenuEnums.Colours colour;
+    public MenuEnums.Icon icon;
     public bool inJail = false;
     public bool hasGOOJ = false;
     private int positionID;
@@ -37,6 +39,38 @@ public class Player : MonoBehaviour
     public void addMoney(int amount)
     {
         this.money += amount;
+    }
+
+    public void setIcon()
+    {
+        Sprite i;
+        switch (icon)
+        {
+            case MenuEnums.Icon.Boot:
+                i = Resources.Load<Sprite>("boot");
+                print("should be a boot ");
+                break;
+            case MenuEnums.Icon.Cat:
+                i = Resources.Load<Sprite>("cat");
+                break;
+            case MenuEnums.Icon.Ship:
+                i = Resources.Load<Sprite>("ship");
+                break;
+            case MenuEnums.Icon.HatStand:
+                i = Resources.Load<Sprite>("hat_stand");
+                break;
+            case MenuEnums.Icon.Iron:
+                i = Resources.Load<Sprite>("iron");
+                break;
+            case MenuEnums.Icon.Smartphone:
+                i = Resources.Load<Sprite>("smartphone");
+                break;
+            default:
+                i = Resources.Load<Sprite>("boot");
+                break;
+        }
+
+        GetComponent<SpriteRenderer>().sprite = i;
     }
 
     // Removes money from the player’s account
