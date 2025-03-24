@@ -208,7 +208,7 @@ public class Engine : MonoBehaviour
         newPlayerScript.colour = MenuEnums.Colours.Red;
         newPlayerScript.icon = MenuEnums.Icon.Cat;
         newPlayerScript.setIcon();
-        players.Add(newPlayerScript);
+        players.Add(newPlayerScript2);
         playerCount++;
 
         GameObject newPlayer3 = Instantiate(playerPrefab);
@@ -217,7 +217,7 @@ public class Engine : MonoBehaviour
         newPlayerScript.colour = MenuEnums.Colours.Purple;
         newPlayerScript.icon = MenuEnums.Icon.Ship;
         newPlayerScript.setIcon();
-        players.Add(newPlayerScript);
+        players.Add(newPlayerScript3);
         playerCount++;
     }
 
