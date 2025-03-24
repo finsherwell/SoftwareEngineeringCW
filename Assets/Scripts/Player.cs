@@ -15,6 +15,13 @@ public class Player : MonoBehaviour
     public bool hasGOOJ = false;
     private int positionID;
 
+    void Awake()
+    {
+        if (ownedproperties == null)
+        {
+            ownedproperties = new List<Property>();
+        }
+    }
     void Start()
     {
         // Initialize the player’s starting tile if needed.
@@ -87,16 +94,28 @@ public class Player : MonoBehaviour
     }
     public void addProperty(Property property)
     {
-        ownedproperties.Add(property);
+        if (!ownedproperties.Contains(property))
+        {
+            ownedproperties.Add(property);
+        }
     }
+
+    public void removeProperty(Property property)
+    {
+        if (ownedproperties.Contains(property))
+        {
+            ownedproperties.Remove(property);
+        }
+    }
+
     public List<Property> GetProperties()
     {
-        Debug.Log("Properties owned by " + playerName + ":");
-        foreach (Property property in ownedproperties)
-        {
-            return ownedproperties;
-        }
-        return null;
+        return ownedproperties;
+    }
+
+    public bool OwnsProperty(Property property)
+    {
+        return ownedproperties.Contains(property);
     }
 
 }
