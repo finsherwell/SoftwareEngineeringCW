@@ -25,6 +25,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button rollButton;
     [SerializeField] private Button nextTurnButton;
     [SerializeField] private Button buyHouseButton;
+    [SerializeField] private Button sellHouseButton;
     [SerializeField] private Tile startTile;
     private bool doubleRolled = false;
     private int doubleCount;
@@ -33,6 +34,8 @@ public class Engine : MonoBehaviour
 
     [SerializeField] private GameObject purchasePropertyPanel;
     [SerializeField] private GameObject buyHousePanel;
+
+    [SerializeField] private GameObject sellHousePanel;
 
     public Player currentPlayer;
 
@@ -97,7 +100,11 @@ public class Engine : MonoBehaviour
     }
     public void housePanelToggle()
     {
-        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);
+        if (sellHousePanel.gameObject.activeSelf)
+        {
+            sellHousePanelToggle(); // Close sell house panel if it's open
+        }
+        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);   
         foreach (Property property in currentPlayer.GetProperties())
         {
             property.ShowButtonCheck(currentPlayer);
@@ -117,6 +124,35 @@ public class Engine : MonoBehaviour
         else
         {
             buttonText.text = "Buy Houses";
+        }
+    }
+        public void sellHousePanelToggle()
+    {
+        if (buyHousePanel.gameObject.activeSelf)
+        {
+            housePanelToggle(); // Close buy house panel if it's open
+        }
+        sellHousePanel.gameObject.SetActive(!sellHousePanel.gameObject.activeSelf);   
+        foreach (Property property in currentPlayer.GetProperties())
+        {
+            property.ShowSellButtonCheck(currentPlayer);
+        }
+        TextMeshProUGUI buttonText = sellHouseButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (buttonText.text == "Done")
+        {
+            foreach (Property property in currentPlayer.GetProperties())
+            {
+                property.HideSellButtonCheck(currentPlayer);
+            }
+        }
+        Debug.Log("check1");
+        if (sellHousePanel.gameObject.activeSelf)
+        {
+            buttonText.text = "Done";
+        }
+        else
+        {
+            buttonText.text = "Sell Houses";
         }
 
     }

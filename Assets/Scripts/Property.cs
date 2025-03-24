@@ -10,7 +10,8 @@ public class Property : Tile
     [SerializeField] private int price; // Original cost to buy the property
     [SerializeField] private int houseCost; // 
     [SerializeField] private int[] rentLevels; // Rent for different levels (0-4 houses + hotel)
-    [SerializeField] private Button button; // Button to purchase or upgrade property
+    [SerializeField] private Button button; // Button to or upgrade property
+    [SerializeField] private Button sellbutton; // button to sell house / property
     [SerializeField] private bool isOwned = false; // Will be true if the property is owned
     [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
@@ -31,23 +32,36 @@ public class Property : Tile
     }
     private void Start()
     {
-        UpdateButtonText();
+        UpdatebuyButtonText();
         SetupButtonListener();
+        SetupSellButtonListener();
     }
     private void SetupButtonListener()
     {
         if (button != null)
         {
-            button.onClick.AddListener(OnButtonClick);
+            button.onClick.AddListener(OnbuyButtonClick);
         }
     }
-    private void OnButtonClick()
+    private void SetupSellButtonListener()
+    {
+        if (sellbutton!= null)
+        {
+            button.onClick.AddListener(OnsellButtonClick);
+        }
+    }
+
+    private void OnbuyButtonClick()
     {
         if (isOwned && owner.money >= houseCost && houses < 5 ) // Max: 4 houses + hotel
         {
             UpgradeProperty();
-            UpdateButtonText();
+            UpdatebuyButtonText();
         }
+    }
+    private void OnsellButtonClick()
+    {
+        DowngradeProperty();
     }
     public void UpgradeProperty() // allows player to buy houses for their property
     {
@@ -55,7 +69,13 @@ public class Property : Tile
            owner.takeMoney(houseCost);
            houses++;
     }
-        private void UpdateButtonText()
+
+    public void DowngradeProperty() // allows player to sell houses for their property
+    {
+        owner.addMoney(houseCost);
+        houses--;
+    }
+        private void UpdatebuyButtonText()
     {
         if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
         {
@@ -136,12 +156,26 @@ public class Property : Tile
             button.gameObject.SetActive(true);
         }
     }
+    public void ShowSellButtonCheck(Player currentPlayer)
+    {
+        if (sellbutton != null && IsOwned() && owner == currentPlayer && houses > 0)
+        {
+            sellbutton.gameObject.SetActive(true);
+        }
+    }
 
     public void HideButtonCheck(Player player)
     {
         if (player == owner)
         {
             button.gameObject.SetActive(false);
+        }
+    }
+   public void HideSellButtonCheck(Player currentPlayer)
+    {
+        if (sellbutton != null)
+        {
+            sellbutton.gameObject.SetActive(false);
         }
     }
 
