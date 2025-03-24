@@ -106,6 +106,11 @@ public class Property : Tile
         return houses;
     }
 
+    public string GetGroup()
+    {
+        return group;
+    }
+
     public bool HasHotel()
     {
         return houses == 5;
@@ -150,16 +155,20 @@ public class Property : Tile
         isOwned = true;
     }
 
-    public void ShowButtonCheck(Player player)
+public void ShowButtonCheck(Player player)
+{
+    if (player == owner && player.HasCompleteSet(this.group))
     {
-        if (player == owner)
-        {
-            button.gameObject.SetActive(true);
-        }
+        button.gameObject.SetActive(true);
     }
-    public void ShowSellButtonCheck(Player currentPlayer)
+    else
     {
-        if (sellbutton != null && IsOwned() && owner == currentPlayer && houses > 0)
+        button.gameObject.SetActive(false);
+    }
+}
+    public void ShowSellButtonCheck(Player player)
+    {
+        if (sellbutton != null &&  player == owner  && houses > 0)
         {
             sellbutton.gameObject.SetActive(true);
         }

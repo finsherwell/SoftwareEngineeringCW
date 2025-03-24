@@ -30,7 +30,6 @@ public class Engine : MonoBehaviour
     private bool doubleRolled = false;
     private int doubleCount;
     public Image propertyBuyImage;
-    public Image propertyBuyImage; 
     public Image CurrentTile_s; 
 
 
@@ -52,6 +51,8 @@ public class Engine : MonoBehaviour
     {
         initializeGame();
     }
+
+
 
     public void rollDice()
     {
@@ -147,7 +148,6 @@ public class Engine : MonoBehaviour
                 property.HideSellButtonCheck(currentPlayer);
             }
         }
-        Debug.Log("check1");
         if (sellHousePanel.gameObject.activeSelf)
         {
             buttonText.text = "Done";

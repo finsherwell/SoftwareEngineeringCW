@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Codice.Client.Common;
 using UnityEngine;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -151,6 +152,51 @@ public class Player : MonoBehaviour
     {
         return ownedproperties.Contains(property);
     }
+    public (bool hasSet, List<string> setColors) HasPropertySet()
+    {
+        Dictionary<string, List<Property>> propertyGroups = new Dictionary<string, List<Property>>();
+        List<string> completeSets = new List<string>();
 
+        // Group properties by color
+        foreach (Property property in ownedproperties)
+        {
+            string group = property.GetGroup();
+            if (!propertyGroups.ContainsKey(group))
+            {
+                propertyGroups[group] = new List<Property>();
+            }
+            propertyGroups[group].Add(property);
+        }
+    
+    // Check if any group forms a set
+        foreach (var group in propertyGroups)
+        {
+            int requiredCount = GetRequiredCountForSet(group.Key);
+            if (group.Value.Count >= requiredCount)
+            {
+                completeSets.Add(group.Key);
+            }
+        }
+
+        return (completeSets.Count > 0, completeSets);
+    }
+    private int GetRequiredCountForSet(string group)
+    {
+        // Define the required count for each group (color)
+        switch (group)
+        {
+            case "Brown":
+            case "Dark Blue":
+                return 2;
+            default:
+                return 3;
+        }
+    }
+    public bool HasCompleteSet(string group)
+    {
+        int requiredCount = (group == "Brown" || group == "Dark Blue") ? 2 : 3;
+        return ownedproperties.Count(p => p.GetGroup() == group) >= requiredCount;
+    }
 }
+
 
