@@ -9273,8 +9273,8 @@ MonoBehaviour:
   maxPlayers: 5
   currentPlayerIndex: 0
   currentPlayerText: {fileID: 1510947728}
-  propertyBuyText: {fileID: 0}
-  logText: {fileID: 0}
+  propertyBuyText: {fileID: 1195760943}
+  logText: {fileID: 2012072089}
   playerCount: 0
   dice1: {fileID: 872099768}
   dice2: {fileID: 595035841}
