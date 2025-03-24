@@ -8,6 +8,7 @@ using UnityEditor.TerrainTools;
 using System.Collections.Generic;
 using System;
 using Codice.Client.Common;
+using UnityEngine.SceneManagement;
 
 
 
@@ -370,7 +371,8 @@ public class MenuManager : MonoBehaviour
                 }
             }
             drawCards();
-
+            GameData.Players = menuPlayers;
+            SceneManager.LoadScene("GameScene");
         }
     }
 }
