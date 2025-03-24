@@ -23,11 +23,13 @@ public class Engine : MonoBehaviour
     [SerializeField] public Dice dice2;
     [SerializeField] private Button rollButton;
     [SerializeField] private Button nextTurnButton;
+    [SerializeField] private Button buyHouseButton;
     [SerializeField] private Tile startTile;
     private bool doubleRolled=false;
     private int doubleCount;
 
     [SerializeField] private GameObject purchasePropertyPanel;
+    [SerializeField] private GameObject buyHousePanel;
 
     public Player currentPlayer;
 
@@ -90,6 +92,33 @@ public class Engine : MonoBehaviour
             });
         });
     }
+    public void housePanelToggle()
+    {
+        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);   
+        foreach (Property property in currentPlayer.GetProperties())
+        {
+            property.ShowButtonCheck(currentPlayer);
+        }
+        TextMeshProUGUI buttonText = buyHouseButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (buttonText.text == "Done")
+        {
+            foreach (Property property in currentPlayer.GetProperties())
+            {
+                property.HideButtonCheck(currentPlayer);
+            }
+        }
+        if (buyHousePanel.gameObject.activeSelf)
+        {
+            buttonText.text = "Done";
+        }
+        else
+        {
+            buttonText.text = "Buy Houses";
+        }
+
+    }
+
+
 
 
     private void FindPlayers()
@@ -109,6 +138,7 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
+
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
         logText.text = "Initializing game..." + "\n"+logText.text;
@@ -178,7 +208,7 @@ public class Engine : MonoBehaviour
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
                 player.transform.position = nextTile.transform.position;
-                checkForPassGo(currentPlayer);
+                //checkForPassGo(currentPlayer);
                 Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
             }
             else
@@ -223,7 +253,6 @@ public class Engine : MonoBehaviour
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
     }
-
     private void CheckForActionEvent(Player player)
     {
         Tile currentTile = player.getCurrentTile();
@@ -238,6 +267,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
+    
     private void checkForPassGo(Player player)
     {
         Tile currentTile = player.getCurrentTile();
@@ -252,6 +282,7 @@ public class Engine : MonoBehaviour
             }
         }
     }
+    
     public void GoToJail()
     {
         if (currentPlayer != null)

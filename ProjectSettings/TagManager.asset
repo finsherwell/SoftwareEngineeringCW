@@ -13,6 +13,7 @@ TagManager:
   - freeParking
   - superTax
   - goToJail
+  - HouseButton
   layers:
   - Default
   - TransparentFX
