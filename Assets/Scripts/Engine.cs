@@ -30,6 +30,8 @@ public class Engine : MonoBehaviour
     private bool doubleRolled = false;
     private int doubleCount;
     public Image propertyBuyImage;
+    public Image propertyBuyImage; 
+    public Image CurrentTile_s; 
 
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -316,6 +318,11 @@ public class Engine : MonoBehaviour
         logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n" + logText.text;
         CheckForActionEvent(player);
         nextTurnButton.gameObject.SetActive(true);
+    }
+    public void updateTile_s(Property property)
+    {
+        SpriteRenderer spriteRenderer = property.GetComponent<SpriteRenderer>();
+        CurrentTile_s.sprite=spriteRenderer.sprite;
     }
 
     private void OnTileLanded()
