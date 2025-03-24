@@ -30,6 +30,8 @@ public class Engine : MonoBehaviour
     private bool doubleRolled = false;
     private int doubleCount;
     public Image propertyBuyImage;
+    public Image propertyBuyImage; 
+    public Image CurrentTile_s; 
 
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -104,7 +106,7 @@ public class Engine : MonoBehaviour
         {
             sellHousePanelToggle(); // Close sell house panel if it's open
         }
-        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);   
+        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);
         foreach (Property property in currentPlayer.GetProperties())
         {
             property.ShowButtonCheck(currentPlayer);
@@ -126,13 +128,13 @@ public class Engine : MonoBehaviour
             buttonText.text = "Buy Houses";
         }
     }
-        public void sellHousePanelToggle()
+    public void sellHousePanelToggle()
     {
         if (buyHousePanel.gameObject.activeSelf)
         {
             housePanelToggle(); // Close buy house panel if it's open
         }
-        sellHousePanel.gameObject.SetActive(!sellHousePanel.gameObject.activeSelf);   
+        sellHousePanel.gameObject.SetActive(!sellHousePanel.gameObject.activeSelf);
         foreach (Property property in currentPlayer.GetProperties())
         {
             property.ShowSellButtonCheck(currentPlayer);
@@ -208,7 +210,7 @@ public class Engine : MonoBehaviour
         newPlayerScript.colour = MenuEnums.Colours.Red;
         newPlayerScript.icon = MenuEnums.Icon.Cat;
         newPlayerScript.setIcon();
-        players.Add(newPlayerScript);
+        players.Add(newPlayerScript2);
         playerCount++;
 
         GameObject newPlayer3 = Instantiate(playerPrefab);
@@ -217,7 +219,7 @@ public class Engine : MonoBehaviour
         newPlayerScript.colour = MenuEnums.Colours.Purple;
         newPlayerScript.icon = MenuEnums.Icon.Ship;
         newPlayerScript.setIcon();
-        players.Add(newPlayerScript);
+        players.Add(newPlayerScript3);
         playerCount++;
     }
 
@@ -316,6 +318,11 @@ public class Engine : MonoBehaviour
         logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n" + logText.text;
         CheckForActionEvent(player);
         nextTurnButton.gameObject.SetActive(true);
+    }
+    public void updateTile_s(Property property)
+    {
+        SpriteRenderer spriteRenderer = property.GetComponent<SpriteRenderer>();
+        CurrentTile_s.sprite=spriteRenderer.sprite;
     }
 
     private void OnTileLanded()
