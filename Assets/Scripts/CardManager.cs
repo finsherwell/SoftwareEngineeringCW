@@ -68,6 +68,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private List<ActionCard> opportunityKnocksCards;
     [SerializeField] private System.Random random;
     [SerializeField] public Engine gameEngine;
+    [SerializeField] public BoardManager board;
 
 
     public void Awake()
@@ -239,7 +240,7 @@ public class CardManager : MonoBehaviour
         {
             // If a card has a choice, the player will be required to choose between the two
             Debug.Log($"Card requires a choice between two actions: {card.description}");
-            // After player selects an action, you would call ExecuteAction on either action1 or action2
+            // After player selects an action, we call ExecuteAction on either action1 or action2
         }
         else
         {
@@ -283,6 +284,18 @@ public class CardManager : MonoBehaviour
                 // Logic to put money in free parking
                 Debug.Log($"Put {action.amount} in free parking");
                 // Add money to a free parking variable?
+                // Use board manager to get tile where tile is action space of free parking,
+                // add money from player to free parking
+                // deduct from player, add to fp
+                /*
+                foreach (tile in board)
+                {
+                    if (!tile.isProperty && tile.getID() == 21)
+                    {
+                        tile.
+                    }
+                }
+                */
                 break;
                 
             case Action.Actions.jail:

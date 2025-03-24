@@ -87,5 +87,15 @@ public class Player : MonoBehaviour
     {
         ownedproperties.Add(property);
     }
+    public List<Property> GetProperties()
+    {
+        Debug.Log("Properties owned by " + playerName + ":");
+        foreach (Property property in ownedproperties)
+        {
+            return ownedproperties;
+        }
+        return null;
+    }
+
 }
 

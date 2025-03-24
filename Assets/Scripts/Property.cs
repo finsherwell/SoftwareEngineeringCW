@@ -1,4 +1,7 @@
+using Codice.Client.Common.GameUI;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Property : Tile 
 {
@@ -7,10 +10,11 @@ public class Property : Tile
     [SerializeField] private int price; // Original cost to buy the property
     [SerializeField] private int houseCost; // 
     [SerializeField] private int[] rentLevels; // Rent for different levels (0-4 houses + hotel)
-
-    private bool isOwned = false; // Will be true if the property is owned
-    private int houses = 0; // Updates if you upgrade houses
+    [SerializeField] private Button button; // Button to purchase or upgrade property
+    [SerializeField] private bool isOwned = false; // Will be true if the property is owned
+    [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
+    
 
     private void Awake()
     {
@@ -25,6 +29,47 @@ public class Property : Tile
     {
         return propertyName;
     }
+    private void Start()
+    {
+        UpdateButtonText();
+        SetupButtonListener();
+    }
+    private void SetupButtonListener()
+    {
+        if (button != null)
+        {
+            button.onClick.AddListener(OnButtonClick);
+        }
+    }
+    private void OnButtonClick()
+    {
+        if (isOwned && owner.money >= houseCost && houses < 5 ) // Max: 4 houses + hotel
+        {
+            UpgradeProperty();
+            UpdateButtonText();
+        }
+    }
+    public void UpgradeProperty() // allows player to buy houses for their property
+    {
+
+           owner.takeMoney(houseCost);
+           houses++;
+    }
+        private void UpdateButtonText()
+    {
+        if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
+        {
+            if (houses < 5)
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Purchase for ${houseCost}";
+            }
+            else
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Fully Upgraded";
+            }
+        }
+    }
+
 
 
     /*
@@ -74,6 +119,24 @@ public class Property : Tile
         isOwned = true;
     }
 
+    public void ShowButtonCheck(Player player)
+    {
+        if (player == owner)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    public void HideButtonCheck(Player player)
+    {
+        if (player == owner)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
+
+
     /*
     Allows a user to buy the property as long as it isn't owned and they have the funds to buy it.
     */
@@ -86,20 +149,14 @@ public class Property : Tile
             isOwned = true;
         }
     }
+
+
+
+
+
+
+
 }
-
-//    /*
-//    Allows a player to upgrade their property as long as it does not exceed the boundaries for that property.
-//    */
-//    public void UpgradeProperty()
-//    {
-//        if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
-//        {
-//            owner.takeMoney(houseCost);
-//            houses++;
-//        }
-//    }
-
 //    /*
 //    Handles rent payment between the tenant and the owner of the property.
 //    */
@@ -112,4 +169,5 @@ public class Property : Tile
 //            owner.addMoney(rent);
 //        }
 //    }
+
 //}
