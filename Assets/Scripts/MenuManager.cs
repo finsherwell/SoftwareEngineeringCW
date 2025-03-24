@@ -8,6 +8,7 @@ using UnityEditor.TerrainTools;
 using System.Collections.Generic;
 using System;
 using Codice.Client.Common;
+using UnityEngine.SceneManagement;
 
 
 
@@ -365,12 +366,12 @@ public class MenuManager : MonoBehaviour
                     availibleIcons.RemoveAt(0);
                     p.colour = availibileColours[0];
                     availibileColours.RemoveAt(0);
-
                     counter += 1;
                 }
             }
             drawCards();
-
+            GameData.Players = menuPlayers;
+            SceneManager.LoadScene("GameScene");
         }
     }
 }

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private int playerID;
     [SerializeField] public Tile currentTile;
     [SerializeField] protected List<Property> ownedproperties;
+
+    public MenuEnums.Colours colour;
     public bool inJail = false;
     public bool hasGOOJ = false;
     private int positionID;
