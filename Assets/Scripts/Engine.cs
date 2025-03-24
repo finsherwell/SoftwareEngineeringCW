@@ -104,7 +104,7 @@ public class Engine : MonoBehaviour
         {
             sellHousePanelToggle(); // Close sell house panel if it's open
         }
-        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);   
+        buyHousePanel.gameObject.SetActive(!buyHousePanel.gameObject.activeSelf);
         foreach (Property property in currentPlayer.GetProperties())
         {
             property.ShowButtonCheck(currentPlayer);
@@ -126,13 +126,13 @@ public class Engine : MonoBehaviour
             buttonText.text = "Buy Houses";
         }
     }
-        public void sellHousePanelToggle()
+    public void sellHousePanelToggle()
     {
         if (buyHousePanel.gameObject.activeSelf)
         {
             housePanelToggle(); // Close buy house panel if it's open
         }
-        sellHousePanel.gameObject.SetActive(!sellHousePanel.gameObject.activeSelf);   
+        sellHousePanel.gameObject.SetActive(!sellHousePanel.gameObject.activeSelf);
         foreach (Property property in currentPlayer.GetProperties())
         {
             property.ShowSellButtonCheck(currentPlayer);
