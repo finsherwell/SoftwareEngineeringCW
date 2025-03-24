@@ -29,6 +29,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Tile startTile;
     private bool doubleRolled = false;
     private int doubleCount;
+    public Image propertyBuyImage; 
+
 
     [SerializeField] private GameObject purchasePropertyPanel;
     [SerializeField] private GameObject buyHousePanel;
@@ -219,6 +221,8 @@ public class Engine : MonoBehaviour
 
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
+            SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer>();
+            propertyBuyImage.sprite = spriteRenderer.sprite;
             purchasePropertyPanel.gameObject.SetActive(true);
             Debug.Log(currentPlayer.playerName + " is viewing property:" + currentPlayer.currentTile.name);
         }
