@@ -332,6 +332,8 @@ public class Engine : MonoBehaviour
                 if (property.IsStation() == false && property.IsUtility() == false)
                 {
                     int rent = property.GetRentLevels();
+                    if (player.HasCompleteSet(property.GetGroup())&& property.GetHouses() == 0)
+                    {rent *= 2;}
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
