@@ -48,7 +48,7 @@ public class Engine : MonoBehaviour
     public void passGo()
     {
         Debug.Log($"{currentPlayer.playerName} passed Go");
-        logText.text = $"{currentPlayer.playerName} passed Go" + "\n" + logText.text;
+        logText.text = $"{currentPlayer.playerName} passed Go" + "\n\n" + logText.text;
         currentPlayer.addMoney(passGoMoney);
         currentPlayer.hasCompletedCircuit = true;
     }
@@ -80,7 +80,7 @@ public class Engine : MonoBehaviour
 
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
-                logText.text = $"Total Dice Value: {totalDiceValue}" + "\n" + logText.text;
+                logText.text = $"Total Dice Value: {totalDiceValue}" + "\n\n" + logText.text;
                 if (dice1Value == dice2Value)
                 {
                     doubleRolled = true;
@@ -233,8 +233,8 @@ public class Engine : MonoBehaviour
     {
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
-        logText.text = "Initializing game..." + "\n" + logText.text;
-        logText.text = "Game ready!" + "\n" + logText.text;
+        logText.text = "Initializing game..." + "\n\n" + logText.text;
+        logText.text = "Game ready!" + "\n\n" + logText.text;
 
         MakePlayers();
 
@@ -329,7 +329,7 @@ public class Engine : MonoBehaviour
         player.takeMoney(property.GetPrice());
         property.SetOwner(player);
         Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
-        logText.text = $"{player.playerName} purchased property: {property.GetName()}" + "\n" + logText.text;
+        logText.text = $"{player.playerName} purchased property: {property.GetName()}" + "\n\n" + logText.text;
         purchasePropertyPanel.gameObject.SetActive(false);
     }
 
@@ -354,7 +354,7 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
-        logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n" + logText.text;
+        logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n\n" + logText.text;
         CheckForActionEvent(player);
         CheckForRent(player, diceValue);
         nextTurnButton.gameObject.SetActive(true);
@@ -374,7 +374,7 @@ public class Engine : MonoBehaviour
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
-                    logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
+                    logText.text = $"{player.playerName} has paid {rent} to {property.GetOwner().getName()}" + "\n\n" + logText.text;
                 } else if (property.IsStation() == false && property.IsUtility() == true)
                 {
                     int multiplier = property.GetRent(property.GetOwner().CountUtilities());
@@ -382,18 +382,20 @@ public class Engine : MonoBehaviour
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
-                    logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
-                }else if (property.IsStation() == true && property.IsUtility() == false)
+                    logText.text = $"{player.playerName} has paid {rent} to {property.GetOwner().getName()}" + "\n\n" + logText.text;
+                }
+                else if (property.IsStation() == true && property.IsUtility() == false)
                 {
                     int rent = property.GetRent(property.GetOwner().CountStations());
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
-                    logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
+                    logText.text = $"{player.playerName} has paid {rent} to {property.GetOwner().getName()}" + "\n\n" + logText.text;
+
                 }
                 if (player.money < 0)
                 {
-                    logText.text = $"{player.playerName} is in debt!" + "\n" + logText.text;
+                    logText.text = $"{player.playerName} is in debt!" + "\n\n" + logText.text;
                 }
             }
         }
@@ -493,7 +495,7 @@ public class Engine : MonoBehaviour
                 currentPlayer.setInJail(true);
 
                 Debug.Log($"{currentPlayer.playerName} has been sent to Jail!");
-                logText.text = $"{currentPlayer.playerName} has been sent to Jail!" + "\n" + logText.text;
+                logText.text = $"{currentPlayer.playerName} has been sent to Jail!" + "\n\n" + logText.text;
             }
         }
     }
