@@ -317,7 +317,41 @@ public class Engine : MonoBehaviour
         }
         logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n" + logText.text;
         CheckForActionEvent(player);
+        CheckForRent(player, diceValue);
         nextTurnButton.gameObject.SetActive(true);
+    }
+    public void CheckForRent(Player player, int diceValue)
+    {
+        if (player.getCurrentTile().GetComponent<Property>()!= null)
+        {
+            Property property = player.getCurrentTile().GetComponent<Property>();
+            if (property.IsOwned() && property.GetOwner()!= player)
+            {
+                if (property.IsStation() == false && property.IsUtility() == false)
+                {
+                    int rent = property.GetRentLevels();
+                    player.takeMoney(rent);
+                    property.GetOwner().addMoney(rent);
+                    Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
+                    logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
+                } else if (property.IsStation() == false && property.IsUtility() == true)
+                {
+                    int multiplier = property.GetRent(property.GetOwner().CountUtilities());
+                    int rent = multiplier * diceValue;
+                    player.takeMoney(rent);
+                    property.GetOwner().addMoney(rent);
+                    Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
+                    logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
+                }else if (property.IsStation() == true && property.IsUtility() == false)
+                {
+                    int rent = property.GetRent(property.GetOwner().CountStations());
+                    player.takeMoney(rent);
+                    property.GetOwner().addMoney(rent);
+                    Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
+                    logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
+                }
+            }
+        }
     }
     public void updateTile_s(Property property)
     {

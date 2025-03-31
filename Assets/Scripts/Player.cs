@@ -147,6 +147,30 @@ public class Player : MonoBehaviour
     {
         return ownedproperties;
     }
+    public int CountUtilities()
+    {
+        int count = 0;
+        foreach (Property property in ownedproperties)
+        {
+            if (property.IsUtility())
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    public int CountStations()
+    {
+        int count = 0;
+        foreach (Property property in ownedproperties)
+        {
+            if (property.IsStation())
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 
     public bool OwnsProperty(Property property)
     {

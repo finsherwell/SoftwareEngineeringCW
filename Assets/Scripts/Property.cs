@@ -1,3 +1,4 @@
+using System.Data.Common;
 using Codice.Client.Common.GameUI;
 using TMPro;
 using UnityEngine;
@@ -115,6 +116,25 @@ public class Property : Tile
     {
         return houses == 5;
     }
+    public int GetRentLevels()
+    {
+        return rentLevels[houses];
+    }
+    public int GetRent(int i)
+    {
+        return rentLevels[i];
+    }
+    public bool IsStation()
+    {
+        if (group == "Station")
+        {return true;} else{return false;  }
+    }
+    public bool IsUtility()
+    {
+        if (group == "Utility")
+        {return true;} else{return false;  }
+    }
+
 
     /*
 //    Returns the cost of the house.
@@ -202,6 +222,10 @@ public void ShowButtonCheck(Player player)
             owner = buyer;
             isOwned = true;
         }
+    }
+    public int GetHouses()
+    {
+        return houses;
     }
 
 
