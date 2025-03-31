@@ -17,17 +17,18 @@ public class Engine : MonoBehaviour
     [SerializeField] private int currentPlayerIndex = 0;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
     [SerializeField] private TextMeshProUGUI propertyBuyText;
-    [SerializeField] private TextMeshProUGUI logText;
+    [SerializeField] public TextMeshProUGUI logText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0;
     [SerializeField] public Dice dice1;
     [SerializeField] public Dice dice2;
     [SerializeField] private Button rollButton;
-    [SerializeField] private Button nextTurnButton;
+    [SerializeField] public Button nextTurnButton;
     [SerializeField] private Button buyHouseButton;
     [SerializeField] private Button sellHouseButton;
     [SerializeField] private Button WarningOKbutton;
     [SerializeField] private Tile startTile;
+    [SerializeField] private AuctionSystem auctionSystem;
     private bool doubleRolled = false;
     private int doubleCount;
     public Image propertyBuyImage;
@@ -47,6 +48,7 @@ public class Engine : MonoBehaviour
         Debug.Log($"{currentPlayer.playerName} passed Go");
         logText.text = $"{currentPlayer.playerName} passed Go" + "\n" + logText.text;
         currentPlayer.addMoney(passGoMoney);
+        currentPlayer.hasCompletedCircuit = true;
     }
 
     private void Start()
@@ -250,6 +252,8 @@ public class Engine : MonoBehaviour
             player.setID(players.IndexOf(player));
             player.setCurrentTile(startTile);
             player.transform.position = startTile.transform.position;
+
+            player.hasCompletedCircuit = true;
         }
 
         if (players.Count > 0)
@@ -285,7 +289,38 @@ public class Engine : MonoBehaviour
     }
     public void OnPassButtonClick()
     {
+        Property property = currentPlayer.currentTile.GetComponent<Property>();
         purchasePropertyPanel.gameObject.SetActive(false);
+        
+        if (property != null && !property.IsOwned())
+        {
+            bool hasEligiblePlayers = false;
+            foreach (Player player in players)
+            {
+                if (player.hasCompletedCircuit)
+                {
+                    hasEligiblePlayers = true;
+                    break;
+                }
+            }
+            
+            if (hasEligiblePlayers)
+            {
+                nextTurnButton.gameObject.SetActive(false);
+                auctionSystem.StartAuction(property);
+            }
+
+            else
+            {
+                Debug.Log("No eligible players for auction");
+                logText.text = "No eligible players for auction\n" + logText.text;
+                nextTurnButton.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            nextTurnButton.gameObject.SetActive(true);
+        }
     }
     private void purchaseProperty(Player player, Property property)
     {
