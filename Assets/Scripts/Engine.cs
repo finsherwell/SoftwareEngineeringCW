@@ -39,6 +39,8 @@ public class Engine : MonoBehaviour
 
     [SerializeField] private GameObject sellHousePanel;
     [SerializeField] private GameObject WarningPanel;
+    [SerializeField] private GameObject PlayerPanel;
+    [SerializeField] private GameObject PlayerPanelManager;
 
     public Player currentPlayer;
 
@@ -227,21 +229,17 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
-
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
         logText.text = "Initializing game..." + "\n" + logText.text;
         logText.text = "Game ready!" + "\n" + logText.text;
 
-        //FindPlayers();
         MakePlayers();
 
-        //if there are no players in the game (so game scene is ran directly) add some players (for debugging)
         if (playerCount == 0)
         {
             addDebugPlayers();
         }
-
 
         foreach (Player player in players)
         {
@@ -251,6 +249,8 @@ public class Engine : MonoBehaviour
             player.setCurrentTile(startTile);
             player.transform.position = startTile.transform.position;
         }
+        PlayerPanelManager playerPanelManager = FindAnyObjectByType<PlayerPanelManager>();
+        playerPanelManager.InitializePlayerPanel(players);
 
         if (players.Count > 0)
         {
@@ -263,6 +263,8 @@ public class Engine : MonoBehaviour
             Debug.LogError("No players found in the scene!");
         }
     }
+
+
 
     private void purchasePropertyUI(Player player, Tile tile)
     {
