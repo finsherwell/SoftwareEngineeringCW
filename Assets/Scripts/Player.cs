@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public MenuEnums.Icon icon;
     public bool inJail = false;
     public bool hasGOOJ = false;
+    public bool hasCompletedCircuit = false;
     private int positionID;
 
     void Awake()
