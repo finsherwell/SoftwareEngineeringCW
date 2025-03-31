@@ -67,7 +67,7 @@ public class Property : Tile
     }
     public void UpgradeProperty() // allows player to buy houses for their property
     {
-
+            
            owner.takeMoney(houseCost);
            houses++;
     }
@@ -177,7 +177,7 @@ public class Property : Tile
 
 public void ShowButtonCheck(Player player)
 {
-    if (player == owner && player.HasCompleteSet(this.group))
+    if (player == owner && player.HasCompleteSet(this.group) && player.money >= houseCost)
     {
         button.gameObject.SetActive(true);
     }
