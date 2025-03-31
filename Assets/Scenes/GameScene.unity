@@ -866,7 +866,7 @@ MonoBehaviour:
   group: Dblue
   price: 350
   houseCost: 200
-  rentLevels: 
+  rentLevels: 23000000af000000f40100004c04000014050000dc050000
   button: {fileID: 274049289}
   sellbutton: {fileID: 493219381}
   isOwned: 0
@@ -1712,7 +1712,7 @@ MonoBehaviour:
   group: Red
   price: 220
   houseCost: 150
-  rentLevels: 
+  rentLevels: 120000005a000000fa000000bc020000390300001a040000
   button: {fileID: 1424362990}
   sellbutton: {fileID: 1731822951}
   isOwned: 0
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   group: Brown
   price: 60
   houseCost: 50
-  rentLevels: 
+  rentLevels: 04000000140000003c000000b400000040010000c2010000
   button: {fileID: 1210547390}
   sellbutton: {fileID: 1707472311}
   isOwned: 0
@@ -3255,7 +3255,7 @@ MonoBehaviour:
   group: Green
   price: 320
   houseCost: 200
-  rentLevels: 
+  rentLevels: 1c00000096000000c2010000e8030000b004000078050000
   button: {fileID: 909515498}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -4052,7 +4052,7 @@ MonoBehaviour:
   group: Red
   price: 240
   houseCost: 150
-  rentLevels: 
+  rentLevels: 14000000640000002c010000ee0200009d0300004c040000
   button: {fileID: 998604493}
   sellbutton: {fileID: 429491455}
   isOwned: 0
@@ -4537,7 +4537,7 @@ MonoBehaviour:
   group: Purple
   price: 140
   houseCost: 100
-  rentLevels: 
+  rentLevels: 0a0000003200000096000000c201000071020000ee020000
   button: {fileID: 1616831121}
   sellbutton: {fileID: 658859279}
   isOwned: 0
@@ -4918,7 +4918,7 @@ MonoBehaviour:
   group: Yellow
   price: 260
   houseCost: 150
-  rentLevels: 
+  rentLevels: 160000006e0000004a01000020030000cf0300007e040000
   button: {fileID: 1488694317}
   sellbutton: {fileID: 92509176}
   isOwned: 0
@@ -6207,7 +6207,7 @@ MonoBehaviour:
   group: Green
   price: 300
   houseCost: 200
-  rentLevels: 
+  rentLevels: 1a0000008200000086010000840300004c040000fb040000
   button: {fileID: 1840808211}
   sellbutton: {fileID: 459214808}
   isOwned: 0
@@ -8604,7 +8604,7 @@ MonoBehaviour:
   group: Station
   price: 200
   houseCost: 0
-  rentLevels: 
+  rentLevels: 190000003200000064000000c8000000
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -8631,7 +8631,7 @@ MonoBehaviour:
   group: Orange
   price: 180
   houseCost: 100
-  rentLevels: 
+  rentLevels: 0e00000046000000c800000026020000ee020000b6030000
   button: {fileID: 1721409292}
   sellbutton: {fileID: 1943758180}
   isOwned: 0
@@ -8658,7 +8658,7 @@ MonoBehaviour:
   group: Orange
   price: 180
   houseCost: 100
-  rentLevels: 
+  rentLevels: 0e00000046000000c800000026020000ee020000b6030000
   button: {fileID: 2062982906}
   sellbutton: {fileID: 1183093933}
   isOwned: 0
@@ -9077,7 +9077,7 @@ MonoBehaviour:
   group: Lblue
   price: 100
   houseCost: 50
-  rentLevels: 
+  rentLevels: 060000005a0000000e0100009001000026020000
   button: {fileID: 1131632481}
   sellbutton: {fileID: 2142393823}
   isOwned: 0
@@ -11112,7 +11112,7 @@ MonoBehaviour:
   group: Red
   price: 220
   houseCost: 150
-  rentLevels: 
+  rentLevels: 120000005a000000fa000000bc0200006b0300001a040000
   button: {fileID: 1192131062}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -11487,7 +11487,7 @@ MonoBehaviour:
   group: Brown
   price: 60
   houseCost: 50
-  rentLevels: 
+  rentLevels: 020000000a0000001e0000005a000000a0000000fa000000
   button: {fileID: 310337009}
   sellbutton: {fileID: 1072809753}
   isOwned: 0
@@ -11711,7 +11711,7 @@ MonoBehaviour:
   group: Purple
   price: 160
   houseCost: 100
-  rentLevels: 
+  rentLevels: 0c0000003c000000b4000000f4010000bc02000084030000
   button: {fileID: 174667445}
   sellbutton: {fileID: 362255704}
   isOwned: 0
@@ -12196,7 +12196,7 @@ MonoBehaviour:
   group: Lblue
   price: 100
   houseCost: 50
-  rentLevels: 
+  rentLevels: 060000001e0000005a0000000e0100009001000026020000
   button: {fileID: 94713259}
   sellbutton: {fileID: 1659713629}
   isOwned: 0
@@ -13401,7 +13401,7 @@ MonoBehaviour:
   group: Yellow
   price: 280
   houseCost: 150
-  rentLevels: 
+  rentLevels: 1600000078000000680100005203000001040000b0040000
   button: {fileID: 863468622}
   sellbutton: {fileID: 1524118332}
   isOwned: 0
@@ -13640,7 +13640,7 @@ MonoBehaviour:
   group: Station
   price: 200
   houseCost: 0
-  rentLevels: 
+  rentLevels: 190000003200000064000000c8000000
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -14891,7 +14891,7 @@ MonoBehaviour:
   group: Lblue
   price: 120
   houseCost: 50
-  rentLevels: 
+  rentLevels: 0800000028000000640000002c010000c201000058020000
   button: {fileID: 1478713324}
   sellbutton: {fileID: 50911871}
   isOwned: 0
@@ -15206,7 +15206,7 @@ MonoBehaviour:
   group: Orange
   price: 200
   houseCost: 100
-  rentLevels: 
+  rentLevels: 1000000050000000dc0000005802000020030000e8030000
   button: {fileID: 1886695167}
   sellbutton: {fileID: 1209346195}
   isOwned: 0
@@ -17250,7 +17250,7 @@ MonoBehaviour:
   group: Purple
   price: 140
   houseCost: 100
-  rentLevels: 
+  rentLevels: 0a0000003200000096000000c201000071020000ee020000
   button: {fileID: 1045186841}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -17285,7 +17285,7 @@ MonoBehaviour:
   group: Station
   price: 200
   houseCost: 0
-  rentLevels: 
+  rentLevels: 190000003200000064000000c8000000
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -18100,7 +18100,7 @@ MonoBehaviour:
   group: Yellow
   price: 260
   houseCost: 150
-  rentLevels: 
+  rentLevels: 160000006e0000004a01000020030000cf0300007e040000
   button: {fileID: 493976812}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -18192,7 +18192,7 @@ MonoBehaviour:
   group: Dblue
   price: 400
   houseCost: 200
-  rentLevels: 
+  rentLevels: 32000000c80000005802000078050000a4060000d0070000
   button: {fileID: 1214232308}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -18284,7 +18284,7 @@ MonoBehaviour:
   group: Green
   price: 300
   houseCost: 200
-  rentLevels: 
+  rentLevels: 1a0000008200000086010000840300004c040000fb040000
   button: {fileID: 1422849068}
   sellbutton: {fileID: 1539573182}
   isOwned: 0
