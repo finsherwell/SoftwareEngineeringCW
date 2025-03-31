@@ -26,6 +26,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button nextTurnButton;
     [SerializeField] private Button buyHouseButton;
     [SerializeField] private Button sellHouseButton;
+    [SerializeField] private Button WarningOKbutton;
     [SerializeField] private Tile startTile;
     private bool doubleRolled = false;
     private int doubleCount;
@@ -37,6 +38,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject buyHousePanel;
 
     [SerializeField] private GameObject sellHousePanel;
+    [SerializeField] private GameObject WarningPanel;
 
     public Player currentPlayer;
 
@@ -265,7 +267,7 @@ public class Engine : MonoBehaviour
     private void purchasePropertyUI(Player player, Tile tile)
     {
         Property property = tile.GetComponent<Property>();
-        if (!property.IsOwned())
+        if (!property.IsOwned() && player.money >= property.GetPrice() )
 
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
@@ -350,6 +352,10 @@ public class Engine : MonoBehaviour
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
                     logText.text = $"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}" + "\n" + logText.text;
                 }
+                if (player.money < 0)
+                {
+                    logText.text = $"{player.playerName} is in debt!" + "\n" + logText.text;
+                }
             }
         }
     }
@@ -366,6 +372,11 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
+        if (currentPlayer.money < 0)
+        {
+            WarningPanel.gameObject.SetActive(true);
+            return;
+        }
         if (!doubleRolled)
         {
             currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255);
@@ -383,6 +394,10 @@ public class Engine : MonoBehaviour
         currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
         // RGB values for black
 
+    }
+    public void OK()
+    {
+        WarningPanel.gameObject.SetActive(false);
     }
 
     private void updateTurnText(Player player)
