@@ -1588,6 +1588,7 @@ MonoBehaviour:
   - {fileID: 1412545040}
   - {fileID: 770417401}
   - {fileID: 997272652}
+  playercards: []
 --- !u!1 &139009858
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,6 +5499,7 @@ MonoBehaviour:
   - {fileID: 1412545040}
   - {fileID: 770417401}
   - {fileID: 997272652}
+  playercards: []
 --- !u!4 &597533183
 Transform:
   m_ObjectHideFlags: 0
@@ -8980,7 +8982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4697502401722109921, guid: 724504761ec03804b875de301080b8d4, type: 3}
       propertyPath: m_TagString
-      value: Tile
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4724988414219078250, guid: 724504761ec03804b875de301080b8d4, type: 3}
       propertyPath: m_Sprite
@@ -10653,6 +10655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: []
+  playercards: []
 --- !u!222 &951684197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11946,7 +11949,6 @@ MonoBehaviour:
   sellHouseButton: {fileID: 719943313}
   WarningOKbutton: {fileID: 0}
   startTile: {fileID: 1121642056}
-  auctionSystem: {fileID: 1762364804}
   propertyBuyImage: {fileID: 2002085023}
   CurrentTile_s: {fileID: 0}
   purchasePropertyPanel: {fileID: 927659787}
