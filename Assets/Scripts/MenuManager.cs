@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
     public GameObject mainScreen;
     public GameObject lobbyScreen;
     public GameObject newPlayerScreen;
+    public GameObject changeTimeScreen;
 
     private List<MenuPlayer> menuPlayers = new List<MenuPlayer>();
     private List<Icon> availibleIcons;
@@ -35,6 +36,9 @@ public class MenuManager : MonoBehaviour
 
 
     public TMP_InputField playerNameInput;
+    public TMP_InputField gameTimeInput;
+
+    public TextMeshProUGUI gameModeText;
 
     public MenuPlayer tempPlayer;
 
@@ -45,6 +49,8 @@ public class MenuManager : MonoBehaviour
     private Button tempSelectedcolourButton;
 
     private int gamemode = 1;
+    private String gameTimeTextTemp;
+    private int gameTimeMins;
 
     void Start()
     {
@@ -58,6 +64,8 @@ public class MenuManager : MonoBehaviour
         drawCards();
         iconSelect.SetActive(false);
         colourSelect.SetActive(false);
+        changeTimeScreen.SetActive(false);
+        gameTimeMins = 30;
     }
 
     public void swtichToLobby()
@@ -95,7 +103,33 @@ public class MenuManager : MonoBehaviour
         playerNameInput.text = "";
         iconSelect.SetActive(false);
         colourSelect.SetActive(false);
+    }
 
+    public void showChangeTimeScreen()
+    {
+        changeTimeScreen.SetActive(true);
+    }
+
+    public void hideChangeTimeScreen()
+    {
+
+
+        if (int.TryParse(gameTimeTextTemp, out int parsedVal))
+        {
+            if (parsedVal > 0)
+            {
+                gameTimeMins = parsedVal;
+                if (gamemode == 2)
+                {
+                    gameModeText.text = "Game mode: abridged \n Time limit: " + gameTimeMins.ToString() + " mins";
+                }
+            }
+
+        }
+
+
+        gameTimeInput.text = "";
+        changeTimeScreen.SetActive(false);
     }
 
     public void newPlayerSelectIcon(string icon)
@@ -213,6 +247,13 @@ public class MenuManager : MonoBehaviour
     {
         tempPlayer.name = n;
     }
+
+    public void updateTempTimeText(string t)
+    {
+        gameTimeTextTemp = t;
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -374,19 +415,25 @@ public class MenuManager : MonoBehaviour
             }
             drawCards();
             GameData.Players = menuPlayers;
+            GameData.gameMode = gamemode;
+            GameData.gameTime = gameTimeMins;
             SceneManager.LoadScene("GameScene");
         }
     }
 
     public void switchGameMode()
     {
+
         if (gamemode == 1)
         {
             gamemode = 2;
+            gameModeText.text = "Game mode: abridged \n Time limit: " + gameTimeMins.ToString() + " mins";
         }
         else
         {
             gamemode = 1;
+            gameModeText.text = "Game mode: original";
         }
+        Debug.Log("game mode is " + gamemode);
     }
 }

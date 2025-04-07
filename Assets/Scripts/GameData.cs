@@ -5,4 +5,6 @@ using System.Collections.Generic;
 public static class GameData
 {
     public static List<MenuPlayer> Players = new List<MenuPlayer>();
+    public static int gameTime;
+    public static int gameMode;
 }
