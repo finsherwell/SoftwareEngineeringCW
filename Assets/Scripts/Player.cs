@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public bool hasCompletedCircuit = false;
     private int positionID;
 
+    public int totalAssetValue = 0; //stores the value of players property portfolio + house portfolio + cash on hand
+
     void Awake()
     {
         if (ownedproperties == null)
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     public void addMoney(int amount)
     {
         this.money += amount;
+        totalAssetValue += amount;
     }
 
     public void setIcon()
@@ -79,6 +82,7 @@ public class Player : MonoBehaviour
     public void takeMoney(int amount)
     {
         this.money -= amount;
+        totalAssetValue -= amount;
     }
 
     public int getMoney() { return money; }
@@ -133,6 +137,7 @@ public class Player : MonoBehaviour
         if (!ownedproperties.Contains(property))
         {
             ownedproperties.Add(property);
+            totalAssetValue += property.GetPrice();
         }
     }
 
@@ -141,6 +146,7 @@ public class Player : MonoBehaviour
         if (ownedproperties.Contains(property))
         {
             ownedproperties.Remove(property);
+            totalAssetValue -= property.GetPrice();
         }
     }
 
@@ -192,8 +198,8 @@ public class Player : MonoBehaviour
             }
             propertyGroups[group].Add(property);
         }
-    
-    // Check if any group forms a set
+
+        // Check if any group forms a set
         foreach (var group in propertyGroups)
         {
             int requiredCount = GetRequiredCountForSet(group.Key);
@@ -221,6 +227,17 @@ public class Player : MonoBehaviour
     {
         int requiredCount = (group == "Brown" || group == "Dark Blue") ? 2 : 3;
         return ownedproperties.Count(p => p.GetGroup() == group) >= requiredCount;
+    }
+
+    //called by a property when a house is purchased. This is needed to update the totalAssetValue
+    public void houseBought(int money)
+    {
+        totalAssetValue += money;
+    }
+    //same as function above - but when a house is sold
+    public void houseSold(int money)
+    {
+        totalAssetValue -= money;
     }
 }
 

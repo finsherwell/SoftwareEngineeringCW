@@ -32,7 +32,7 @@ public class Engine : MonoBehaviour
     private bool doubleRolled = false;
     private int doubleCount;
     public Image propertyBuyImage;
-    public Image CurrentTile_s; 
+    public Image CurrentTile_s;
 
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -254,7 +254,6 @@ public class Engine : MonoBehaviour
 
             player.hasCompletedCircuit = false;
         }
-
         if (players.Count > 0)
         {
             currentPlayer = players[0];
@@ -275,6 +274,7 @@ public class Engine : MonoBehaviour
         Property property = tile.GetComponent<Property>();
         if (!property.IsOwned() && player.money >= property.GetPrice() && player.hasCompletedCircuit == true)
 
+
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
             SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer>();
@@ -293,7 +293,7 @@ public class Engine : MonoBehaviour
     {
         Property property = currentPlayer.currentTile.GetComponent<Property>();
         purchasePropertyPanel.gameObject.SetActive(false);
-        
+
         if (property != null && !property.IsOwned())
         {
             bool hasEligiblePlayers = false;
@@ -305,7 +305,7 @@ public class Engine : MonoBehaviour
                     break;
                 }
             }
-            
+
             if (hasEligiblePlayers)
             {
                 nextTurnButton.gameObject.SetActive(false);
@@ -361,21 +361,22 @@ public class Engine : MonoBehaviour
     }
     public void CheckForRent(Player player, int diceValue)
     {
-        if (player.getCurrentTile().GetComponent<Property>()!= null)
+        if (player.getCurrentTile().GetComponent<Property>() != null)
         {
             Property property = player.getCurrentTile().GetComponent<Property>();
-            if (property.IsOwned() && property.GetOwner()!= player)
+            if (property.IsOwned() && property.GetOwner() != player)
             {
                 if (property.IsStation() == false && property.IsUtility() == false)
                 {
                     int rent = property.GetRentLevels();
-                    if (player.HasCompleteSet(property.GetGroup())&& property.GetHouses() == 0)
-                    {rent *= 2;}
+                    if (player.HasCompleteSet(property.GetGroup()) && property.GetHouses() == 0)
+                    { rent *= 2; }
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
                     logText.text = $"{player.playerName} has paid {rent} to {property.GetOwner().getName()}" + "\n\n" + logText.text;
-                } else if (property.IsStation() == false && property.IsUtility() == true)
+                }
+                else if (property.IsStation() == false && property.IsUtility() == true)
                 {
                     int multiplier = property.GetRent(property.GetOwner().CountUtilities());
                     int rent = multiplier * diceValue;
@@ -499,6 +500,21 @@ public class Engine : MonoBehaviour
                 logText.text = $"{currentPlayer.playerName} has been sent to Jail!" + "\n\n" + logText.text;
             }
         }
+    }
+
+
+    //returns the player who has the highest value of property + house + cash combined
+    public Player maxAssetPlayer()
+    {
+        Player richest = players[0];
+        foreach (var p in players)
+        {
+            if (p.totalAssetValue > richest.totalAssetValue)
+            {
+                richest = p;
+            }
+        }
+        return richest;
     }
 
 }
