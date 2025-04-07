@@ -572,6 +572,7 @@ public class Engine : MonoBehaviour
 
         if (currentPlayer.GetJailTime() > 0)
         {
+            doubleRolled = false;
             JailPanel.gameObject.SetActive(true);
             JailDescriptionText.text = $"Turns until freedom: "+ currentPlayer.GetJailTime() + " turns";
         }
