@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+//using System.Collections.Generic;
+//using TMPro;
+//using UnityEngine;
+//using UnityEngine.UI;
 
-public class PlayerPanelManager : MonoBehaviour
-{
-    [SerializeField] public List<TextMeshProUGUI> playerNameText;
-    [SerializeField] public List<GameObject> playercards;
+//public class PlayerPanelManager : MonoBehaviour
+//{
+//    [SerializeField] public List<TextMeshProUGUI> playerNameText;
+//    [SerializeField] public List<GameObject> playercards;
 
     public void InitializePlayerPanel(List<Player> players)
     {
@@ -51,10 +51,10 @@ public class PlayerPanelManager : MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
-    {
+//    // Update is called once per frame
+//    void Update()
+//    {
 
-    }
-}
+//    }
+//}
 
