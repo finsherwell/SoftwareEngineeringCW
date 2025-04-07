@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Property : Tile 
+public class Property : Tile
 {
     [SerializeField] private string propertyName; // Name of the property (e.g. "The Old Creek")
     [SerializeField] private string group; // Color set (e.g., "Brown", "Blue")
@@ -16,7 +16,7 @@ public class Property : Tile
     [SerializeField] private bool isOwned = false; // Will be true if the property is owned
     [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
-    
+
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class Property : Tile
     }
     private void SetupSellButtonListener()
     {
-        if (sellbutton!= null)
+        if (sellbutton != null)
         {
             button.onClick.AddListener(OnsellButtonClick);
         }
@@ -55,7 +55,7 @@ public class Property : Tile
     private void OnbuyButtonClick()
     {
         Debug.Log($"Buying house on:  {propertyName}");
-        if (isOwned && owner.money >= houseCost && houses < 5 ) // Max: 4 houses + hotel
+        if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
         {
             UpgradeProperty();
             UpdatebuyButtonText();
@@ -67,17 +67,18 @@ public class Property : Tile
     }
     public void UpgradeProperty() // allows player to buy houses for their property
     {
-            
-           owner.takeMoney(houseCost);
-           houses++;
+        owner.takeMoney(houseCost);
+        owner.houseBought(houseCost);
+        houses++;
     }
 
     public void DowngradeProperty() // allows player to sell houses for their property
     {
         owner.addMoney(houseCost);
+        owner.houseSold(houseCost);
         houses--;
     }
-        private void UpdatebuyButtonText()
+    private void UpdatebuyButtonText()
     {
         if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
         {
@@ -127,34 +128,36 @@ public class Property : Tile
     public bool IsStation()
     {
         if (group == "Station")
-        {return true;} else{return false;  }
+        { return true; }
+        else { return false; }
     }
     public bool IsUtility()
     {
         if (group == "Utility")
-        {return true;} else{return false;  }
+        { return true; }
+        else { return false; }
     }
 
 
     /*
 //    Returns the cost of the house.
 //    */
-//    public int GetHouseCost()
-//    {
-//        return houseCost;
-//    }
+    //    public int GetHouseCost()
+    //    {
+    //        return houseCost;
+    //    }
 
-//    /*
-//    Returns the rent of the property.
-//    */
-//    public int GetRent()
-//    {
-//        return rentLevels[houses];
-//    }
+    //    /*
+    //    Returns the rent of the property.
+    //    */
+    //    public int GetRent()
+    //    {
+    //        return rentLevels[houses];
+    //    }
 
-   /*
-    Returns whether the property is owned or not.
-    */
+    /*
+     Returns whether the property is owned or not.
+     */
     public bool IsOwned()
     {
         return isOwned;
@@ -175,20 +178,20 @@ public class Property : Tile
         isOwned = true;
     }
 
-public void ShowButtonCheck(Player player)
-{
-    if (player == owner && player.HasCompleteSet(this.group) && player.money >= houseCost)
+    public void ShowButtonCheck(Player player)
     {
-        button.gameObject.SetActive(true);
+        if (player == owner && player.HasCompleteSet(this.group) && player.money >= houseCost)
+        {
+            button.gameObject.SetActive(true);
+        }
+        else
+        {
+            button.gameObject.SetActive(false);
+        }
     }
-    else
-    {
-        button.gameObject.SetActive(false);
-    }
-}
     public void ShowSellButtonCheck(Player player)
     {
-        if (sellbutton != null &&  player == owner  && houses > 0)
+        if (sellbutton != null && player == owner && houses > 0)
         {
             sellbutton.gameObject.SetActive(true);
         }
@@ -201,7 +204,7 @@ public void ShowButtonCheck(Player player)
             button.gameObject.SetActive(false);
         }
     }
-   public void HideSellButtonCheck(Player currentPlayer)
+    public void HideSellButtonCheck(Player currentPlayer)
     {
         if (sellbutton != null)
         {
