@@ -253,8 +253,8 @@ public class Engine : MonoBehaviour
 
             player.hasCompletedCircuit = true;
         }
-        PlayerPanelManager playerPanelManager = FindAnyObjectByType<PlayerPanelManager>();
-        playerPanelManager.InitializePlayerPanel(players);
+       // PlayerPanelManager playerPanelManager = FindAnyObjectByType<PlayerPanelManager>();
+       // playerPanelManager.InitializePlayerPanel(players);
 
         if (players.Count > 0)
         {
