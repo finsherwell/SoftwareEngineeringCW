@@ -43,6 +43,11 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject PlayerPanel;
     [SerializeField] private GameObject PlayerPanelManager;
 
+    [SerializeField] private float playerSpacing = 3f;
+    [SerializeField] private float positionOffsetY = 1f;
+
+    private Dictionary<Tile, List<Player>> playersOnTiles = new Dictionary<Tile, List<Player>>();
+
     public Player currentPlayer;
 
     public void passGo()
@@ -58,7 +63,88 @@ public class Engine : MonoBehaviour
         initializeGame();
     }
 
+    private void InitPlayersOnTiles()
+    {
+        playersOnTiles.Clear();
+        
+        foreach (Player player in players)
+        {
+            Tile startTile = player.getCurrentTile();
+            if (!playersOnTiles.ContainsKey(startTile))
+            {
+                playersOnTiles.Add(startTile, new List<Player>());
+            }
+            playersOnTiles[startTile].Add(player);
+        }
 
+        foreach (Tile tile in playersOnTiles.Keys)
+        {
+
+        }
+    }
+
+    private void PosPlayerOnTile(Tile tile)
+    {
+        if (!playersOnTiles.ContainsKey(tile) || playersOnTiles[tile].Count == 0)
+            return;
+            
+        List<Player> playersOnTile = playersOnTiles[tile];
+        int playerCount = playersOnTile.Count;
+        
+        // Center position of the tile
+        Vector3 tileCenter = tile.transform.position;
+        
+        if (playerCount == 1)
+        {
+            // Just one player - center them on the tile
+            playersOnTile[0].transform.position = tileCenter;
+        }
+        else
+        {
+            // Multiple players - arrange them in a pattern
+            switch (playerCount)
+            {
+                case 2:
+                    // Two players - place them side by side
+                    playersOnTile[0].transform.position = tileCenter + new Vector3(-playerSpacing/2, 0, 0);
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(playerSpacing/2, 0, 0);
+                    break;
+                case 3:
+                    // Three players - triangle formation
+                    playersOnTile[0].transform.position = tileCenter + new Vector3(0, positionOffsetY, 0);
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(-playerSpacing/2, -positionOffsetY, 0);
+                    playersOnTile[2].transform.position = tileCenter + new Vector3(playerSpacing/2, -positionOffsetY, 0);
+                    break;
+                case 4:
+                    // Four players - square formation
+                    playersOnTile[0].transform.position = tileCenter + new Vector3(-playerSpacing/2, positionOffsetY, 0);
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(playerSpacing/2, positionOffsetY, 0);
+                    playersOnTile[2].transform.position = tileCenter + new Vector3(-playerSpacing/2, -positionOffsetY, 0);
+                    playersOnTile[3].transform.position = tileCenter + new Vector3(playerSpacing/2, -positionOffsetY, 0);
+                    break;
+                case 5:
+                    // Five players - X formation (four corners + center)
+                    playersOnTile[0].transform.position = tileCenter;
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(-playerSpacing/2, positionOffsetY, 0);
+                    playersOnTile[2].transform.position = tileCenter + new Vector3(playerSpacing/2, positionOffsetY, 0);
+                    playersOnTile[3].transform.position = tileCenter + new Vector3(-playerSpacing/2, -positionOffsetY, 0);
+                    playersOnTile[4].transform.position = tileCenter + new Vector3(playerSpacing/2, -positionOffsetY, 0);
+                    break;
+                default:
+                    float angleStep = 360f / playerCount;
+                    float radius = playerSpacing * 0.6f;
+                    
+                    for (int i = 0; i < playerCount; i++)
+                    {
+                        float angle = i * angleStep * Mathf.Deg2Rad;
+                        float x = Mathf.Sin(angle) * radius;
+                        float y = Mathf.Cos(angle) * radius;
+                        playersOnTile[i].transform.position = tileCenter + new Vector3(x, y, 0);
+                    }
+                    break;
+            }
+        }
+    }
 
     public void rollDice()
     {
@@ -68,14 +154,16 @@ public class Engine : MonoBehaviour
         dice1.GetComponent<Animation>().Play("diceGo1");
         dice1.rollAndReturn(value1 =>
         {
-            int dice1Value = value1;
+            //int dice1Value = value1;
+            int dice1Value = 2;
             Debug.Log($"Dice 1 rolled: {dice1Value}");
 
             // Trigger animation on dice2 before rolling
             dice2.GetComponent<Animation>().Play("diceGo2");
             dice2.rollAndReturn(value2 =>
             {
-                int dice2Value = value2;
+                //int dice2Value = value2;
+                int dice2Value = 3;
                 Debug.Log($"Dice 2 rolled: {dice2Value}");
 
                 int totalDiceValue = dice1Value + dice2Value;
@@ -253,6 +341,8 @@ public class Engine : MonoBehaviour
 
             player.hasCompletedCircuit = true;
         }
+
+        InitPlayersOnTiles();
         // PlayerPanelManager playerPanelManager = FindAnyObjectByType<PlayerPanelManager>();
         // playerPanelManager.InitializePlayerPanel(players);
 
@@ -337,16 +427,24 @@ public class Engine : MonoBehaviour
     private void movePlayer(int diceValue, Player player)
     {
         Debug.Log($"{player.playerName} is moving.");
-
+        
+        // Remove player from current tile's player list
+        Tile currentTile = player.getCurrentTile();
+        if (playersOnTiles.ContainsKey(currentTile))
+        {
+            playersOnTiles[currentTile].Remove(player);
+            // Reposition remaining players on this tile
+            PosPlayerOnTile(currentTile);
+        }
+        
         for (int i = 0; i < diceValue; i++)
         {
             if (player.getCurrentTile() != null && player.getCurrentTile().GetNext() != null)
             {
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
-                player.transform.position = nextTile.transform.position;
                 //checkForPassGo(currentPlayer);
-                Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
+                Debug.Log($"{player.playerName} moved to tile: {nextTile.GetName()}");
             }
             else
             {
@@ -354,11 +452,24 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
+        
+        // Add player to the new tile's player list
+        Tile newTile = player.getCurrentTile();
+        if (!playersOnTiles.ContainsKey(newTile))
+        {
+            playersOnTiles.Add(newTile, new List<Player>());
+        }
+        playersOnTiles[newTile].Add(player);
+        
+        // Position all players on this new tile
+        PosPlayerOnTile(newTile);
+        
         logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n\n" + logText.text;
         CheckForActionEvent(player);
         CheckForRent(player, diceValue);
         nextTurnButton.gameObject.SetActive(true);
     }
+
     public void CheckForRent(Player player, int diceValue)
     {
         if (player.getCurrentTile().GetComponent<Property>() != null)
@@ -446,6 +557,25 @@ public class Engine : MonoBehaviour
     {
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
+    }
+
+    public void RemovePlayerFromGame(Player player)
+    {
+        // Remove from current tile
+        Tile currentTile = player.getCurrentTile();
+        if (playersOnTiles.ContainsKey(currentTile))
+        {
+            playersOnTiles[currentTile].Remove(player);
+            PosPlayerOnTile(currentTile);
+        }
+        
+        players.Remove(player);
+        playerCount--;
+        
+        if (currentPlayerIndex >= playerCount && playerCount > 0)
+        {
+            currentPlayerIndex = 0;
+        }
     }
 
     public void CheckForActionEvent(Player player)
