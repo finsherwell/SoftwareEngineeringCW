@@ -33,7 +33,8 @@ public class Engine : MonoBehaviour
     private int doubleCount;
     public Image propertyBuyImage;
     public Image CurrentTile_s;
-    public int gameMode = 2; //1 = no timer, 2 = timer.
+    public int gameMode = 1; //1 = no timer, 2 = timer.
+    public int gameTime;
 
 
 
@@ -65,6 +66,7 @@ public class Engine : MonoBehaviour
     public void rollDice()
     {
         rollButton.gameObject.SetActive(false);
+
 
         // Trigger animation on dice1 before rolling
         dice1.GetComponent<Animation>().Play("diceGo1");
@@ -233,12 +235,15 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
-        gameMode = 2;
-        //if the gamemode is abridged, start timer for game end
+        //get the game mode from game data
+        gameMode = GameData.gameMode;
         if (gameMode == 2)
         {
-            Invoke("endGame", 2f);
+            gameTime = GameData.gameTime;
+            Invoke("endGame", gameTime);
+
         }
+
 
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
