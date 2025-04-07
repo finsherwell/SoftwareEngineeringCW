@@ -10,7 +10,7 @@ public class PlayerTests
     public void NotStartInJail()
     {
         Player tPlayer = new Player();
-        Assert.AreEqual(tPlayer.isInJail(), false);
+        Assert.Greater(tPlayer.GetJailTime(), 3);
     }
 
     [Test]

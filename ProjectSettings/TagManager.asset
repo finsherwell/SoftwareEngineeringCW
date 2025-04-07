@@ -14,6 +14,7 @@ TagManager:
   - superTax
   - goToJail
   - HouseButton
+  - JailDescription
   layers:
   - Default
   - TransparentFX

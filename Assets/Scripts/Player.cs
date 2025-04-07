@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     public MenuEnums.Colours colour;
     public MenuEnums.Icon icon;
-    public bool inJail = false;
+    private int jailTime = 0;
     public bool hasGOOJ = false;
     public bool hasCompletedCircuit = false;
     private int positionID;
@@ -109,9 +109,13 @@ public class Player : MonoBehaviour
         currentTile = tile;
     }
 
-    public bool isInJail()
+    public int GetJailTime()
     {
-        return inJail;
+        return jailTime;
+    }
+    public void setInJail(int Turns)
+    {
+        jailTime = Turns;
     }
 
     public void setID(int id)
@@ -128,10 +132,7 @@ public class Player : MonoBehaviour
     {
         return playerName;
     }
-    public void setInJail(bool state)
-    {
-        inJail = state;
-    }
+
     public void addProperty(Property property)
     {
         if (!ownedproperties.Contains(property))

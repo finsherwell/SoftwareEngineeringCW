@@ -18,6 +18,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentPlayerText;
     [SerializeField] private TextMeshProUGUI propertyBuyText;
     [SerializeField] public TextMeshProUGUI logText;
+    [SerializeField] public TextMeshProUGUI JailDescriptionText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0;
     [SerializeField] public Dice dice1;
@@ -41,6 +42,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject sellHousePanel;
     [SerializeField] private GameObject WarningPanel;
     [SerializeField] private GameObject PlayerPanel;
+    [SerializeField] private GameObject JailPanel;
     [SerializeField] private Property selectedPrpoerty;
     [SerializeField] private PlayerPanelManager PPM;
 
@@ -100,7 +102,8 @@ public class Engine : MonoBehaviour
 
 
                 Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
-                if (currentPlayer.currentTile.IsProperty() == true)
+                Property property = currentPlayer.currentTile.GetComponent<Property>();
+                if (currentPlayer.currentTile.IsProperty() == true && !property.IsOwned())
                 {
                     purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
                 }
@@ -433,9 +436,29 @@ public class Engine : MonoBehaviour
         nextTurnButton.gameObject.SetActive(false);
         rollButton.gameObject.SetActive(true);
         updateTurnText(currentPlayer);
-        // Assuming currentPlayer is a reference to your Player class
         currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
-        // RGB values for black
+
+        if (currentPlayer.GetJailTime() > 0)
+        {
+            JailPanel.gameObject.SetActive(true);
+            JailDescriptionText.text = $"Turns until freedom: "+ currentPlayer.GetJailTime() + " turns";
+        }
+    }
+
+
+    public void PayBail()
+    {
+        currentPlayer.takeMoney(50);
+        currentPlayer.setInJail(0);
+        JailPanel.gameObject.SetActive(false);
+        logText.text = $"{currentPlayer.playerName} has left Jail!" + "\n\n" + logText.text;
+        nextTurn();
+    }
+    public void JailNextTurn()
+    {
+        currentPlayer.setInJail(currentPlayer.GetJailTime() - 1);
+        JailPanel.gameObject.SetActive(false);
+        nextTurn();
 
     }
     public void OK()
@@ -494,7 +517,7 @@ public class Engine : MonoBehaviour
                 currentPlayer.transform.position = jailTile.transform.position;
 
                 // Set player status to jailed
-                currentPlayer.setInJail(true);
+                currentPlayer.setInJail(3);
 
                 Debug.Log($"{currentPlayer.playerName} has been sent to Jail!");
                 logText.text = $"{currentPlayer.playerName} has been sent to Jail!" + "\n\n" + logText.text;

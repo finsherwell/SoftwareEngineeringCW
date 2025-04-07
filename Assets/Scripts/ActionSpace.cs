@@ -44,13 +44,6 @@ public class ActionSpace : MonoBehaviour
                 gameEngine.GoToJail();
                 break;
 
-            case ActionType.Jail:
-                if (player.inJail)
-                {
-                    EscapeJail(player);
-                }
-                break;
-
             case ActionType.FreeParking:
                 CollectFines(player);
                 break;
@@ -74,11 +67,6 @@ public class ActionSpace : MonoBehaviour
                 break;
         }
     }
-    public void EscapeJail(Player player)
-    {
-        // Implement logic for escaping jail
-    }
-
     public void CollectFines(Player player)
     {
         // Display message about fines collected
