@@ -48,7 +48,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject WarningPanel;
     [SerializeField] private GameObject PlayerPanel;
     [SerializeField] private GameObject JailPanel;
-    [SerializeField] private Property selectedPrpoerty;
+    [SerializeField] private Property selectedProperty;
     [SerializeField] private GameObject BankruptPanel;
     [SerializeField] private PlayerPanelManager PPM;
 
