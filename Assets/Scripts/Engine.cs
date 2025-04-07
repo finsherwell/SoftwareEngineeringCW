@@ -432,10 +432,6 @@ public class Engine : MonoBehaviour
 
                 //checkForPassGo(currentPlayer);
                 Debug.Log($"{player.playerName} moved to tile: {nextTile.GetName()}");
-
-                player.transform.position = nextTile.transform.position;
-                checkForPassGo(currentPlayer);
-                Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
             }
             else
             {
@@ -634,4 +630,5 @@ public class Engine : MonoBehaviour
         }
         return richest;
     }
+
 }
