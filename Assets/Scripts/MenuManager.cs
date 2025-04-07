@@ -44,8 +44,11 @@ public class MenuManager : MonoBehaviour
     private Button tempSelectediconButton;
     private Button tempSelectedcolourButton;
 
+    private int gamemode = 1;
+
     void Start()
     {
+        gamemode = 1;
         mainScreen.SetActive(true);
         lobbyScreen.SetActive(false);
         newPlayerScreen.SetActive(false);
@@ -372,6 +375,18 @@ public class MenuManager : MonoBehaviour
             drawCards();
             GameData.Players = menuPlayers;
             SceneManager.LoadScene("GameScene");
+        }
+    }
+
+    public void switchGameMode()
+    {
+        if (gamemode == 1)
+        {
+            gamemode = 2;
+        }
+        else
+        {
+            gamemode = 1;
         }
     }
 }
