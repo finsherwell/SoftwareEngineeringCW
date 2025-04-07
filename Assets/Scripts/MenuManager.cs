@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
     public GameObject mainScreen;
     public GameObject lobbyScreen;
     public GameObject newPlayerScreen;
+    public GameObject changeTimeScreen;
 
     private List<MenuPlayer> menuPlayers = new List<MenuPlayer>();
     private List<Icon> availibleIcons;
@@ -35,6 +36,9 @@ public class MenuManager : MonoBehaviour
 
 
     public TMP_InputField playerNameInput;
+    public TMP_InputField gameTimeInput;
+
+    public TextMeshProUGUI gameModeText;
 
     public MenuPlayer tempPlayer;
 
@@ -44,8 +48,14 @@ public class MenuManager : MonoBehaviour
     private Button tempSelectediconButton;
     private Button tempSelectedcolourButton;
 
+    private int gamemode = 1;
+    private String gameTimeTextTemp;
+    private int gameTimeMins;
+
     void Start()
     {
+        //get everything ready to just show the first menu screen, make sure everything is in starting state
+        gamemode = 1;
         mainScreen.SetActive(true);
         lobbyScreen.SetActive(false);
         newPlayerScreen.SetActive(false);
@@ -55,6 +65,8 @@ public class MenuManager : MonoBehaviour
         drawCards();
         iconSelect.SetActive(false);
         colourSelect.SetActive(false);
+        changeTimeScreen.SetActive(false);
+        gameTimeMins = 30;
     }
 
     public void swtichToLobby()
@@ -63,6 +75,7 @@ public class MenuManager : MonoBehaviour
         lobbyScreen.SetActive(true);
         newPlayerScreen.SetActive(false);
         emptyPlayerList();
+        //make sure all of the icons are availible to select when the lobby is first entered
         availibleIcons = new List<Icon>() { Icon.Boot, Icon.Cat, Icon.HatStand, Icon.Iron, Icon.Smartphone, Icon.Ship };
         availibileColours = new List<Colours> { Colours.Green, Colours.Blue, Colours.Red, Colours.Yellow, Colours.Purple, Colours.Cyan };
 
@@ -87,16 +100,40 @@ public class MenuManager : MonoBehaviour
 
     public void showNewPlayerScreen()
     {
+        //show new player screen, a temp player object is created to store what info is needed 
         newPlayerScreen.SetActive(true);
         tempPlayer = new MenuPlayer("", Colours.Grey, Icon.Empty, false);
         playerNameInput.text = "";
         iconSelect.SetActive(false);
         colourSelect.SetActive(false);
+    }
 
+    public void showChangeTimeScreen()
+    {
+        changeTimeScreen.SetActive(true);
+    }
+
+    public void hideChangeTimeScreen()
+    {
+        //if the entered text can be parsed to an int, and it is above zero, set the new game time, otherwise just ignore.
+        if (int.TryParse(gameTimeTextTemp, out int parsedVal))
+        {
+            if (parsedVal > 0)
+            {
+                gameTimeMins = parsedVal;
+                if (gamemode == 2)
+                {
+                    gameModeText.text = "Game mode: abridged \n Time limit: " + gameTimeMins.ToString() + " mins";
+                }
+            }
+        }
+        gameTimeInput.text = "";
+        changeTimeScreen.SetActive(false);
     }
 
     public void newPlayerSelectIcon(string icon)
     {
+        //in the new player screen, when an icon is pressed, behave appropriately
         switch (icon)
         {
             case "boot":
@@ -141,15 +178,13 @@ public class MenuManager : MonoBehaviour
                 tempSelectediconButton = iconButtons[5];
                 availibleIcons.Remove(Icon.Iron);
                 break;
-
-
-
         }
         iconSelect.SetActive(true);
     }
 
     public void newPlayerSelectColour(String c)
     {
+        //in the new player screen, when an colour is pressed, behave appropriately
         switch (c)
         {
             case "red":
@@ -196,9 +231,7 @@ public class MenuManager : MonoBehaviour
                 break;
         }
         colourSelect.SetActive(true);
-
     }
-
 
     public void hideNewPlayerScreen()
     {
@@ -210,6 +243,13 @@ public class MenuManager : MonoBehaviour
     {
         tempPlayer.name = n;
     }
+
+    public void updateTempTimeText(string t)
+    {
+        gameTimeTextTemp = t;
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -294,6 +334,7 @@ public class MenuManager : MonoBehaviour
 
     public void removeLastPlayer()
     {
+        //remove player fomr the player list, add back the colour and icon they selected to be used  
         if (menuPlayers.Count > 0)
         {
             MenuPlayer temp = menuPlayers[menuPlayers.Count - 1];
@@ -320,7 +361,6 @@ public class MenuManager : MonoBehaviour
                 case Colours.Cyan:
                     colourButtons[5].gameObject.SetActive(true);
                     break;
-
             }
 
             switch (temp.icon)
@@ -345,9 +385,7 @@ public class MenuManager : MonoBehaviour
                     break;
 
             }
-
             drawCards();
-
         }
     }
 
@@ -371,7 +409,25 @@ public class MenuManager : MonoBehaviour
             }
             drawCards();
             GameData.Players = menuPlayers;
+            GameData.gameMode = gamemode;
+            GameData.gameTime = gameTimeMins;
             SceneManager.LoadScene("GameScene");
         }
+    }
+
+    public void switchGameMode()
+    {
+
+        if (gamemode == 1)
+        {
+            gamemode = 2;
+            gameModeText.text = "Game mode: abridged \n Time limit: " + gameTimeMins.ToString() + " mins";
+        }
+        else
+        {
+            gamemode = 1;
+            gameModeText.text = "Game mode: original";
+        }
+        Debug.Log("game mode is " + gamemode);
     }
 }

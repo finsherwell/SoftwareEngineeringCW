@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] public string playerName;
     [SerializeField] private int playerID;
     [SerializeField] public Tile currentTile;
-    [SerializeField] protected List<Property> ownedproperties;
+    [SerializeField] public List<Property> ownedproperties;
 
     public MenuEnums.Colours colour;
     public MenuEnums.Icon icon;
@@ -146,6 +146,7 @@ public class Player : MonoBehaviour
     {
         if (ownedproperties.Contains(property))
         {
+            property.sellHouse();
             ownedproperties.Remove(property);
             totalAssetValue -= property.GetPrice();
         }

@@ -34,6 +34,11 @@ public class Engine : MonoBehaviour
     private int doubleCount;
     public Image propertyBuyImage;
     public Image CurrentTile_s;
+    public int gameMode = 1; //1 = no timer, 2 = timer.
+    public int gameTime;
+    public bool abridgedTimerEnded;
+    public Player abridgedGameEndedOn = null; //if game is in abridged mode, this will store the index of the player whose turn it was when timer went off. This can then be used to see when game should end.
+
 
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -44,7 +49,13 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject PlayerPanel;
     [SerializeField] private GameObject JailPanel;
     [SerializeField] private Property selectedPrpoerty;
+    [SerializeField] private GameObject BankruptPanel;
     [SerializeField] private PlayerPanelManager PPM;
+
+    [SerializeField] private float playerSpacing = 3f;
+    [SerializeField] private float positionOffsetY = 1f;
+
+    private Dictionary<Tile, List<Player>> playersOnTiles = new Dictionary<Tile, List<Player>>();
 
     public Player currentPlayer;
 
@@ -61,11 +72,81 @@ public class Engine : MonoBehaviour
         initializeGame();
     }
 
+    private void InitPlayersOnTiles()
+    {
+        playersOnTiles.Clear();
 
+        foreach (Player player in players)
+        {
+            Tile startTile = player.getCurrentTile();
+            if (!playersOnTiles.ContainsKey(startTile))
+            {
+                playersOnTiles.Add(startTile, new List<Player>());
+            }
+            playersOnTiles[startTile].Add(player);
+        }
+
+        foreach (Tile tile in playersOnTiles.Keys)
+        {
+
+        }
+    }
+
+    private void PosPlayerOnTile(Tile tile)
+    {
+        if (!playersOnTiles.ContainsKey(tile) || playersOnTiles[tile].Count == 0)
+            return;
+
+        List<Player> playersOnTile = playersOnTiles[tile];
+        int playerCount = playersOnTile.Count;
+
+        // Center position of the tile
+        Vector3 tileCenter = tile.transform.position;
+
+        if (playerCount == 1)
+        {
+            // Just one player - center them on the tile
+            playersOnTile[0].transform.position = tileCenter;
+        }
+        else
+        {
+            // Multiple players - arrange them in a pattern
+            switch (playerCount)
+            {
+                case 2:
+                    // Two players - place them side by side
+                    playersOnTile[0].transform.position = tileCenter + new Vector3(-playerSpacing / 2, 0, 0);
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(playerSpacing / 2, 0, 0);
+                    break;
+                case 3:
+                    // Three players - triangle formation
+                    playersOnTile[0].transform.position = tileCenter + new Vector3(0, positionOffsetY, 0);
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(-playerSpacing / 2, -positionOffsetY, 0);
+                    playersOnTile[2].transform.position = tileCenter + new Vector3(playerSpacing / 2, -positionOffsetY, 0);
+                    break;
+                case 4:
+                    // Four players - square formation
+                    playersOnTile[0].transform.position = tileCenter + new Vector3(-playerSpacing / 2, positionOffsetY, 0);
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(playerSpacing / 2, positionOffsetY, 0);
+                    playersOnTile[2].transform.position = tileCenter + new Vector3(-playerSpacing / 2, -positionOffsetY, 0);
+                    playersOnTile[3].transform.position = tileCenter + new Vector3(playerSpacing / 2, -positionOffsetY, 0);
+                    break;
+                case 5:
+                    // Five players - X formation (four corners + center)
+                    playersOnTile[0].transform.position = tileCenter;
+                    playersOnTile[1].transform.position = tileCenter + new Vector3(-playerSpacing / 2, positionOffsetY, 0);
+                    playersOnTile[2].transform.position = tileCenter + new Vector3(playerSpacing / 2, positionOffsetY, 0);
+                    playersOnTile[3].transform.position = tileCenter + new Vector3(-playerSpacing / 2, -positionOffsetY, 0);
+                    playersOnTile[4].transform.position = tileCenter + new Vector3(playerSpacing / 2, -positionOffsetY, 0);
+                    break;
+            }
+        }
+    }
 
     public void rollDice()
     {
         rollButton.gameObject.SetActive(false);
+
 
         // Trigger animation on dice1 before rolling
         dice1.GetComponent<Animation>().Play("diceGo1");
@@ -235,6 +316,7 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
+
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
         logText.text = "Initializing game..." + "\n\n" + logText.text;
@@ -242,9 +324,26 @@ public class Engine : MonoBehaviour
 
         MakePlayers();
 
+        //if the game scene is ran directly (for debugging) add some players and set the game mode. Otherwise, get the game mode info from game data (players added already)
         if (playerCount == 0)
         {
             addDebugPlayers();
+            gameMode = 1;
+            gameTime = 123456789; //dont think this really needs to be here
+        }
+        else
+        {
+            //get the game mode from game data
+            abridgedTimerEnded = false;
+            gameMode = GameData.gameMode;
+            Debug.Log("game mode is " + gameMode);
+            if (gameMode == 2)
+            {
+                gameTime = GameData.gameTime;
+                Debug.Log("game time is " + gameTime);
+                Invoke("gameTimeGoneOff", gameTime);
+            }
+
         }
 
         foreach (Player player in players)
@@ -255,8 +354,11 @@ public class Engine : MonoBehaviour
             player.setCurrentTile(startTile);
             player.transform.position = startTile.transform.position;
 
-            player.hasCompletedCircuit = false;
+            player.hasCompletedCircuit = true;
         }
+
+        InitPlayersOnTiles();
+
         if (players.Count > 0)
         {
             currentPlayer = players[0];
@@ -267,7 +369,9 @@ public class Engine : MonoBehaviour
         {
             Debug.LogError("No players found in the scene!");
         }
-        PPM.InitializePlayerPanel(players);
+
+
+
     }
 
 
@@ -276,7 +380,6 @@ public class Engine : MonoBehaviour
     {
         Property property = tile.GetComponent<Property>();
         if (!property.IsOwned() && player.money >= property.GetPrice() && player.hasCompletedCircuit == true)
-
 
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
@@ -341,15 +444,24 @@ public class Engine : MonoBehaviour
     {
         Debug.Log($"{player.playerName} is moving.");
 
+        // Remove player from current tile's player list
+        Tile currentTile = player.getCurrentTile();
+        if (playersOnTiles.ContainsKey(currentTile))
+        {
+            playersOnTiles[currentTile].Remove(player);
+            // Reposition remaining players on this tile
+            PosPlayerOnTile(currentTile);
+        }
+
         for (int i = 0; i < diceValue; i++)
         {
             if (player.getCurrentTile() != null && player.getCurrentTile().GetNext() != null)
             {
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
-                player.transform.position = nextTile.transform.position;
+
                 //checkForPassGo(currentPlayer);
-                Debug.Log($"{player.playerName} landed on tile: {nextTile.GetName()}");
+                Debug.Log($"{player.playerName} moved to tile: {nextTile.GetName()}");
             }
             else
             {
@@ -357,11 +469,24 @@ public class Engine : MonoBehaviour
                 break;
             }
         }
+
+        // Add player to the new tile's player list
+        Tile newTile = player.getCurrentTile();
+        if (!playersOnTiles.ContainsKey(newTile))
+        {
+            playersOnTiles.Add(newTile, new List<Player>());
+        }
+        playersOnTiles[newTile].Add(player);
+
+        // Position all players on this new tile
+        PosPlayerOnTile(newTile);
+
         logText.text = $"{player.playerName} landed on tile: {player.getCurrentTile().GetName()}" + "\n\n" + logText.text;
         CheckForActionEvent(player);
         CheckForRent(player, diceValue);
         nextTurnButton.gameObject.SetActive(true);
     }
+
     public void CheckForRent(Player player, int diceValue)
     {
         if (player.getCurrentTile().GetComponent<Property>() != null)
@@ -408,7 +533,7 @@ public class Engine : MonoBehaviour
     {
         Sprite rent_s = property.getSprite();
         CurrentTile_s.sprite = rent_s;
-        selectedPrpoerty = property;
+        selectedProperty = property;
     }
 
     private void OnTileLanded()
@@ -418,6 +543,8 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
+
+
         if (currentPlayer.money < 0)
         {
             WarningPanel.gameObject.SetActive(true);
@@ -431,6 +558,11 @@ public class Engine : MonoBehaviour
             {
                 currentPlayerIndex = 0;
             }
+        }
+        currentPlayer = players[currentPlayerIndex];
+        if (currentPlayer == null)
+        {
+            currentPlayerIndex++;
         }
         currentPlayer = players[currentPlayerIndex];
         nextTurnButton.gameObject.SetActive(false);
@@ -461,10 +593,33 @@ public class Engine : MonoBehaviour
         nextTurn();
 
     }
-    public void OK()
+    public void Bankrupt()
     {
+        // Hide the warning panel when the player goes bankrupt
         WarningPanel.gameObject.SetActive(false);
+        BankruptPanel.gameObject.SetActive(true);
+
+        // Loop through owned properties in reverse order to avoid modifying the collection during iteration
+        for (int i = currentPlayer.ownedproperties.Count - 1; i >= 0; i--)
+        {
+            var property = currentPlayer.ownedproperties[i];
+            currentPlayer.removeProperty(property);
+        }
+
+        // Set the player's money to zero
+        currentPlayer.money = 0;
+
+        // If currentPlayer is a GameObject, destroy it
+        Destroy(currentPlayer.gameObject);
+
+        // Hide the bankrupt panel after processing
+        BankruptPanel.gameObject.SetActive(false);
+
+        // Proceed to the next turn
+        nextTurn();
     }
+
+
 
     private void updateTurnText(Player player)
     {
@@ -525,6 +680,24 @@ public class Engine : MonoBehaviour
         }
     }
 
+    public void RemovePlayerFromGame(Player player)
+    {
+        // Remove from current tile
+        Tile currentTile = player.getCurrentTile();
+        if (playersOnTiles.ContainsKey(currentTile))
+        {
+            playersOnTiles[currentTile].Remove(player);
+            PosPlayerOnTile(currentTile);
+        }
+
+        players.Remove(player);
+        playerCount--;
+
+        if (currentPlayerIndex >= playerCount && playerCount > 0)
+        {
+            currentPlayerIndex = 0;
+        }
+    }
 
     //returns the player who has the highest value of property + house + cash combined
     public Player maxAssetPlayer()
@@ -538,6 +711,19 @@ public class Engine : MonoBehaviour
             }
         }
         return richest;
+    }
+
+    public void gameTimeGoneOff()
+    {
+        abridgedTimerEnded = true;
+        abridgedGameEndedOn = currentPlayer;
+        Debug.Log("abdriged game timer went off, player " + currentPlayer.getName());
+    }
+
+    public void endGame()
+    {
+        Player winner = maxAssetPlayer();
+        Debug.Log("winner is " + winner.getName());
     }
 
 }
