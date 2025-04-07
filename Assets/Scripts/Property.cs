@@ -216,7 +216,17 @@ public class Property : Tile
             sellbutton.gameObject.SetActive(false);
         }
     }
-
+    public void sellHouse()
+    {
+        if (!isOwned)
+        {
+            return;
+        }
+        else
+        {
+            owner = null;
+        }
+    }
 
 
     /*
