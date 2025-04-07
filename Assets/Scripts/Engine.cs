@@ -33,6 +33,8 @@ public class Engine : MonoBehaviour
     private int doubleCount;
     public Image propertyBuyImage;
     public Image CurrentTile_s;
+    public int gameMode = 2; //1 = no timer, 2 = timer.
+
 
 
     [SerializeField] private GameObject purchasePropertyPanel;
@@ -231,6 +233,13 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
+        gameMode = 2;
+        //if the gamemode is abridged, start timer for game end
+        if (gameMode == 2)
+        {
+            Invoke("endGame", 2f);
+        }
+
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
         logText.text = "Initializing game..." + "\n\n" + logText.text;
@@ -266,6 +275,9 @@ public class Engine : MonoBehaviour
         {
             Debug.LogError("No players found in the scene!");
         }
+
+
+
     }
 
 
@@ -514,6 +526,12 @@ public class Engine : MonoBehaviour
             }
         }
         return richest;
+    }
+
+    public void endGame()
+    {
+        Player winner = maxAssetPlayer();
+        Debug.Log("winner is " + winner.getName());
     }
 
 }
