@@ -46,7 +46,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject sellHousePanel;
     [SerializeField] private GameObject WarningPanel;
     [SerializeField] private GameObject PlayerPanel;
-    [SerializeField] private Property selectedPrpoerty;
+    [SerializeField] private GameObject BankruptPanel;
+    [SerializeField] private Property selectedProperty;
     [SerializeField] private PlayerPanelManager PPM;
 
     [SerializeField] private float playerSpacing = 3f;
@@ -350,7 +351,7 @@ public class Engine : MonoBehaviour
             player.setCurrentTile(startTile);
             player.transform.position = startTile.transform.position;
 
-            player.hasCompletedCircuit = false;
+            player.hasCompletedCircuit = true;
         }
 
         InitPlayersOnTiles();
@@ -529,7 +530,7 @@ public class Engine : MonoBehaviour
     {
         Sprite rent_s = property.getSprite();
         CurrentTile_s.sprite = rent_s;
-        selectedPrpoerty = property;
+        selectedProperty = property;
     }
 
     private void OnTileLanded()
@@ -556,6 +557,11 @@ public class Engine : MonoBehaviour
             }
         }
         currentPlayer = players[currentPlayerIndex];
+        if (currentPlayer == null)
+        {
+            currentPlayerIndex++;
+        }
+        currentPlayer = players[currentPlayerIndex];
         nextTurnButton.gameObject.SetActive(false);
         rollButton.gameObject.SetActive(true);
         updateTurnText(currentPlayer);
@@ -564,10 +570,33 @@ public class Engine : MonoBehaviour
         // RGB values for black
 
     }
-    public void OK()
+    public void Bankrupt()
     {
+        // Hide the warning panel when the player goes bankrupt
         WarningPanel.gameObject.SetActive(false);
+        BankruptPanel.gameObject.SetActive(true);
+
+        // Loop through owned properties in reverse order to avoid modifying the collection during iteration
+        for (int i = currentPlayer.ownedproperties.Count - 1; i >= 0; i--)
+        {
+            var property = currentPlayer.ownedproperties[i];
+            currentPlayer.removeProperty(property);
+        }
+
+        // Set the player's money to zero
+        currentPlayer.money = 0;
+
+        // If currentPlayer is a GameObject, destroy it
+        Destroy(currentPlayer.gameObject);
+
+        // Hide the bankrupt panel after processing
+        BankruptPanel.gameObject.SetActive(false);
+
+        // Proceed to the next turn
+        nextTurn();
     }
+
+
 
     private void updateTurnText(Player player)
     {
