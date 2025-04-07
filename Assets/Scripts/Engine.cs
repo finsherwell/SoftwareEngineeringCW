@@ -35,6 +35,8 @@ public class Engine : MonoBehaviour
     public Image CurrentTile_s;
     public int gameMode = 1; //1 = no timer, 2 = timer.
     public int gameTime;
+    public bool abridgedTimerEnded;
+    public Player abridgedGameEndedOn = null; //if game is in abridged mode, this will store the index of the player whose turn it was when timer went off. This can then be used to see when game should end.
 
 
 
@@ -235,15 +237,6 @@ public class Engine : MonoBehaviour
 
     private void initializeGame()
     {
-        //get the game mode from game data
-        gameMode = GameData.gameMode;
-        if (gameMode == 2)
-        {
-            gameTime = GameData.gameTime;
-            Invoke("endGame", gameTime);
-
-        }
-
 
         nextTurnButton.gameObject.SetActive(false);
         Debug.Log("Initializing game...");
@@ -252,9 +245,26 @@ public class Engine : MonoBehaviour
 
         MakePlayers();
 
+        //if the game scene is ran directly (for debugging) add some players and set the game mode. Otherwise, get the game mode info from game data (players added already)
         if (playerCount == 0)
         {
             addDebugPlayers();
+            gameMode = 1;
+            gameTime = 123456789; //dont think this really needs to be here
+        }
+        else
+        {
+            //get the game mode from game data
+            abridgedTimerEnded = false;
+            gameMode = GameData.gameMode;
+            Debug.Log("game mode is " + gameMode);
+            if (gameMode == 2)
+            {
+                gameTime = GameData.gameTime;
+                Debug.Log("game time is " + gameTime);
+                Invoke("gameTimeGoneOff", gameTime);
+            }
+
         }
 
         foreach (Player player in players)
@@ -376,6 +386,7 @@ public class Engine : MonoBehaviour
         CheckForRent(player, diceValue);
         nextTurnButton.gameObject.SetActive(true);
     }
+
     public void CheckForRent(Player player, int diceValue)
     {
         if (player.getCurrentTile().GetComponent<Property>() != null)
@@ -431,6 +442,8 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
+
+
         if (currentPlayer.money < 0)
         {
             WarningPanel.gameObject.SetActive(true);
@@ -531,6 +544,13 @@ public class Engine : MonoBehaviour
             }
         }
         return richest;
+    }
+
+    public void gameTimeGoneOff()
+    {
+        abridgedTimerEnded = true;
+        abridgedGameEndedOn = currentPlayer;
+        Debug.Log("abdriged game timer went off, player " + currentPlayer.getName());
     }
 
     public void endGame()
