@@ -41,7 +41,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject sellHousePanel;
     [SerializeField] private GameObject WarningPanel;
     [SerializeField] private GameObject PlayerPanel;
-    [SerializeField] private GameObject PlayerPanelManager;
+    [SerializeField] private Property selectedPrpoerty;
+    [SerializeField] private PlayerPanelManager PPM;
 
     public Player currentPlayer;
 
@@ -212,19 +213,19 @@ public class Engine : MonoBehaviour
 
         GameObject newPlayer2 = Instantiate(playerPrefab);
         Player newPlayerScript2 = newPlayer2.GetComponent<Player>();
-        newPlayerScript.playerName = "cat";
-        newPlayerScript.colour = MenuEnums.Colours.Red;
-        newPlayerScript.icon = MenuEnums.Icon.Cat;
-        newPlayerScript.setIcon();
+        newPlayerScript2.playerName = "cat";
+        newPlayerScript2.colour = MenuEnums.Colours.Red;
+        newPlayerScript2.icon = MenuEnums.Icon.Cat;
+        newPlayerScript2.setIcon();
         players.Add(newPlayerScript2);
         playerCount++;
 
         GameObject newPlayer3 = Instantiate(playerPrefab);
         Player newPlayerScript3 = newPlayer3.GetComponent<Player>();
-        newPlayerScript.playerName = "ship";
-        newPlayerScript.colour = MenuEnums.Colours.Purple;
-        newPlayerScript.icon = MenuEnums.Icon.Ship;
-        newPlayerScript.setIcon();
+        newPlayerScript3.playerName = "ship";
+        newPlayerScript3.colour = MenuEnums.Colours.Purple;
+        newPlayerScript3.icon = MenuEnums.Icon.Ship;
+        newPlayerScript3.setIcon();
         players.Add(newPlayerScript3);
         playerCount++;
     }
@@ -251,11 +252,8 @@ public class Engine : MonoBehaviour
             player.setCurrentTile(startTile);
             player.transform.position = startTile.transform.position;
 
-            player.hasCompletedCircuit = true;
+            player.hasCompletedCircuit = false;
         }
-        // PlayerPanelManager playerPanelManager = FindAnyObjectByType<PlayerPanelManager>();
-        // playerPanelManager.InitializePlayerPanel(players);
-
         if (players.Count > 0)
         {
             currentPlayer = players[0];
@@ -266,6 +264,7 @@ public class Engine : MonoBehaviour
         {
             Debug.LogError("No players found in the scene!");
         }
+        PPM.InitializePlayerPanel(players);
     }
 
 
@@ -273,7 +272,8 @@ public class Engine : MonoBehaviour
     private void purchasePropertyUI(Player player, Tile tile)
     {
         Property property = tile.GetComponent<Property>();
-        if (!property.IsOwned() && player.money >= property.GetPrice())
+        if (!property.IsOwned() && player.money >= property.GetPrice() && player.hasCompletedCircuit == true)
+
 
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
@@ -403,8 +403,9 @@ public class Engine : MonoBehaviour
     }
     public void updateTile_s(Property property)
     {
-        SpriteRenderer spriteRenderer = property.GetComponent<SpriteRenderer>();
-        CurrentTile_s.sprite = spriteRenderer.sprite;
+        Sprite rent_s = property.getSprite();
+        CurrentTile_s.sprite = rent_s;
+        selectedPrpoerty = property;
     }
 
     private void OnTileLanded()

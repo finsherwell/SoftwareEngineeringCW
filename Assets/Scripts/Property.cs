@@ -16,6 +16,7 @@ public class Property : Tile
     [SerializeField] private bool isOwned = false; // Will be true if the property is owned
     [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
+    [SerializeField] private Sprite rent_s; // Assigned to the player that owns the property
 
 
     private void Awake()
@@ -91,6 +92,10 @@ public class Property : Tile
                 button.GetComponentInChildren<TextMeshProUGUI>().text = "Fully Upgraded";
             }
         }
+    }
+    public Sprite getSprite()
+    {
+        return rent_s;
     }
 
 
