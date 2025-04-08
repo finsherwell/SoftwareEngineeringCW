@@ -55,6 +55,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private float playerSpacing = 3f;
     [SerializeField] private float positionOffsetY = 1f;
 
+    [SerializeField] private GameObject auctionPanel;
+
     private Dictionary<Tile, List<Player>> playersOnTiles = new Dictionary<Tile, List<Player>>();
 
     public Player currentPlayer;
@@ -322,6 +324,9 @@ public class Engine : MonoBehaviour
         logText.text = "Initializing game..." + "\n\n" + logText.text;
         logText.text = "Game ready!" + "\n\n" + logText.text;
 
+
+        auctionPanel.SetActive(false);
+
         MakePlayers();
 
         //if the game scene is ran directly (for debugging) add some players and set the game mode. Otherwise, get the game mode info from game data (players added already)
@@ -574,7 +579,7 @@ public class Engine : MonoBehaviour
         {
             doubleRolled = false;
             JailPanel.gameObject.SetActive(true);
-            JailDescriptionText.text = $"Turns until freedom: "+ currentPlayer.GetJailTime() + " turns";
+            JailDescriptionText.text = $"Turns until freedom: " + currentPlayer.GetJailTime() + " turns";
         }
     }
 
