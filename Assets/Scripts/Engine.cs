@@ -351,7 +351,7 @@ public class Engine : MonoBehaviour
             {
                 gameTime = GameData.gameTime;
                 Debug.Log("game time is " + gameTime);
-                Invoke("gameTimeGoneOff", gameTime);
+                Invoke("gameTimeGoneOff", gameTime * 60);   //multiplied by 60 so it is in mins and not secs
             }
 
         }
