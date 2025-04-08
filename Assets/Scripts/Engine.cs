@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 public class Engine : MonoBehaviour
 {
@@ -56,6 +57,9 @@ public class Engine : MonoBehaviour
     [SerializeField] private float positionOffsetY = 1f;
 
     [SerializeField] private GameObject auctionPanel;
+    [SerializeField] private GameObject gameEndedPanel;
+
+    [SerializeField] private TextMeshProUGUI winningPlayerText;
 
     private Dictionary<Tile, List<Player>> playersOnTiles = new Dictionary<Tile, List<Player>>();
 
@@ -320,6 +324,7 @@ public class Engine : MonoBehaviour
     {
 
         nextTurnButton.gameObject.SetActive(false);
+        gameEndedPanel.SetActive(false);
         Debug.Log("Initializing game...");
         logText.text = "Initializing game..." + "\n\n" + logText.text;
         logText.text = "Game ready!" + "\n\n" + logText.text;
@@ -726,10 +731,17 @@ public class Engine : MonoBehaviour
         Debug.Log("abdriged game timer went off, player " + currentPlayer.getName());
     }
 
-    public void endGame()
+    public void endGame(Player winner)
     {
-        Player winner = maxAssetPlayer();
+        //Player winner = maxAssetPlayer();
+        winningPlayerText.text = winner.getName();
+        gameEndedPanel.SetActive(true);
         Debug.Log("winner is " + winner.getName());
+    }
+
+    public void backToMenu()
+    {
+        SceneManager.LoadScene("MainMenu2");
     }
 
 }
