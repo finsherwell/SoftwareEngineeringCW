@@ -65,6 +65,10 @@ public class Engine : MonoBehaviour
 
     public Player currentPlayer;
 
+    private float abdrigedGameTimeLeft = 0;
+    [SerializeField] private TextMeshProUGUI abridgedTimeLeftText;
+
+
     public void passGo()
     {
         Debug.Log($"{currentPlayer.playerName} passed Go");
@@ -325,6 +329,8 @@ public class Engine : MonoBehaviour
 
         nextTurnButton.gameObject.SetActive(false);
         gameEndedPanel.SetActive(false);
+
+
         Debug.Log("Initializing game...");
         logText.text = "Initializing game..." + "\n\n" + logText.text;
         logText.text = "Game ready!" + "\n\n" + logText.text;
@@ -352,6 +358,16 @@ public class Engine : MonoBehaviour
                 gameTime = GameData.gameTime;
                 Debug.Log("game time is " + gameTime);
                 Invoke("gameTimeGoneOff", gameTime * 60);   //multiplied by 60 so it is in mins and not secs
+                abdrigedGameTimeLeft = gameTime * 60;
+            }
+            //if the game mode is abridged, show the text that displays how much time is left
+            if (gameMode == 1)
+            {
+                abridgedTimeLeftText.enabled = false;
+            }
+            else
+            {
+                abridgedTimeLeftText.enabled = true;
             }
 
         }
@@ -382,6 +398,17 @@ public class Engine : MonoBehaviour
 
 
 
+    }
+
+    void Update()
+    {
+        if (abdrigedGameTimeLeft > 0 && gameMode == 2)
+        {
+            abdrigedGameTimeLeft -= Time.deltaTime;
+            int minsLeft = Mathf.FloorToInt(abdrigedGameTimeLeft / 60);
+            abridgedTimeLeftText.text = "minutes left: " + minsLeft.ToString();
+            Debug.Log("set game time to " + minsLeft.ToString());
+        }
     }
 
 
