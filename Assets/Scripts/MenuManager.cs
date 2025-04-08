@@ -115,6 +115,7 @@ public class MenuManager : MonoBehaviour
 
     public void hideChangeTimeScreen()
     {
+        Debug.Log("called");
         //if the entered text can be parsed to an int, and it is above zero, set the new game time, otherwise just ignore.
         if (int.TryParse(gameTimeTextTemp, out int parsedVal))
         {

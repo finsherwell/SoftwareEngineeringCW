@@ -2285,7 +2285,7 @@ GameObject:
   - component: {fileID: 413792884}
   - component: {fileID: 413792883}
   m_Layer: 0
-  m_Name: Finished Player Button
+  m_Name: Finished Changing Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,6 +2446,7 @@ MonoBehaviour:
   newPlayerScreen: {fileID: 321742590}
   changeTimeScreen: {fileID: 1104477870}
   playerNameInput: {fileID: 1328967009}
+  gameTimeInput: {fileID: 562546558}
   gameModeText: {fileID: 672597430}
   iconButtons:
   - {fileID: 1598043253}

@@ -553,8 +553,6 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
-
-
         if (currentPlayer.money < 0)
         {
             WarningPanel.gameObject.SetActive(true);
@@ -570,11 +568,17 @@ public class Engine : MonoBehaviour
             }
         }
         currentPlayer = players[currentPlayerIndex];
+
         if (currentPlayer == null)
         {
             currentPlayerIndex++;
         }
         currentPlayer = players[currentPlayerIndex];
+        //maybe
+        if (abridgedTimerEnded == true && currentPlayer == abridgedGameEndedOn)
+        {
+            endGame(maxAssetPlayer());
+        }
         nextTurnButton.gameObject.SetActive(false);
         rollButton.gameObject.SetActive(true);
         updateTurnText(currentPlayer);
