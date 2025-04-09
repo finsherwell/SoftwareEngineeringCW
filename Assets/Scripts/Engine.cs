@@ -346,6 +346,7 @@ public class Engine : MonoBehaviour
             addDebugPlayers();
             gameMode = 1;
             gameTime = 123456789; //dont think this really needs to be here
+            abridgedTimeLeftText.enabled = false;
         }
         else
         {
@@ -639,7 +640,8 @@ public class Engine : MonoBehaviour
     {
         // Hide the warning panel when the player goes bankrupt
         WarningPanel.gameObject.SetActive(false);
-        BankruptPanel.gameObject.SetActive(true);
+        //not sure what the line below is for??? - Joe
+        //BankruptPanel.gameObject.SetActive(true);
 
         // Loop through owned properties in reverse order to avoid modifying the collection during iteration
         for (int i = currentPlayer.ownedproperties.Count - 1; i >= 0; i--)
@@ -655,10 +657,22 @@ public class Engine : MonoBehaviour
         Destroy(currentPlayer.gameObject);
 
         // Hide the bankrupt panel after processing
-        BankruptPanel.gameObject.SetActive(false);
+        //again not sure what is the bankrupt panel for ???????
+        //BankruptPanel.gameObject.SetActive(false);
+        RemovePlayerFromGame(currentPlayer);
+        Debug.Log(currentPlayer.getName() + " is broke. players left (hopefully): " + players.Count.ToString());
+        //if there is only player left, they have won!! end the game.
+        if (playerCount == 1)
+        {
+            endGame(players[0]);
+        }
+
+
 
         // Proceed to the next turn
         nextTurn();
+
+
     }
 
 
@@ -735,10 +749,16 @@ public class Engine : MonoBehaviour
         players.Remove(player);
         playerCount--;
 
-        if (currentPlayerIndex >= playerCount && playerCount > 0)
+        currentPlayerIndex++;
+        if (currentPlayerIndex >= playerCount)
         {
             currentPlayerIndex = 0;
         }
+
+        // if (currentPlayerIndex >= playerCount && playerCount > 0)
+        // {
+        //     currentPlayerIndex = 0;
+        // }
     }
 
     //returns the player who has the highest value of property + house + cash combined
