@@ -147,6 +147,7 @@ public class Player : MonoBehaviour
         if (ownedproperties.Contains(property))
         {
             property.sellHouse();
+            property.setOwned(false);
             ownedproperties.Remove(property);
             totalAssetValue -= property.GetPrice();
         }

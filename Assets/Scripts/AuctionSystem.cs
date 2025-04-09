@@ -69,7 +69,7 @@ public class AuctionSystem : MonoBehaviour
         
         inputBidField.text = "";
         auctionPanel.SetActive(true);
-        gameEngine.logText.text = $"Auction started for {property.GetName()}\n" + gameEngine.logText.text;
+        gameEngine.logText.text = $"Auction started for {property.GetName()}\n\n" + gameEngine.logText.text;
     }
 
     private void UpdatePlayerTurn()
@@ -119,7 +119,7 @@ public class AuctionSystem : MonoBehaviour
         currentBidder = bidder;
         currentBidText.text = $"Current Bid: ${currentBid}";
         
-        gameEngine.logText.text = $"{bidder.playerName} bid ${bidAmount} for {currentProperty.GetName()}\n" + gameEngine.logText.text;
+        gameEngine.logText.text = $"{bidder.playerName} bid ${bidAmount} for {currentProperty.GetName()}\n\n" + gameEngine.logText.text;
         
         AdvanceToNextBidder();
     }
@@ -127,7 +127,7 @@ public class AuctionSystem : MonoBehaviour
     public void PassBid()
     {
         Player currentPlayer = gameEngine.players[currentBidderIndex];
-        gameEngine.logText.text = $"{currentPlayer.playerName} passed on bidding\n" + gameEngine.logText.text;
+        gameEngine.logText.text = $"{currentPlayer.playerName} passed on bidding\n\n" + gameEngine.logText.text;
         
         activeBidders.Remove(currentPlayer);
         
@@ -179,7 +179,7 @@ public class AuctionSystem : MonoBehaviour
         }
         else
         {
-            gameEngine.logText.text = $"Auction complete: No one purchased {currentProperty.GetName()}\n" + gameEngine.logText.text;
+            gameEngine.logText.text = $"Auction complete: No one purchased {currentProperty.GetName()}\n\n" + gameEngine.logText.text;
             Debug.Log($"Auction complete: No one purchased {currentProperty.GetName()}");
         }
         

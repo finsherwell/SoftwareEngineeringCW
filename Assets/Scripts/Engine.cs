@@ -10,7 +10,7 @@ public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
     public GameObject playerPrefab;
-
+    [SerializeField] private CardManager cardManager;
     [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
@@ -20,6 +20,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private TextMeshProUGUI propertyBuyText;
     [SerializeField] public TextMeshProUGUI logText;
     [SerializeField] public TextMeshProUGUI JailDescriptionText;
+    [SerializeField] public TextMeshProUGUI viewText;
     private bool gameOver = false;
     [SerializeField] private int playerCount = 0;
     [SerializeField] public Dice dice1;
@@ -29,6 +30,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button buyHouseButton;
     [SerializeField] private Button sellHouseButton;
     [SerializeField] private Button WarningOKbutton;
+    [SerializeField] private Button viewOwnedButton;
+    [SerializeField] private Button doneViewButton;
     [SerializeField] private Tile startTile;
     [SerializeField] private AuctionSystem auctionSystem;
     private bool doubleRolled = false;
@@ -171,7 +174,6 @@ public class Engine : MonoBehaviour
             {
                 int dice2Value = value2;
                 Debug.Log($"Dice 2 rolled: {dice2Value}");
-
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
                 logText.text = $"Total Dice Value: {totalDiceValue}" + "\n\n" + logText.text;
@@ -322,6 +324,7 @@ public class Engine : MonoBehaviour
         newPlayerScript3.setIcon();
         players.Add(newPlayerScript3);
         playerCount++;
+        Debug.Log("player count is "+playerCount);
     }
 
     private void initializeGame()
@@ -370,9 +373,7 @@ public class Engine : MonoBehaviour
             {
                 abridgedTimeLeftText.enabled = true;
             }
-
         }
-
         foreach (Player player in players)
         {
             player.addMoney(startingMoney);
@@ -396,9 +397,8 @@ public class Engine : MonoBehaviour
         {
             Debug.LogError("No players found in the scene!");
         }
-
-
-
+        PPM.InitializePlayerPanel(players);
+        Debug.Log("PPM called with players: " + players.Count);
     }
 
     void Update()
@@ -459,7 +459,7 @@ public class Engine : MonoBehaviour
             else
             {
                 Debug.Log("No eligible players for auction");
-                logText.text = "No eligible players for auction\n" + logText.text;
+                logText.text = "No eligible players for auction\n\n" + logText.text;
                 nextTurnButton.gameObject.SetActive(true);
             }
         }
@@ -498,7 +498,7 @@ public class Engine : MonoBehaviour
                 Tile nextTile = player.getCurrentTile().GetNext();
                 player.setCurrentTile(nextTile);
 
-                //checkForPassGo(currentPlayer);
+                checkForPassGo(currentPlayer);
                 Debug.Log($"{player.playerName} moved to tile: {nextTile.GetName()}");
             }
             else
@@ -610,6 +610,7 @@ public class Engine : MonoBehaviour
         nextTurnButton.gameObject.SetActive(false);
         rollButton.gameObject.SetActive(true);
         updateTurnText(currentPlayer);
+        PPM.updateArrow(currentPlayerIndex);
         currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
 
         if (currentPlayer.GetJailTime() > 0)
@@ -640,8 +641,6 @@ public class Engine : MonoBehaviour
     {
         // Hide the warning panel when the player goes bankrupt
         WarningPanel.gameObject.SetActive(false);
-        //not sure what the line below is for??? - Joe
-        //BankruptPanel.gameObject.SetActive(true);
 
         // Loop through owned properties in reverse order to avoid modifying the collection during iteration
         for (int i = currentPlayer.ownedproperties.Count - 1; i >= 0; i--)
@@ -657,8 +656,6 @@ public class Engine : MonoBehaviour
         Destroy(currentPlayer.gameObject);
 
         // Hide the bankrupt panel after processing
-        //again not sure what is the bankrupt panel for ???????
-        //BankruptPanel.gameObject.SetActive(false);
         RemovePlayerFromGame(currentPlayer);
         Debug.Log(currentPlayer.getName() + " is broke. players left (hopefully): " + players.Count.ToString());
         //if there is only player left, they have won!! end the game.
@@ -671,6 +668,8 @@ public class Engine : MonoBehaviour
 
         // Proceed to the next turn
         nextTurn();
+        BankruptPanel.gameObject.SetActive(false);
+        PPM.removePlayer(currentPlayerIndex, players.Count);
 
 
     }
@@ -681,6 +680,7 @@ public class Engine : MonoBehaviour
     {
         string name = player.getName();
         currentPlayerText.text = $"Current Player: {name}";
+        viewText.text = $"View {name} properties";
     }
 
     public void CheckForActionEvent(Player player)
@@ -754,12 +754,50 @@ public class Engine : MonoBehaviour
         {
             currentPlayerIndex = 0;
         }
-
-        // if (currentPlayerIndex >= playerCount && playerCount > 0)
-        // {
-        //     currentPlayerIndex = 0;
-        // }
     }
+    public void viewOwned()
+    {
+        viewOwnedButton.gameObject.SetActive(false);
+        doneViewButton.gameObject.SetActive(true);
+        Color color = PPM.getPlayerColour(currentPlayerIndex);
+        for (int i = currentPlayer.ownedproperties.Count - 1; i >= 0; i--)
+        {
+            var property = currentPlayer.ownedproperties[i];
+
+            // Check if the property has an Image component (for UI elements)
+            SpriteRenderer propertyRenderer = property.GetComponent<SpriteRenderer>();
+            if (propertyRenderer != null)
+            {
+                propertyRenderer.color = color;  // Set the color of the UI image
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+    public void finishedView()
+    {
+        viewOwnedButton.gameObject.SetActive(true);
+        doneViewButton.gameObject.SetActive(false);
+        Color color = Color.white;
+        for (int i = currentPlayer.ownedproperties.Count - 1; i >= 0; i--)
+        {
+            var property = currentPlayer.ownedproperties[i];
+
+            // Check if the property has an Image component (for UI elements)
+            SpriteRenderer propertyRenderer = property.GetComponent<SpriteRenderer>();
+            if (propertyRenderer != null)
+            {
+                propertyRenderer.color = color;  // Set the color of the UI image
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+
 
     //returns the player who has the highest value of property + house + cash combined
     public Player maxAssetPlayer()
