@@ -581,6 +581,7 @@ public class Engine : MonoBehaviour
 
     public void nextTurn()
     {
+        finishedView();
         if (currentPlayer.money < 0)
         {
             WarningPanel.gameObject.SetActive(true);
