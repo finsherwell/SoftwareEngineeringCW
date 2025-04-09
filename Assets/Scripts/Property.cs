@@ -32,6 +32,10 @@ public class Property : Tile
     {
         return propertyName;
     }
+    public void setOwned(bool value)
+    {
+        isOwned = value;
+    }
     private void Start()
     {
         UpdatebuyButtonText();
