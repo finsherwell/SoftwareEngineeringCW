@@ -13,6 +13,7 @@ public class Property : Tile
     [SerializeField] private Button button; // Button to or upgrade property
     [SerializeField] private Button sellbutton; // button to sell house / property
     [SerializeField] private bool isOwned = false; // Will be true if the property is owned
+    [SerializeField] private bool isMortgaged = false; // Will be true if the property is mortgaged
     [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
     [SerializeField] private Sprite rent_s; // Assigned to the player that owns the property
@@ -101,7 +102,14 @@ public class Property : Tile
         return rent_s;
     }
 
-
+    public bool GetMortgaged()
+    {
+        return isMortgaged;
+    }
+    public void SetMortgaged(bool value)
+    {
+        isMortgaged = value;
+    }
 
     /*
     Returns the price of the property.
