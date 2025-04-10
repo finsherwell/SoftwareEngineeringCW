@@ -531,14 +531,15 @@ public class Engine : MonoBehaviour
             abridgedTimeLeftText.text = "minutes left: " + minsLeft.ToString();
             Debug.Log("set game time to " + minsLeft.ToString());
         }
-        if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetHouseCount()== 0)
+        if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetHouseCount() == 0)
         {
-            if(selectedProperty.GetMortgaged()== false)
+            if (selectedProperty.GetMortgaged() == false)
             {
-            mortgagebutton.gameObject.SetActive(true);
-            } else {unmortgageButton.gameObject.SetActive(true);}
+                mortgagebutton.gameObject.SetActive(true);
+            }
+            else { unmortgageButton.gameObject.SetActive(true); }
         }
-        else if(selectedProperty.GetOwner() != currentPlayer || selectedProperty.GetHouseCount() > 0)
+        else if (selectedProperty.GetOwner() != currentPlayer || selectedProperty.GetHouseCount() > 0)
         {
             mortgagebutton.gameObject.SetActive(false);
             unmortgageButton.gameObject.SetActive(false);
@@ -687,7 +688,7 @@ public class Engine : MonoBehaviour
                 }
                 else if (property.IsStation() == true && property.IsUtility() == false)
                 {
-                    int rent = property.GetRent(property.GetOwner().CountStations()-1);
+                    int rent = property.GetRent(property.GetOwner().CountStations() - 1);
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");
@@ -711,6 +712,11 @@ public class Engine : MonoBehaviour
     private void OnTileLanded()
     {
         Debug.Log($"{currentPlayer.playerName} has landed on a tile.");
+    }
+
+    public void hideWarningPanel()
+    {
+        WarningPanel.SetActive(false);
     }
 
     public void nextTurn()
