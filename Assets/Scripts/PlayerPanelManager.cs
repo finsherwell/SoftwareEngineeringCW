@@ -29,7 +29,7 @@ public class PlayerPanelManager : MonoBehaviour
                 continue;
             }
 
-            playerNameText[id].text = (player.playerName+"\n£"+player.money);
+            playerNameText[id].text = (player.playerName + "\nï¿½" + player.money);
 
             Image cardImage = playercards[id].GetComponent<Image>();
             if (cardImage != null)
@@ -89,7 +89,7 @@ public class PlayerPanelManager : MonoBehaviour
             // Make sure this card is active in case it was hidden earlier
             playercards[i].SetActive(true);
         }
-        for (int i =p_count; i < 4; i++)
+        for (int i = p_count; i < 4; i++)
         {
             playercards[i].SetActive(false);
         }
@@ -113,7 +113,7 @@ public class PlayerPanelManager : MonoBehaviour
     private void Update()
     {
         if (players == null || players.Count == 0)
-        { 
+        {
             return; // Exit early if no players
         }
 
@@ -134,7 +134,7 @@ public class PlayerPanelManager : MonoBehaviour
             }
 
             // Update player name and money
-            playerNameText[i].text = player.playerName + "\n£" + player.money;
+            playerNameText[i].text = player.playerName + "\nÂ£" + player.money;
         }
     }
 

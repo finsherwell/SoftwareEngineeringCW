@@ -16711,7 +16711,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1062590065}
         m_TargetAssemblyTypeName: Engine, NewAssembly
-        m_MethodName: OK
+        m_MethodName: hideWarningPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
