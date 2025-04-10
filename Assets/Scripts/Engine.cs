@@ -34,6 +34,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button doneViewButton;
     [SerializeField] private Button mortgagebutton;
     [SerializeField] private Button unmortgageButton;
+    [SerializeField] private Button viewAllButton;
+    [SerializeField] private Button doneViewAllButton;
     [SerializeField] private Tile startTile;
     [SerializeField] private AuctionSystem auctionSystem;
     private bool doubleRolled = false;
@@ -575,7 +577,44 @@ public class Engine : MonoBehaviour
         }
     }
 
+    public void viewAllProperties()
+    {
+        viewAllButton.gameObject.SetActive(false);
+        doneViewAllButton.gameObject.SetActive(true);
 
+        foreach (Player player in players)
+        {
+            Color playerColor = PPM.GetColorFromEnum(player.colour);
+
+            foreach (Property property in player.ownedproperties)
+            {
+                SpriteRenderer propertyRenderer = property.GetComponent<SpriteRenderer>();
+                if (propertyRenderer != null)
+                {
+                    propertyRenderer.color = playerColor;
+                }
+            }
+        }
+    }
+
+
+    public void finishedViewAllProperties()
+    {
+        viewAllButton.gameObject.SetActive(true);
+        doneViewAllButton.gameObject.SetActive(false);
+
+        foreach (Player player in players)
+        {
+            foreach (Property property in player.ownedproperties)
+            {
+                SpriteRenderer propertyRenderer = property.GetComponent<SpriteRenderer>();
+                if (propertyRenderer != null)
+                {
+                    propertyRenderer.color = Color.white;
+                }
+            }
+        }
+    }
 
     private void purchasePropertyUI(Player player, Tile tile)
     {
