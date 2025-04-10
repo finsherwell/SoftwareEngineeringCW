@@ -4067,7 +4067,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1062590065}
         m_TargetAssemblyTypeName: Engine, NewAssembly
-        m_MethodName: 
+        m_MethodName: onMortgageButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16711,7 +16711,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1062590065}
         m_TargetAssemblyTypeName: Engine, NewAssembly
-        m_MethodName: hideWarningPanel
+        m_MethodName: OK
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25703,7 +25703,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1062590065}
         m_TargetAssemblyTypeName: Engine, NewAssembly
-        m_MethodName: 
+        m_MethodName: onUnmortgageButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
