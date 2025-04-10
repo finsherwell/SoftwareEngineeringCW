@@ -32,6 +32,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button WarningOKbutton;
     [SerializeField] private Button viewOwnedButton;
     [SerializeField] private Button doneViewButton;
+    [SerializeField] private Button mortgagebutton;
+    [SerializeField] private Button unmortgageButton;
     [SerializeField] private Tile startTile;
     [SerializeField] private AuctionSystem auctionSystem;
     private bool doubleRolled = false;
@@ -411,6 +413,18 @@ public class Engine : MonoBehaviour
             abridgedTimeLeftText.text = "minutes left: " + minsLeft.ToString();
             Debug.Log("set game time to " + minsLeft.ToString());
         }
+        if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetHouseCount()== 0)
+        {
+            if(selectedProperty.GetMortgaged()== false)
+            {
+            mortgagebutton.gameObject.SetActive(true);
+            } else {unmortgageButton.gameObject.SetActive(true);}
+        }
+        else if(selectedProperty.GetOwner() != currentPlayer || selectedProperty.GetHouseCount() > 0)
+        {
+            mortgagebutton.gameObject.SetActive(false);
+            unmortgageButton.gameObject.SetActive(false);
+        }
     }
 
 
@@ -555,7 +569,7 @@ public class Engine : MonoBehaviour
                 }
                 else if (property.IsStation() == true && property.IsUtility() == false)
                 {
-                    int rent = property.GetRent(property.GetOwner().CountStations());
+                    int rent = property.GetRent(property.GetOwner().CountStations()-1);
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);
                     Debug.Log($"{player.playerName} paid rent to {property.GetOwner().getName()} for {rent}");

@@ -1565,6 +1565,7 @@ MonoBehaviour:
   button: {fileID: 274049289}
   sellbutton: {fileID: 493219381}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -2014771838305702419, guid: 3f3d680ca26ba2243a09b57edeca6932, type: 3}
@@ -2868,6 +2869,7 @@ MonoBehaviour:
   button: {fileID: 1424362990}
   sellbutton: {fileID: 1731822951}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -7371509505491802261, guid: 59469b5ac8b28c144817f80a3442d8c5, type: 3}
@@ -2901,6 +2903,7 @@ MonoBehaviour:
   button: {fileID: 1210547390}
   sellbutton: {fileID: 1707472311}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -4178046375966092550, guid: 47f7cf49891958c42b78d6c60ed1f780, type: 3}
@@ -3220,6 +3223,8 @@ RectTransform:
   - {fileID: 276200425}
   - {fileID: 865366571}
   - {fileID: 719943312}
+  - {fileID: 1858154313}
+  - {fileID: 286278789}
   - {fileID: 1169885624}
   - {fileID: 99184168}
   - {fileID: 1913310672}
@@ -3996,6 +4001,139 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285224702}
   m_CullTransparentMesh: 1
+--- !u!1 &286278785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 286278789}
+  - component: {fileID: 286278788}
+  - component: {fileID: 286278787}
+  - component: {fileID: 286278786}
+  m_Layer: 5
+  m_Name: Mortgage Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &286278786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286278785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 286278787}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1062590065}
+        m_TargetAssemblyTypeName: Engine, NewAssembly
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &286278787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286278785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -7588747339170474176, guid: 98f51cdf8a5341d408bd3990131951d9, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &286278788
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286278785}
+  m_CullTransparentMesh: 1
+--- !u!224 &286278789
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286278785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1616121097}
+  m_Father: {fileID: 238092134}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 743, y: 8.8961}
+  m_SizeDelta: {x: 198.0821, y: 60.9149}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &310337007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4525,6 +4663,7 @@ MonoBehaviour:
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 3207579745489812468, guid: 5c2a35a5d68e120468d7223ef12f3cf6, type: 3}
@@ -4618,6 +4757,7 @@ MonoBehaviour:
   button: {fileID: 909515498}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -164082725380277428, guid: 2c99bda2a87613d4395ee512860b1a17, type: 3}
@@ -6301,6 +6441,7 @@ MonoBehaviour:
   button: {fileID: 998604493}
   sellbutton: {fileID: 429491455}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 6894999169920593895, guid: a8bee1d1d46e48844bb1f92c0e6b2787, type: 3}
@@ -7061,6 +7202,7 @@ MonoBehaviour:
   button: {fileID: 1616831121}
   sellbutton: {fileID: 658859279}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -1540426309290004842, guid: 5d51a630c75fc1b4dbd3fc5b46bbd8ac, type: 3}
@@ -7704,6 +7846,7 @@ MonoBehaviour:
   button: {fileID: 1488694317}
   sellbutton: {fileID: 92509176}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -796155573255488767, guid: 2fb423012a0cfca4aa8924f565e48560, type: 3}
@@ -7942,6 +8085,7 @@ MonoBehaviour:
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 5181654206020448988, guid: 6f1e720053444aa48b85b3624c7c30c0, type: 3}
@@ -9360,6 +9504,7 @@ MonoBehaviour:
   button: {fileID: 1840808211}
   sellbutton: {fileID: 459214808}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -4093987921198194536, guid: 9ce6c9e963c37ba4f9141642b4a80af6, type: 3}
@@ -12504,6 +12649,7 @@ MonoBehaviour:
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 7680820834086852892, guid: acc4b49b6e2294442be80a92f61c9cd9, type: 3}
@@ -12532,6 +12678,7 @@ MonoBehaviour:
   button: {fileID: 1721409292}
   sellbutton: {fileID: 1943758180}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 6660783624410144326, guid: 039ea675330610440b05fb7b635247a7, type: 3}
@@ -12560,6 +12707,7 @@ MonoBehaviour:
   button: {fileID: 2062982906}
   sellbutton: {fileID: 1183093933}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 7157561037332017152, guid: a1a55f40f5de90e40b6b0b671d1c59f3, type: 3}
@@ -12980,6 +13128,7 @@ MonoBehaviour:
   button: {fileID: 1131632481}
   sellbutton: {fileID: 2142393823}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 4113829005332862926, guid: e11e03f4c0b73414ea24c49f92c0e9be, type: 3}
@@ -14950,6 +15099,8 @@ MonoBehaviour:
   WarningOKbutton: {fileID: 0}
   viewOwnedButton: {fileID: 1586711012}
   doneViewButton: {fileID: 578180908}
+  mortgagebutton: {fileID: 286278786}
+  unmortgageButton: {fileID: 1858154310}
   startTile: {fileID: 1121642056}
   auctionSystem: {fileID: 1762364804}
   propertyBuyImage: {fileID: 2002085023}
@@ -15581,6 +15732,7 @@ MonoBehaviour:
   button: {fileID: 1192131062}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 8102358098348255977, guid: ff489da88c7d6a24899fd62c06bd7c4f, type: 3}
@@ -15971,6 +16123,7 @@ MonoBehaviour:
   button: {fileID: 310337009}
   sellbutton: {fileID: 1072809753}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 6937817954938267909, guid: 7d7723fdddf53454a8421b47e2ee6558, type: 3}
@@ -16424,6 +16577,7 @@ MonoBehaviour:
   button: {fileID: 174667445}
   sellbutton: {fileID: 362255704}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 4349915267927364619, guid: 9587247ded469e449970bec69adb3f1d, type: 3}
@@ -16987,6 +17141,7 @@ MonoBehaviour:
   button: {fileID: 94713259}
   sellbutton: {fileID: 1659713629}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 7028616704906629411, guid: 3facca973a0072345a346bd3076427f7, type: 3}
@@ -18598,6 +18753,7 @@ MonoBehaviour:
   button: {fileID: 863468622}
   sellbutton: {fileID: 1524118332}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -8038976213705442086, guid: dbdf223ab389a2842a4b327e3d6fb487, type: 3}
@@ -18929,6 +19085,7 @@ MonoBehaviour:
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 3465286685962602723, guid: aa0cfd472c1bff946b8da8ab11c427a6, type: 3}
@@ -20564,6 +20721,7 @@ MonoBehaviour:
   button: {fileID: 1478713324}
   sellbutton: {fileID: 50911871}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -5099292496197868168, guid: 2cb853fc830c22f46bdacd9be2facf32, type: 3}
@@ -20894,6 +21052,7 @@ MonoBehaviour:
   button: {fileID: 1886695167}
   sellbutton: {fileID: 1209346195}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 4164744761163438241, guid: bcbf0b6db5bc72d47848fc68f7526277, type: 3}
@@ -22399,6 +22558,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609994761}
   m_CullTransparentMesh: 1
+--- !u!1 &1616121096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616121097}
+  - component: {fileID: 1616121099}
+  - component: {fileID: 1616121098}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1616121097
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616121096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 286278789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1616121098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616121096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Mortgage Property
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 434b71d10bbf99b478420b89e600d0d0, type: 2}
+  m_sharedMaterial: {fileID: 3362388546895867880, guid: 434b71d10bbf99b478420b89e600d0d0, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1616121099
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616121096}
+  m_CullTransparentMesh: 1
 --- !u!1 &1616831119
 GameObject:
   m_ObjectHideFlags: 0
@@ -23837,6 +24132,7 @@ MonoBehaviour:
   button: {fileID: 1045186841}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -6270953770400647376, guid: f0b0fca1e8af6db48930b12ea9558758, type: 3}
@@ -24032,6 +24328,7 @@ MonoBehaviour:
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -1045133410153605164, guid: ec0740d38cc5f5f4a82497bda3896bed, type: 3}
@@ -24848,6 +25145,7 @@ MonoBehaviour:
   button: {fileID: 493976812}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -5622901713081898559, guid: fc893aa0d3c9e1d4da870d776a4ba5b0, type: 3}
@@ -24941,6 +25239,7 @@ MonoBehaviour:
   button: {fileID: 1214232308}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 1192843865154028290, guid: cb05111a4a30c314da3d95a6d6bccbff, type: 3}
@@ -25004,6 +25303,139 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5, y: 7}
   m_EdgeRadius: 0
+--- !u!1 &1858154309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1858154313}
+  - component: {fileID: 1858154312}
+  - component: {fileID: 1858154311}
+  - component: {fileID: 1858154310}
+  m_Layer: 5
+  m_Name: UnMortgage Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1858154310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858154309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1858154311}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1062590065}
+        m_TargetAssemblyTypeName: Engine, NewAssembly
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1858154311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858154309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -7588747339170474176, guid: 98f51cdf8a5341d408bd3990131951d9, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1858154312
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858154309}
+  m_CullTransparentMesh: 1
+--- !u!224 &1858154313
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858154309}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 2109755870}
+  m_Father: {fileID: 238092134}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 743, y: 8.896118}
+  m_SizeDelta: {x: 198.0821, y: 60.9149}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1867882709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7604416121146996336, guid: 724504761ec03804b875de301080b8d4, type: 3}
@@ -25053,6 +25485,7 @@ MonoBehaviour:
   button: {fileID: 1422849068}
   sellbutton: {fileID: 1539573182}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 5272401415994956661, guid: 93fac1f4c51ffcb4fbfac32178f94504, type: 3}
@@ -27424,6 +27857,144 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062982904}
   m_CullTransparentMesh: 1
+--- !u!1 &2109755869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2109755870}
+  - component: {fileID: 2109755872}
+  - component: {fileID: 2109755871}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2109755870
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109755869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1858154313}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2109755871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109755869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Unmortgage Property
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 434b71d10bbf99b478420b89e600d0d0, type: 2}
+  m_sharedMaterial: {fileID: 3362388546895867880, guid: 434b71d10bbf99b478420b89e600d0d0, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2109755872
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109755869}
+  m_CullTransparentMesh: 1
 --- !u!1 &2113402318
 GameObject:
   m_ObjectHideFlags: 0
@@ -27726,6 +28297,7 @@ MonoBehaviour:
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
+  isMortgaged: 0
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 8389134475083476877, guid: 3f68b1cb1bb88e84d8a81f57442f281a, type: 3}
