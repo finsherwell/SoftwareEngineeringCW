@@ -625,7 +625,7 @@ public class Engine : MonoBehaviour
     private void purchasePropertyUI(Player player, Tile tile)
     {
         Property property = tile.GetComponent<Property>();
-        if (!property.IsOwned() && player.money >= property.GetPrice() && player.hasCompletedCircuit == true)
+        if (!property.IsOwned() && player.money >= property.GetPrice() && player.hasCompletedCircuit == true)//pops up the panel for purchasing the property
 
         {
             propertyBuyText.text = $"Would you like to purchase {property.GetName()} for {property.GetPrice()}?";
@@ -633,15 +633,18 @@ public class Engine : MonoBehaviour
             propertyBuyImage.sprite = spriteRenderer.sprite;
             purchasePropertyPanel.gameObject.SetActive(true);
             Debug.Log(currentPlayer.playerName + " is viewing property:" + currentPlayer.currentTile.name);
+        }   else if (!property.IsOwned() && player.money < property.GetPrice() && player.hasCompletedCircuit == true)
+        {
+            OnPassButtonClick();//property will go to auction if player has insufficient funds
         }
 
     }
-    public void OnpurchaseButtonClick()
+    public void OnpurchaseButtonClick()//listener method for calling purchaseProperty()
     {
         Property property = currentPlayer.currentTile.GetComponent<Property>();
         purchaseProperty(currentPlayer, property);
     }
-    public void OnPassButtonClick()
+    public void OnPassButtonClick()//auction panel logic fpr finding elligible players (has completed a full circuit)
     {
         Property property = currentPlayer.currentTile.GetComponent<Property>();
         purchasePropertyPanel.gameObject.SetActive(false);
@@ -678,11 +681,11 @@ public class Engine : MonoBehaviour
     }
     private void purchaseProperty(Player player, Property property)
     {
-        player.takeMoney(property.GetPrice());
+        player.takeMoney(property.GetPrice()); //take property price from player's money
         property.SetOwner(player);
         Debug.Log($"{player.playerName} purchased property: {property.GetName()}");
         logText.text = $"{player.playerName} purchased property: {property.GetName()}" + "\n\n" + logText.text;
-        purchasePropertyPanel.gameObject.SetActive(false);
+        purchasePropertyPanel.gameObject.SetActive(false);//close panel after transaction
     }
 
 

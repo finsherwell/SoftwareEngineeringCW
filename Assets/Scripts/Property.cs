@@ -189,14 +189,14 @@ public class Property : Tile
 
     public void SetOwner(Player newOwner)
     {
-        owner = newOwner;
-        newOwner.addProperty(this);
-        isOwned = true;
+        owner = newOwner;//sets the owner on tile
+        newOwner.addProperty(this);//adds the property to the player's properties list 
+        isOwned = true;//sets the owned flag to true
     }
 
-    public void ShowButtonCheck(Player player)
+    public void ShowButtonCheck(Player player)//logic for showing which buttons to be shows on properties that match the criteria for buying houses
     {
-        if (player == owner && player.HasCompleteSet(this.group) && player.money >= houseCost)
+        if (player == owner && player.HasCompleteSet(this.group) && player.money >= houseCost)//checking if player has the full set as well as enough money to buy houses
         {
             button.gameObject.SetActive(true);
         }
@@ -207,7 +207,7 @@ public class Property : Tile
     }
     public void ShowSellButtonCheck(Player player)
     {
-        if (sellbutton != null && player == owner && houses > 0)
+        if (sellbutton != null && player == owner && houses > 0)//checking for properties with houses and corresponding ownership
         {
             sellbutton.gameObject.SetActive(true);
         }
