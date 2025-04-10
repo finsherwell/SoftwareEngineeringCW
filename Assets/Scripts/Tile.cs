@@ -4,8 +4,8 @@ public class Tile : MonoBehaviour
 {
     protected Player[] playersOn;
     public Player[] players;
-    [SerializeField] protected string tileName;
-    [SerializeField] private int ID;
+    [SerializeField] public string tileName;
+    [SerializeField] public int ID;
     [SerializeField] private bool isProperty;
     public Tile nextTile;
 
