@@ -96,6 +96,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void exitGame()
+    {
+        Application.Quit();
+    }
+
     public void showNewPlayerScreen()
     {
         //show new player screen, a temp player object is created to store what info is needed 

@@ -535,7 +535,7 @@ public class Engine : MonoBehaviour
         }
         if (selectedProperty != null)
         {
-            bool showMortgageButton = selectedProperty.GetOwner() == currentPlayer && 
+            bool showMortgageButton = selectedProperty.GetOwner() == currentPlayer &&
             selectedProperty.GetHouseCount() == 0 &&
             !selectedProperty.GetMortgaged();
 
@@ -1004,6 +1004,11 @@ public class Engine : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void exitToMenu()
+    {
+        SceneManager.LoadScene("MainMenu2");
     }
 
 
