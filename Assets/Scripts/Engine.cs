@@ -273,6 +273,7 @@ public class Engine : MonoBehaviour
             newPlayerScript.colour = p.colour;
             newPlayerScript.icon = p.icon;
             newPlayerScript.setIcon();
+            newPlayerScript.setAIMode(p.isAI);
             players.Add(newPlayerScript);
             playerCount++;
         }
@@ -324,7 +325,7 @@ public class Engine : MonoBehaviour
         newPlayerScript3.setIcon();
         players.Add(newPlayerScript3);
         playerCount++;
-        Debug.Log("player count is "+playerCount);
+        Debug.Log("player count is " + playerCount);
     }
 
     private void initializeGame()
