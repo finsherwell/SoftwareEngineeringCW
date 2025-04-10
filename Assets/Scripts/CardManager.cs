@@ -79,7 +79,7 @@ public class CardManager : MonoBehaviour
 
     public void Awake()
     {
-        Debug.LogError("Card manager awakening...");
+        Debug.Log("Card manager awakening...");
         random = new System.Random();
         ParseCardData();
         LogAllCards();
