@@ -234,12 +234,10 @@ public class Player : MonoBehaviour
         if (jailTime > 0)
         {
             jail.gameObject.SetActive(true);
-            Debug.Log("SHOW SHOW ");
         }
         else
         {
 
-            Debug.Log("HIDE HIDE ");
             jail.gameObject.SetActive(false);
         }
     }

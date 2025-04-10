@@ -39,6 +39,7 @@ public class Property : Tile
     private void Start()
     {
         UpdatebuyButtonText();
+        UpdateSellButtonText();
         SetupButtonListener();
         SetupSellButtonListener();
     }
@@ -53,22 +54,26 @@ public class Property : Tile
     {
         if (sellbutton != null)
         {
-            button.onClick.AddListener(OnsellButtonClick);
+            sellbutton.onClick.AddListener(OnsellButtonClick);
         }
     }
 
     private void OnbuyButtonClick()
     {
         Debug.Log($"Buying house on:  {propertyName}");
-        if (isOwned && owner.money >= houseCost && houses < 5) // Max: 4 houses + hotel
+        if (isOwned && owner.money >= houseCost && houses <= 5) // Max: 4 houses + hotel
         {
             UpgradeProperty();
             UpdatebuyButtonText();
+            UpdateSellButtonText();
         }
     }
     private void OnsellButtonClick()
     {
+
         DowngradeProperty();
+        UpdatebuyButtonText();
+        UpdateSellButtonText();
     }
     public void UpgradeProperty() // allows player to buy houses for their property
     {
@@ -79,9 +84,26 @@ public class Property : Tile
 
     public void DowngradeProperty() // allows player to sell houses for their property
     {
+        if (houses > 0)
+        {
         owner.addMoney(houseCost);
         owner.houseSold(houseCost);
         houses--;
+        }
+    }
+    private void UpdateSellButtonText()
+    {
+        if(sellbutton!= null && button.GetComponentInChildren<TextMeshProUGUI>()!= null)
+        {
+            if (houses > 0)
+            {
+                sellbutton.GetComponentInChildren<TextMeshProUGUI>().text = $"Sell House for ${houseCost}";
+            }
+            else 
+            {
+                sellbutton.GetComponentInChildren<TextMeshProUGUI>().text = "No Houses";
+            }
+        }
     }
     private void UpdatebuyButtonText()
     {
@@ -111,9 +133,7 @@ public class Property : Tile
         isMortgaged = value;
     }
 
-    /*
-    Returns the price of the property.
-    */
+    
     public int GetPrice()
     {
         return price;
@@ -207,7 +227,7 @@ public class Property : Tile
     }
     public void ShowSellButtonCheck(Player player)
     {
-        if (sellbutton != null && player == owner && houses > 0)//checking for properties with houses and corresponding ownership
+        if (sellbutton != null && player == owner)//checking for properties with houses and corresponding ownership
         {
             sellbutton.gameObject.SetActive(true);
         }
