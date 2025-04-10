@@ -68,6 +68,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] public TextAsset cardData;
     [SerializeField] private List<ActionCard> potLuckCards;
     [SerializeField] private List<ActionCard> opportunityKnocksCards;
+    [SerializeField] private List<Sprite> cardSprites;
     [SerializeField] private System.Random random;
     [SerializeField] public Engine gameEngine;
     [SerializeField] public BoardManager board;
@@ -254,8 +255,8 @@ public class CardManager : MonoBehaviour
     private void ShowCardUI(ActionCard card)
     {
         cardUI.SetActive(true);
-        string spriteName = (card.cardNum).ToString();
-        Sprite cardSprite = Resources.Load<Sprite>($"cards/{spriteName}");
+        int spriteNum = card.cardNum - 1;
+        Sprite cardSprite = cardSprites[spriteNum];
 
         if (cardSprite != null)
         {
@@ -263,7 +264,7 @@ public class CardManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Missing card image: {spriteName}");
+            Debug.LogWarning($"Missing card image: {spriteNum}");
         }
 
         acknowledgeButton.onClick.RemoveAllListeners();
