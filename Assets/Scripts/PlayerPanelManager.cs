@@ -168,4 +168,30 @@ public class PlayerPanelManager : MonoBehaviour
         }
         return playerColor;
     }
+
+
+    //this is for when the tint needs to account for the grey
+    public Color GetColorFromEnum2(MenuEnums.Colours colour)
+    {
+        Color playerColor;
+        switch (colour)
+        {
+            case MenuEnums.Colours.Green:
+                ColorUtility.TryParseHtmlString("#45FF77", out playerColor); break;
+            case MenuEnums.Colours.Yellow:
+                ColorUtility.TryParseHtmlString("#FFD700", out playerColor); break;
+            case MenuEnums.Colours.Blue:
+                ColorUtility.TryParseHtmlString("#3357FF", out playerColor); break;
+            case MenuEnums.Colours.Purple:
+                ColorUtility.TryParseHtmlString("#8A2BE2", out playerColor); break;
+            case MenuEnums.Colours.Red:
+                ColorUtility.TryParseHtmlString("#FF5733", out playerColor); break;
+            case MenuEnums.Colours.Cyan:
+                ColorUtility.TryParseHtmlString("#00FFFF", out playerColor); break;
+            default:
+                Debug.LogWarning("[PlayerPanelManager] Unknown color enum, defaulting to white.");
+                playerColor = Color.white; break;
+        }
+        return playerColor;
+    }
 }
