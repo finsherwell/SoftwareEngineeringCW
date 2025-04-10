@@ -145,7 +145,7 @@ public class PlayerPanelManager : MonoBehaviour
         return GetColorFromEnum(player.colour);
     }
 
-    private Color GetColorFromEnum(MenuEnums.Colours colour)
+    public Color GetColorFromEnum(MenuEnums.Colours colour)
     {
         Color playerColor;
         switch (colour)
