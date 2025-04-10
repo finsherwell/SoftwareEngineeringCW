@@ -123,15 +123,15 @@ public class Engine : MonoBehaviour
 
         // Center position of the tile
         Vector3 tileCenter = tile.transform.position;
-        
+
         // Determine tile orientation based on tile ID or name
         TileOrientation orientation = GetTileOrientationFromId(tile);
         bool isCorner = tile.name.Contains("corner");
-        
+
         // Adjust spacing for corner tiles
         float currentSpacing = isCorner ? playerSpacing * 1.1f : playerSpacing;
         float currentOffsetY = isCorner ? positionOffsetY * 1.1f : positionOffsetY;
-        
+
         if (playerCount == 1)
         {
             Vector3 orientationOffset = GetOrientationOffset(orientation);
@@ -142,7 +142,7 @@ public class Engine : MonoBehaviour
         {
             // Calculate positions based on orientation
             Vector3[] positions = CalculatePositions(playerCount, tileCenter, currentSpacing, currentOffsetY, orientation);
-            
+
             for (int i = 0; i < playerCount; i++)
             {
                 playersOnTile[i].transform.position = positions[i];
@@ -153,22 +153,22 @@ public class Engine : MonoBehaviour
     private TileOrientation GetTileOrientationFromId(Tile tile)
     {
         int tileId = tile.ID;
-        
+
         if (tile.name.Contains("corner"))
             return TileOrientation.Corner;
-        
+
         if (tileId >= 1 && tileId <= 9)
             return TileOrientation.Bottom;
-        
+
         if (tileId >= 11 && tileId <= 19)
             return TileOrientation.Left;
-        
+
         if (tileId >= 21 && tileId <= 29)
             return TileOrientation.Top;
-        
+
         if (tileId >= 31 && tileId <= 39)
             return TileOrientation.Right;
-        
+
         // Default case
         return TileOrientation.Bottom;
     }
@@ -176,13 +176,13 @@ public class Engine : MonoBehaviour
     private Vector3[] CalculatePositions(int playerCount, Vector3 tileCenter, float spacing, float offsetY, TileOrientation orientation)
     {
         Vector3[] positions = new Vector3[playerCount];
-        
+
         // Add offset to move icons away from the text based on orientation
         Vector3 orientationOffset = GetOrientationOffset(orientation);
         Vector3 adjustedCenter = tileCenter + orientationOffset;
-        
+
         switch (playerCount)
-        {   
+        {
             case 1:
                 positions[0] = adjustedCenter;
                 break;
@@ -215,12 +215,12 @@ public class Engine : MonoBehaviour
                 }
                 break;
         }
-        
+
         // Adjust positions based on orientation
         for (int i = 0; i < positions.Length; i++)
         {
             Vector3 relativePos = positions[i] - adjustedCenter;
-            
+
             switch (orientation)
             {
                 case TileOrientation.Left:
@@ -239,36 +239,36 @@ public class Engine : MonoBehaviour
                     break;
             }
         }
-        
+
         return positions;
     }
 
     private Vector3 GetOrientationOffset(TileOrientation orientation)
     {
         float offsetAmount = 1f;
-        
+
         switch (orientation)
         {
             case TileOrientation.Bottom:
                 // For bottom tiles, move icons lower (away from text at top)
                 return new Vector3(0, -offsetAmount, 0);
-                
+
             case TileOrientation.Left:
                 // For left tiles, move icons more left (away from text at right)
-                return new Vector3(-offsetAmount-0.5f, 0, 0);
-                
+                return new Vector3(-offsetAmount - 0.5f, 0, 0);
+
             case TileOrientation.Top:
                 // For top tiles, move icons higher (away from text at bottom)
                 return new Vector3(0, offsetAmount, 0);
-                
+
             case TileOrientation.Right:
                 // For right tiles, move icons more right (away from text at left)
-                return new Vector3(offsetAmount+0.5f, 0, 0);
-                
+                return new Vector3(offsetAmount + 0.5f, 0, 0);
+
             case TileOrientation.Corner:
                 // For corner tiles, move icons more down
                 return new Vector3(0, -offsetAmount * 1.7f, 0);
-                
+
             default:
                 return Vector3.zero;
         }
@@ -291,6 +291,8 @@ public class Engine : MonoBehaviour
             dice2.rollAndReturn(value2 =>
             {
                 int dice2Value = value2;
+                value1 = 5;
+                value2 = 5;
                 Debug.Log($"Dice 2 rolled: {dice2Value}");
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
@@ -663,7 +665,7 @@ public class Engine : MonoBehaviour
                 }
                 else if (property.IsStation() == false && property.IsUtility() == true)
                 {
-                    int i = property.GetOwner().CountUtilities()-1;
+                    int i = property.GetOwner().CountUtilities() - 1;
                     int multiplier = property.GetRent(i);
                     int rent = multiplier * diceValue;
                     player.takeMoney(rent);
@@ -707,7 +709,7 @@ public class Engine : MonoBehaviour
             WarningPanel.gameObject.SetActive(true);
             return;
         }
-        if (!doubleRolled)
+        if (!doubleRolled || currentPlayer.GetJailTime() > 0)
         {
             currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255);
             currentPlayerIndex++;
