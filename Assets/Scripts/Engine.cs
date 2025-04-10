@@ -10,7 +10,7 @@ public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
     public GameObject playerPrefab;
-    [SerializeField] private CardManager cardManager;
+    [SerializeField] public CardManager cardManager;
     [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
     [SerializeField] private int passGoMoney = 200;
@@ -64,7 +64,7 @@ public class Engine : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI winningPlayerText;
 
-    private Dictionary<Tile, List<Player>> playersOnTiles = new Dictionary<Tile, List<Player>>();
+    public Dictionary<Tile, List<Player>> playersOnTiles = new Dictionary<Tile, List<Player>>();
 
     public Player currentPlayer;
 
@@ -113,7 +113,7 @@ public class Engine : MonoBehaviour
         }
     }
 
-    private void PosPlayerOnTile(Tile tile)
+    public void PosPlayerOnTile(Tile tile)
     {
         if (!playersOnTiles.ContainsKey(tile) || playersOnTiles[tile].Count == 0)
             return;
