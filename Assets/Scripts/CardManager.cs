@@ -105,11 +105,6 @@ public class CardManager : MonoBehaviour
             foreach (var prop in jsonObject.Properties())
             {
                 int cardNum = int.Parse(prop.Name);
-
-                if (cardNum == 11)
-                {
-                    continue;
-                }
             
                 JObject cardInfo = (JObject)prop.Value;
                 
@@ -251,27 +246,37 @@ public class CardManager : MonoBehaviour
         // Return the drawn card
         return drawnCard;
     }
-
+    
     private void ShowCardUI(ActionCard card)
     {
-        cardUI.SetActive(true);
         int spriteNum = card.cardNum - 1;
-        Sprite cardSprite = cardSprites[spriteNum];
-
-        if (cardSprite != null)
+        
+        Debug.Log($"Card #{card.cardNum}: '{card.description}' - using sprite index {spriteNum}");
+        Debug.Log($"Card action type: {card.action1.action}, amount: {card.action1.amount}");
+        
+        if (spriteNum >= 0 && spriteNum < cardSprites.Count)
         {
-            cardImage.sprite = cardSprite;
+            Sprite cardSprite = cardSprites[spriteNum];
+            if (cardSprite != null)
+            {
+                cardImage.sprite = cardSprite;
+                Debug.Log($"Sprite set successfully: {cardSprite.name}");
+                cardUI.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning($"Missing card sprite at index: {spriteNum}");
+            }
         }
         else
         {
-            Debug.LogWarning($"Missing card image: {spriteNum}");
+            Debug.LogError($"Card sprite index out of bounds: {spriteNum} (total sprites: {cardSprites.Count})");
         }
 
         acknowledgeButton.onClick.RemoveAllListeners();
         acknowledgeButton.onClick.AddListener(() =>
         {
             cardUI.SetActive(false);
-            ExecuteCardActions(card);
         });
     }
 
