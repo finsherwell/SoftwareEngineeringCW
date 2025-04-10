@@ -533,6 +533,13 @@ public class Engine : MonoBehaviour
 
     void Update()
     {
+        foreach (Player player in players)
+        {
+            if (player.money > 99999)
+            {
+                logText.text = $"HIDE HIDE" + "\n\n" + logText.text;
+            }
+        }
         if (abdrigedGameTimeLeft > 0 && gameMode == 2)
         {
             abdrigedGameTimeLeft -= Time.deltaTime;
