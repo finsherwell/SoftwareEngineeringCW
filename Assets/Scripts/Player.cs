@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public bool hasCompletedCircuit = false;
     private int positionID;
 
+    private int isAI = 0;   //0 = actual player, 1 = easy ai, 2 = hard ai
+
     public int totalAssetValue = 0; //stores the value of players property portfolio + house portfolio + cash on hand
 
     void Awake()
@@ -240,6 +242,12 @@ public class Player : MonoBehaviour
     public void houseSold(int money)
     {
         totalAssetValue -= money;
+    }
+
+    public void setAIMode(int ai)
+    {
+        // 0 = player, 1 = easy ai, 2 = hard ai
+        isAI = ai;
     }
 }
 
