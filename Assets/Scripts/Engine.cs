@@ -56,7 +56,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private GameObject BankruptPanel;
     [SerializeField] private PlayerPanelManager PPM;
 
-    [SerializeField] private float playerSpacing = 3f;
+    [SerializeField] private float playerSpacing = 2f;
     [SerializeField] private float positionOffsetY = 1f;
 
     [SerializeField] private GameObject auctionPanel;
@@ -71,6 +71,14 @@ public class Engine : MonoBehaviour
     private float abdrigedGameTimeLeft = 0;
     [SerializeField] private TextMeshProUGUI abridgedTimeLeftText;
 
+    private enum TileOrientation
+    {
+        Bottom,
+        Left,
+        Top,
+        Right,
+        Corner
+    }
 
     public void passGo()
     {
@@ -101,7 +109,7 @@ public class Engine : MonoBehaviour
 
         foreach (Tile tile in playersOnTiles.Keys)
         {
-
+            PosPlayerOnTile(tile);
         }
     }
 
@@ -115,44 +123,154 @@ public class Engine : MonoBehaviour
 
         // Center position of the tile
         Vector3 tileCenter = tile.transform.position;
-
+        
+        // Determine tile orientation based on tile ID or name
+        TileOrientation orientation = GetTileOrientationFromId(tile);
+        bool isCorner = tile.name.Contains("corner");
+        
+        // Adjust spacing for corner tiles
+        float currentSpacing = isCorner ? playerSpacing * 1.1f : playerSpacing;
+        float currentOffsetY = isCorner ? positionOffsetY * 1.1f : positionOffsetY;
+        
         if (playerCount == 1)
         {
-            // Just one player - center them on the tile
-            playersOnTile[0].transform.position = tileCenter;
+            Vector3 orientationOffset = GetOrientationOffset(orientation);
+            Vector3 adjustedCenter = tileCenter + orientationOffset;
+            playersOnTile[0].transform.position = adjustedCenter;
         }
         else
         {
-            // Multiple players - arrange them in a pattern
-            switch (playerCount)
+            // Calculate positions based on orientation
+            Vector3[] positions = CalculatePositions(playerCount, tileCenter, currentSpacing, currentOffsetY, orientation);
+            
+            for (int i = 0; i < playerCount; i++)
             {
-                case 2:
-                    // Two players - place them side by side
-                    playersOnTile[0].transform.position = tileCenter + new Vector3(-playerSpacing / 2, 0, 0);
-                    playersOnTile[1].transform.position = tileCenter + new Vector3(playerSpacing / 2, 0, 0);
+                playersOnTile[i].transform.position = positions[i];
+            }
+        }
+    }
+
+    private TileOrientation GetTileOrientationFromId(Tile tile)
+    {
+        int tileId = tile.ID;
+        
+        if (tile.name.Contains("corner"))
+            return TileOrientation.Corner;
+        
+        if (tileId >= 1 && tileId <= 9)
+            return TileOrientation.Bottom;
+        
+        if (tileId >= 11 && tileId <= 19)
+            return TileOrientation.Left;
+        
+        if (tileId >= 21 && tileId <= 29)
+            return TileOrientation.Top;
+        
+        if (tileId >= 31 && tileId <= 39)
+            return TileOrientation.Right;
+        
+        // Default case
+        return TileOrientation.Bottom;
+    }
+
+    private Vector3[] CalculatePositions(int playerCount, Vector3 tileCenter, float spacing, float offsetY, TileOrientation orientation)
+    {
+        Vector3[] positions = new Vector3[playerCount];
+        
+        // Add offset to move icons away from the text based on orientation
+        Vector3 orientationOffset = GetOrientationOffset(orientation);
+        Vector3 adjustedCenter = tileCenter + orientationOffset;
+        
+        switch (playerCount)
+        {   
+            case 1:
+                positions[0] = adjustedCenter;
+                break;
+            case 2:
+                positions[0] = adjustedCenter + new Vector3(-spacing / 2, 0, 0);
+                positions[1] = adjustedCenter + new Vector3(spacing / 2, 0, 0);
+                break;
+            case 3:
+                positions[0] = adjustedCenter + new Vector3(0, offsetY, 0);
+                positions[1] = adjustedCenter + new Vector3(-spacing / 2, -offsetY, 0);
+                positions[2] = adjustedCenter + new Vector3(spacing / 2, -offsetY, 0);
+                break;
+            case 4:
+                positions[0] = adjustedCenter + new Vector3(-spacing / 2, offsetY, 0);
+                positions[1] = adjustedCenter + new Vector3(spacing / 2, offsetY, 0);
+                positions[2] = adjustedCenter + new Vector3(-spacing / 2, -offsetY, 0);
+                positions[3] = adjustedCenter + new Vector3(spacing / 2, -offsetY, 0);
+                break;
+            case 5:
+                positions[0] = adjustedCenter;
+                positions[1] = adjustedCenter + new Vector3(-spacing / 2, offsetY, 0);
+                positions[2] = adjustedCenter + new Vector3(spacing / 2, offsetY, 0);
+                positions[3] = adjustedCenter + new Vector3(-spacing / 2, -offsetY, 0);
+                positions[4] = adjustedCenter + new Vector3(spacing / 2, -offsetY, 0);
+                break;
+            default:
+                for (int i = 0; i < playerCount; i++)
+                {
+                    positions[i] = adjustedCenter;
+                }
+                break;
+        }
+        
+        // Adjust positions based on orientation
+        for (int i = 0; i < positions.Length; i++)
+        {
+            Vector3 relativePos = positions[i] - adjustedCenter;
+            
+            switch (orientation)
+            {
+                case TileOrientation.Left:
+                    // Rotate 90 degrees counter-clockwise
+                    positions[i] = adjustedCenter + new Vector3(relativePos.y, -relativePos.x, relativePos.z);
                     break;
-                case 3:
-                    // Three players - triangle formation
-                    playersOnTile[0].transform.position = tileCenter + new Vector3(0, positionOffsetY, 0);
-                    playersOnTile[1].transform.position = tileCenter + new Vector3(-playerSpacing / 2, -positionOffsetY, 0);
-                    playersOnTile[2].transform.position = tileCenter + new Vector3(playerSpacing / 2, -positionOffsetY, 0);
+                case TileOrientation.Top:
+                    // Rotate 180 degrees
+                    positions[i] = adjustedCenter + new Vector3(-relativePos.x, -relativePos.y, relativePos.z);
                     break;
-                case 4:
-                    // Four players - square formation
-                    playersOnTile[0].transform.position = tileCenter + new Vector3(-playerSpacing / 2, positionOffsetY, 0);
-                    playersOnTile[1].transform.position = tileCenter + new Vector3(playerSpacing / 2, positionOffsetY, 0);
-                    playersOnTile[2].transform.position = tileCenter + new Vector3(-playerSpacing / 2, -positionOffsetY, 0);
-                    playersOnTile[3].transform.position = tileCenter + new Vector3(playerSpacing / 2, -positionOffsetY, 0);
+                case TileOrientation.Right:
+                    // Rotate 270 degrees counter-clockwise
+                    positions[i] = adjustedCenter + new Vector3(-relativePos.y, relativePos.x, relativePos.z);
                     break;
-                case 5:
-                    // Five players - X formation (four corners + center)
-                    playersOnTile[0].transform.position = tileCenter;
-                    playersOnTile[1].transform.position = tileCenter + new Vector3(-playerSpacing / 2, positionOffsetY, 0);
-                    playersOnTile[2].transform.position = tileCenter + new Vector3(playerSpacing / 2, positionOffsetY, 0);
-                    playersOnTile[3].transform.position = tileCenter + new Vector3(-playerSpacing / 2, -positionOffsetY, 0);
-                    playersOnTile[4].transform.position = tileCenter + new Vector3(playerSpacing / 2, -positionOffsetY, 0);
+                case TileOrientation.Corner:
                     break;
             }
+        }
+        
+        return positions;
+    }
+
+    private Vector3 GetOrientationOffset(TileOrientation orientation)
+    {
+        float offsetAmount = 1f;
+        
+        switch (orientation)
+        {
+            case TileOrientation.Bottom:
+                // For bottom tiles, move icons lower (away from text at top)
+                return new Vector3(0, -offsetAmount, 0);
+                
+            case TileOrientation.Left:
+                // For left tiles, move icons more left (away from text at right)
+                return new Vector3(-offsetAmount-0.5f, 0, 0);
+                
+            case TileOrientation.Top:
+                // For top tiles, move icons higher (away from text at bottom)
+                return new Vector3(0, offsetAmount, 0);
+                
+            case TileOrientation.Right:
+                // For right tiles, move icons more right (away from text at left)
+                return new Vector3(offsetAmount+0.5f, 0, 0);
+                
+            case TileOrientation.Corner:
+                // For corner tiles, move icons more down
+                return new Vector3(0, -offsetAmount * 1.7f, 0);
+                
+            default:
+                return Vector3.zero;
         }
     }
 
