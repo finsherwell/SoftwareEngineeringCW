@@ -289,14 +289,14 @@ public class Engine : MonoBehaviour
         dice1.GetComponent<Animation>().Play("diceGo1");
         dice1.rollAndReturn(value1 =>
         {
-            int dice1Value = 3;//value1;
+            int dice1Value = value1;
             Debug.Log($"Dice 1 rolled: {dice1Value}");
 
             // Trigger animation on dice2 before rolling
             dice2.GetComponent<Animation>().Play("diceGo2");
             dice2.rollAndReturn(value2 =>
             {
-                int dice2Value = 4;//value2;
+                int dice2Value = value2;
                 Debug.Log($"Dice 2 rolled: {dice2Value}");
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
@@ -319,7 +319,7 @@ public class Engine : MonoBehaviour
                 }
                 if (currentPlayer.GetJailTime() == 0)
                 {
-                movePlayer(totalDiceValue, currentPlayer);
+                    movePlayer(totalDiceValue, currentPlayer);
 
 
                     Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
@@ -633,7 +633,8 @@ public class Engine : MonoBehaviour
             propertyBuyImage.sprite = spriteRenderer.sprite;
             purchasePropertyPanel.gameObject.SetActive(true);
             Debug.Log(currentPlayer.playerName + " is viewing property:" + currentPlayer.currentTile.name);
-        }   else if (!property.IsOwned() && player.money < property.GetPrice() && player.hasCompletedCircuit == true)
+        }
+        else if (!property.IsOwned() && player.money < property.GetPrice() && player.hasCompletedCircuit == true)
         {
             OnPassButtonClick();//property will go to auction if player has insufficient funds
         }
@@ -838,7 +839,7 @@ public class Engine : MonoBehaviour
             if (currentPlayer.hasGOOJ)
             {
                 GOOJButton.gameObject.SetActive(true);
-            } 
+            }
             JailDescriptionText.text = $"Turns until freedom: " + currentPlayer.GetJailTime() + " turns";
         }
     }

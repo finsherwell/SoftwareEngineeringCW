@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         int count = 0;
         foreach (Property property in ownedproperties)
         {
-            if (property.IsUtility()== true)
+            if (property.IsUtility() == true)
             {
                 count++;
             }
@@ -227,6 +227,24 @@ public class Player : MonoBehaviour
                 return 3;
         }
     }
+    void Update()
+    {
+        //Debug.Log("jail time: " + jailTime.ToString());
+        Transform jail = transform.Find("Jail Icon");
+        if (jailTime > 0)
+        {
+            jail.gameObject.SetActive(true);
+            Debug.Log("SHOW SHOW ");
+        }
+        else
+        {
+
+            Debug.Log("HIDE HIDE ");
+            jail.gameObject.SetActive(false);
+        }
+    }
+
+
     public bool HasCompleteSet(string group)
     {
         int requiredCount = (group == "Brown" || group == "Dark Blue") ? 2 : 3;
