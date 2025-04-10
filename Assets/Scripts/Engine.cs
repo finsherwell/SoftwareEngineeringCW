@@ -531,17 +531,47 @@ public class Engine : MonoBehaviour
             abridgedTimeLeftText.text = "minutes left: " + minsLeft.ToString();
             Debug.Log("set game time to " + minsLeft.ToString());
         }
-        if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetHouseCount()== 0)
+        if (selectedProperty != null)
         {
-            if(selectedProperty.GetMortgaged()== false)
+            if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetHouseCount()== 0)//logic for toggling button appearance
             {
-            mortgagebutton.gameObject.SetActive(true);
-            } else {unmortgageButton.gameObject.SetActive(true);}
+                if(selectedProperty.GetMortgaged()== false)
+                {
+                mortgagebutton.gameObject.SetActive(true);
+                }
+            }
+            else if(selectedProperty.GetOwner() != currentPlayer || selectedProperty.GetHouseCount() > 0)
+            {
+                mortgagebutton.gameObject.SetActive(false);
+                unmortgageButton.gameObject.SetActive(false);
+            }
+            if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetMortgaged() == true)
+            {
+                mortgagebutton.gameObject.SetActive(false);
+                unmortgageButton.gameObject.SetActive(true);
+            }
         }
-        else if(selectedProperty.GetOwner() != currentPlayer || selectedProperty.GetHouseCount() > 0)
+    }
+    public void onMortgageButtonClick()
+    {
+        Property property = selectedProperty;
+        if (property.GetMortgaged() == false)
         {
-            mortgagebutton.gameObject.SetActive(false);
-            unmortgageButton.gameObject.SetActive(false);
+            property.SetMortgaged(true);
+            currentPlayer.money += property.GetPrice() / 2;
+            print($"{currentPlayer.playerName} mortgaged {property.GetName()} for {property.GetPrice() / 2}");
+            logText.text = $"{currentPlayer.playerName} mortgaged {property.GetName()} for {property.GetPrice() / 2}" + "\n\n" + logText.text;
+        }
+    }
+    public void onUnmortgageButtonClick()
+    {
+        Property property = selectedProperty;
+        if (property.GetMortgaged() == true)
+        {
+            property.SetMortgaged(false);
+            currentPlayer.money -= property.GetPrice();
+            print($"{currentPlayer.playerName} unmortgaged {property.GetName()} for {property.GetPrice() / 2}");
+            logText.text = $"{currentPlayer.playerName} unmortgaged {property.GetName()} for {property.GetPrice() / 2}" + "\n\n" + logText.text;
         }
     }
 
