@@ -533,23 +533,22 @@ public class Engine : MonoBehaviour
         }
         if (selectedProperty != null)
         {
-            if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetHouseCount()== 0)//logic for toggling button appearance
-            {
-                if(selectedProperty.GetMortgaged()== false)
-                {
-                mortgagebutton.gameObject.SetActive(true);
-                }
-            }
-            else if(selectedProperty.GetOwner() != currentPlayer || selectedProperty.GetHouseCount() > 0)
-            {
-                mortgagebutton.gameObject.SetActive(false);
-                unmortgageButton.gameObject.SetActive(false);
-            }
-            if (selectedProperty.GetOwner() == currentPlayer && selectedProperty.GetMortgaged() == true)
-            {
-                mortgagebutton.gameObject.SetActive(false);
-                unmortgageButton.gameObject.SetActive(true);
-            }
+            bool showMortgageButton = selectedProperty.GetOwner() == currentPlayer && 
+            selectedProperty.GetHouseCount() == 0 &&
+            !selectedProperty.GetMortgaged();
+
+            bool showUnmortgageButton = selectedProperty.GetOwner() == currentPlayer &&
+            selectedProperty.GetMortgaged() &&
+            currentPlayer.money >= selectedProperty.GetPrice();
+
+            mortgagebutton.gameObject.SetActive(showMortgageButton);
+            unmortgageButton.gameObject.SetActive(showUnmortgageButton);
+        }
+        else
+        {
+            // If no property is selected, hide both buttons
+            mortgagebutton.gameObject.SetActive(false);
+            unmortgageButton.gameObject.SetActive(false);
         }
     }
     public void onMortgageButtonClick()
