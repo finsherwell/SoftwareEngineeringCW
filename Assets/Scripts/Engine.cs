@@ -291,8 +291,6 @@ public class Engine : MonoBehaviour
             dice2.rollAndReturn(value2 =>
             {
                 int dice2Value = value2;
-                value1 = 5;
-                value2 = 5;
                 Debug.Log($"Dice 2 rolled: {dice2Value}");
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");
