@@ -36,6 +36,8 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button unmortgageButton;
     [SerializeField] private Button viewAllButton;
     [SerializeField] private Button doneViewAllButton;
+
+    [SerializeField] private Button GOOJButton;
     [SerializeField] private Tile startTile;
     [SerializeField] private AuctionSystem auctionSystem;
     private bool doubleRolled = false;
@@ -306,6 +308,8 @@ public class Engine : MonoBehaviour
                     if (doubleCount == 3)
                     {
                         GoToJail();
+                        doubleCount = 0;
+                        doubleRolled = false;
                     }
                 }
                 else
@@ -313,14 +317,17 @@ public class Engine : MonoBehaviour
                     doubleRolled = false;
                     doubleCount = 0;
                 }
+                if (currentPlayer.GetJailTime() == 0)
+                {
                 movePlayer(totalDiceValue, currentPlayer);
 
 
-                Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
-                Property property = currentPlayer.currentTile.GetComponent<Property>();
-                if (currentPlayer.currentTile.IsProperty() == true && !property.IsOwned())
-                {
-                    purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
+                    Debug.Log(currentPlayer.playerName + "is on" + currentPlayer.currentTile.name);
+                    Property property = currentPlayer.currentTile.GetComponent<Property>();
+                    if (currentPlayer.currentTile.IsProperty() == true && !property.IsOwned())
+                    {
+                        purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
+                    }
                 }
                 nextTurnButton.gameObject.SetActive(true);
             });
@@ -825,6 +832,10 @@ public class Engine : MonoBehaviour
         {
             doubleRolled = false;
             JailPanel.gameObject.SetActive(true);
+            if (currentPlayer.hasGOOJ)
+            {
+                GOOJButton.gameObject.SetActive(true);
+            } 
             JailDescriptionText.text = $"Turns until freedom: " + currentPlayer.GetJailTime() + " turns";
         }
     }
@@ -834,6 +845,7 @@ public class Engine : MonoBehaviour
     {
         currentPlayer.takeMoney(50);
         currentPlayer.setInJail(0);
+        GOOJButton.gameObject.SetActive(false);
         JailPanel.gameObject.SetActive(false);
         logText.text = $"{currentPlayer.playerName} has left Jail!" + "\n\n" + logText.text;
         nextTurn();
@@ -841,9 +853,18 @@ public class Engine : MonoBehaviour
     public void JailNextTurn()
     {
         currentPlayer.setInJail(currentPlayer.GetJailTime() - 1);
+        GOOJButton.gameObject.SetActive(false);
         JailPanel.gameObject.SetActive(false);
         nextTurn();
 
+    }
+    public void UseGOOJ()
+    {
+        currentPlayer.hasGOOJ = false;
+        GOOJButton.gameObject.SetActive(false);
+        JailPanel.gameObject.SetActive(false);
+        logText.text = $"{currentPlayer.playerName} has left Jail!" + "\n\n" + logText.text;
+        nextTurn();
     }
     public void Bankrupt()
     {
