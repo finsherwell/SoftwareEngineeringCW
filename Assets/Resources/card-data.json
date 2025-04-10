@@ -13,7 +13,7 @@
         },
     "3" : {
         "Description" : "You are up the creek with no paddle - go back to the Old Creek",
-        "Action" : { "Type" : "pay_player", "Amount" : 200},
+        "Action" : { "Type" : "move", "Property" : "The Old Creek"},
         "Choice" : false,
         "Type": "Pot Luck"
         },
@@ -65,7 +65,7 @@
             "Action1" : { "Type" : "pay_bank", "Amount" : 10},
             "Action2" : { "Type": "opportunity_knocks" }
         },
-        "Choice" : true,
+        "Choice" : false,
         "Type": "Pot Luck"
         },
     "12" : {
@@ -189,8 +189,8 @@
         "Type": "Opportunity Knocks"
         },
     "30" : {
-        "Description" : "Savings bond matures, collect £100",
-        "Action" : { "Type" : "pay_player", "Amount" : 100},
+        "Description" : "Advance to Skywalker Drive. If you pass GO collect £200",
+        "Action" : { "Type" : "move", "Property" : "Skywalker Drive"},
         "Choice" : false,
         "Type": "Opportunity Knocks"
         },
@@ -201,14 +201,14 @@
         "Type": "Opportunity Knocks"
         },
     "32" : {
-        "Description" : "Received interest on shares of £25",
-        "Action" : { "Type" : "pay_player", "Amount" : 25},
+        "Description" : "Drunk in charge of a hoverboard. Fine £30",
+        "Action" : { "Type" : "pay_bank", "Amount" : 30},
         "Choice" : false,
         "Type": "Opportunity Knocks"
         },
     "33" : {
-        "Description" : "It's your birthday. Collect £10 from each player",
-        "Action" : { "Type" : "receive_player", "Amount" : 10},
+        "Description" : "Get out of jail free",
+        "Action" : { "Type" : "avoid_jail" },
         "Choice" : false,
         "Type": "Opportunity Knocks"
     }

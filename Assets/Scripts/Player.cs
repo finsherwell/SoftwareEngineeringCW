@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     public MenuEnums.Colours colour;
     public MenuEnums.Icon icon;
-    private int jailTime = 0;
+    [SerializeField] private int jailTime = 0;
     public bool hasGOOJ = false;
     public bool hasCompletedCircuit = false;
     private int positionID;

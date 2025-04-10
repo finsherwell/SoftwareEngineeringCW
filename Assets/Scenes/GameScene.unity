@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -321, y: -239}
-  m_SizeDelta: {x: 156.7769, y: 42.8926}
+  m_AnchoredPosition: {x: -379.40192, y: -239}
+  m_SizeDelta: {x: 100, y: 42.8926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229562
 MonoBehaviour:
@@ -2248,8 +2248,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3195,8 +3195,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4159,7 +4159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &286278786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7660,6 +7660,7 @@ RectTransform:
   - {fileID: 492530774}
   - {fileID: 1229561}
   - {fileID: 1609994762}
+  - {fileID: 1316066102}
   m_Father: {fileID: 926017223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8169,7 +8170,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601611106}
   m_CullTransparentMesh: 1
---- !u!1 &603048198
+--- !u!114 &603956353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870785142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144322f77dd1a4144b332eb179a1562f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  tileName: Pickard Avenue
+  ID: 27
+  isProperty: 1
+  nextTile: {fileID: 610018982}
+  propertyName: 
+  group: Yellow
+  price: 260
+  houseCost: 150
+  rentLevels: 160000006e0000004a01000020030000cf0300007e040000
+  button: {fileID: 1488694317}
+  sellbutton: {fileID: 92509176}
+  isOwned: 0
+  isMortgaged: 0
+  houses: 0
+  owner: {fileID: 0}
+  rent_s: {fileID: -796155573255488767, guid: 2fb423012a0cfca4aa8924f565e48560, type: 3}
+--- !u!1 &606711605
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8177,9 +8207,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 603048199}
-  - component: {fileID: 603048201}
-  - component: {fileID: 603048200}
+  - component: {fileID: 606711606}
+  - component: {fileID: 606711608}
+  - component: {fileID: 606711607}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -8187,32 +8217,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &603048199
+--- !u!224 &606711606
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603048198}
+  m_GameObject: {fileID: 606711605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 956257592}
+  m_Father: {fileID: 1316066102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0000038147}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &603048200
+--- !u!114 &606711607
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603048198}
+  m_GameObject: {fileID: 606711605}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -8228,8 +8258,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Done
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 434b71d10bbf99b478420b89e600d0d0, type: 2}
-  m_sharedMaterial: {fileID: 3362388546895867880, guid: 434b71d10bbf99b478420b89e600d0d0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8297,43 +8327,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &603048201
+--- !u!222 &606711608
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603048198}
+  m_GameObject: {fileID: 606711605}
   m_CullTransparentMesh: 1
---- !u!114 &603956353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870785142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144322f77dd1a4144b332eb179a1562f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: []
-  tileName: Pickard Avenue
-  ID: 27
-  isProperty: 1
-  nextTile: {fileID: 610018982}
-  propertyName: 
-  group: Yellow
-  price: 260
-  houseCost: 150
-  rentLevels: 160000006e0000004a01000020030000cf0300007e040000
-  button: {fileID: 1488694317}
-  sellbutton: {fileID: 92509176}
-  isOwned: 0
-  isMortgaged: 0
-  houses: 0
-  owner: {fileID: 0}
-  rent_s: {fileID: -796155573255488767, guid: 2fb423012a0cfca4aa8924f565e48560, type: 3}
 --- !u!1 &607995493
 GameObject:
   m_ObjectHideFlags: 0
@@ -16199,8 +16200,9 @@ MonoBehaviour:
   doneViewButton: {fileID: 578180908}
   mortgagebutton: {fileID: 286278786}
   unmortgageButton: {fileID: 1858154310}
-  viewAllButton: {fileID: 287032440}
-  doneViewAllButton: {fileID: 956257593}
+  viewAllButton: {fileID: 0}
+  doneViewAllButton: {fileID: 0}
+  GOOJButton: {fileID: 0}
   startTile: {fileID: 1121642056}
   auctionSystem: {fileID: 1762364804}
   propertyBuyImage: {fileID: 2002085023}
@@ -23759,8 +23761,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 328, y: -239}
-  m_SizeDelta: {x: 156.7769, y: 42.8926}
+  m_AnchoredPosition: {x: 372.4552, y: -239}
+  m_SizeDelta: {x: 100, y: 42.8926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1609994763
 MonoBehaviour:
@@ -27896,40 +27898,7 @@ MonoBehaviour:
   cardData: {fileID: 0}
   potLuckCards: []
   opportunityKnocksCards: []
-  cardSprites:
-  - {fileID: -855298285791758126, guid: 9a3dd5061a851224b8bd894924575ffd, type: 3}
-  - {fileID: 6937817954938267909, guid: cc77e5add41c86243bbd84efd75dd28b, type: 3}
-  - {fileID: -6470460504253458178, guid: a3068346e98f4584aa2a9fec9aba2104, type: 3}
-  - {fileID: -4178046375966092550, guid: d208b679eb14b8a44b2b75dcac7852f2, type: 3}
-  - {fileID: 4130640169021434097, guid: 093a6c7964c4ffc48a2335dde98a0a69, type: 3}
-  - {fileID: 3465286685962602723, guid: 0be078b56066ffa4ab64fbdd92868ee3, type: 3}
-  - {fileID: 7028616704906629411, guid: 13554920647273640935492260806cac, type: 3}
-  - {fileID: 8288426215254106694, guid: 2c827725829a66241be11423655b0df6, type: 3}
-  - {fileID: 4113829005332862926, guid: 3529a392b3386434ba04218dd30b413f, type: 3}
-  - {fileID: -5099292496197868168, guid: 9e0e39588fa88ec4d88726ea87c9c7ee, type: 3}
-  - {fileID: -2966200626249415253, guid: c01312f3ae93b2545b3c263b137e5fd4, type: 3}
-  - {fileID: -1540426309290004842, guid: 921bbf75fddc6d0409d4090cfab48652, type: 3}
-  - {fileID: 8389134475083476877, guid: 616034e908aeee84281a7fa21707dfbe, type: 3}
-  - {fileID: -6270953770400647376, guid: cd67b5876a47aca458b970f6ccb2e735, type: 3}
-  - {fileID: 4349915267927364619, guid: e53a978a180184e47963d86891906d2b, type: 3}
-  - {fileID: 7680820834086852892, guid: 195ad1ab8683282459712705fb1a2d78, type: 3}
-  - {fileID: 6660783624410144326, guid: b5b826df391a63a4b95c98492525d457, type: 3}
-  - {fileID: 2960402581040015946, guid: d0d0aa908b26f644ca610646fd41d300, type: 3}
-  - {fileID: 7157561037332017152, guid: f39e388f16fb72f469ea2af485fbed09, type: 3}
-  - {fileID: 4164744761163438241, guid: e68c4503f4736c04f92405d43eb17457, type: 3}
-  - {fileID: -5750353039905602045, guid: 1e92495a8efaff84dbda9493d3da403b, type: 3}
-  - {fileID: -7371509505491802261, guid: 3cf4e3b9356e27c42a20148c3e1a0c74, type: 3}
-  - {fileID: 2720535173406242035, guid: bf97b32de678cce44b06595b2b329df1, type: 3}
-  - {fileID: 8102358098348255977, guid: 81ef712aa29f49340a60d23c61ef2c41, type: 3}
-  - {fileID: 6894999169920593895, guid: acba9fc4f291a5d4f9ec19a56c0b6cdf, type: 3}
-  - {fileID: -1045133410153605164, guid: b06b17e5c5f98db469ee0df14285203c, type: 3}
-  - {fileID: -5622901713081898559, guid: 878cc4ddc580ec9438963aadd939771b, type: 3}
-  - {fileID: -796155573255488767, guid: 2da83fa4192c765449cc881f8f49fb67, type: 3}
-  - {fileID: 5181654206020448988, guid: 3c9cf62069773dd4f9cd8641523dd8d6, type: 3}
-  - {fileID: -8038976213705442086, guid: 4a14177824d1be443a46fa3d82798d46, type: 3}
-  - {fileID: -30749221642623036, guid: b00ec7bedb14b9346be9f7008c271a31, type: 3}
-  - {fileID: 5272401415994956661, guid: 6c260c9941b387a46abc78b671310e41, type: 3}
-  - {fileID: -4093987921198194536, guid: 9e682509bb54625479da32fb126abf42, type: 3}
+  cardSprites: []
   gameEngine: {fileID: 1062590065}
   board: {fileID: 1218583440}
   cardUI: {fileID: 1172848067}
