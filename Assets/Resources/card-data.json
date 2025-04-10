@@ -154,7 +154,7 @@
         },
     "25" : {
         "Description" : "Loan matures, collect £150",
-        "Action" : { "Type" : "pay_player", "Amount" : 50},
+        "Action" : { "Type" : "pay_player", "Amount" : 150},
         "Choice" : false,
         "Type": "Opportunity Knocks"
         },

@@ -1,9 +1,9 @@
-
 using UnityEngine;
 
 public class ActionSpace : MonoBehaviour
 {
     public Engine gameEngine;
+    
     private int finesTotal;
 
     public enum ActionType
@@ -19,25 +19,21 @@ public class ActionSpace : MonoBehaviour
     }
 
     [SerializeField] private ActionType actionType;
-
     
-    //Returns the action type.
-    
+    // Returns the action type
     public ActionType GetActionType()
     {
         return actionType;
     }
-
     
-    //Handles the action type for the space that you land on.
-    
+    // Handles the action type for the space that you land on
     public void LandedOn(Player player)
     {
         switch (actionType)
         {
             case ActionType.Go:
                 gameEngine.passGo();
-                Debug.Log("player has passed go!");
+                Debug.Log("Player has passed go!");
                 break;
                     
             case ActionType.GoToJail:
@@ -49,28 +45,37 @@ public class ActionSpace : MonoBehaviour
                 break;
 
             case ActionType.IncomeTax:
-                player.takeMoney(100);
-                addtoFinesTotal(100);
+                player.takeMoney(200);
+                gameEngine.parkingFines += 200; // Add to parking fines for consistency
+                Debug.Log($"{player.playerName} paid 200 Income Tax");
+                gameEngine.logText.text = $"{player.playerName} paid 200 Income Tax\n\n" + gameEngine.logText.text;
                 break;
 
             case ActionType.SuperTax:
                 player.takeMoney(200);
-                addtoFinesTotal(200);
+                gameEngine.parkingFines += 200; // Add to parking fines for consistency
+                Debug.Log($"{player.playerName} paid 200 Super Tax");
+                gameEngine.logText.text = $"{player.playerName} paid 200 Super Tax\n\n" + gameEngine.logText.text;
                 break;
 
             case ActionType.PotLuck:
-                // Draw Pot Luck card
+                gameEngine.cardManager.DrawPotLuck();
                 break;
 
             case ActionType.OpportunityKnocks:
-                // Draw Opportunity Knocks card
+                gameEngine.cardManager.DrawOpportunityKnocks();
                 break;
         }
     }
+
     public void CollectFines(Player player)
     {
         // Display message about fines collected
-        player.addMoney(finesTotal);
+        int amount = gameEngine.parkingFines;
+        player.addMoney(amount);
+        Debug.Log($"{player.playerName} collected {amount} from Free Parking");
+        gameEngine.logText.text = $"{player.playerName} collected {amount} from Free Parking\n\n" + gameEngine.logText.text;
+        gameEngine.parkingFines = 0; // Reset the parking fines
     }
 
     public void SetActionType(ActionType type)
@@ -88,4 +93,3 @@ public class ActionSpace : MonoBehaviour
         return finesTotal;
     }
 }
-

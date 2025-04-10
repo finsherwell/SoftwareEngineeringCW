@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -69,6 +71,9 @@ public class CardManager : MonoBehaviour
     [SerializeField] private System.Random random;
     [SerializeField] public Engine gameEngine;
     [SerializeField] public BoardManager board;
+    [SerializeField] public GameObject cardUI;
+    [SerializeField] private Image cardImage;
+    [SerializeField] private Button acknowledgeButton;
 
 
     public void Awake()
@@ -99,6 +104,12 @@ public class CardManager : MonoBehaviour
             foreach (var prop in jsonObject.Properties())
             {
                 int cardNum = int.Parse(prop.Name);
+
+                if (cardNum == 11)
+                {
+                    continue;
+                }
+            
                 JObject cardInfo = (JObject)prop.Value;
                 
                 ActionCard card = new ActionCard
@@ -195,12 +206,15 @@ public class CardManager : MonoBehaviour
         // Draw the top card
         ActionCard drawnCard = opportunityKnocksCards[0];
 
+        ShowCardUI(drawnCard);
+
         // Remove it from the top and add it to the bottom
         opportunityKnocksCards.RemoveAt(0);
         opportunityKnocksCards.Add(drawnCard);
 
         // Log what has been drawn
         Debug.Log($"Drew Opportunity Knocks card: {drawnCard.description}");
+        gameEngine.logText.text = $"Drew Opportunity Knocks card: {drawnCard.description}\n\n" + gameEngine.logText.text;
 
         // Execute the card's action(s)
         ExecuteCardActions(drawnCard);
@@ -219,6 +233,8 @@ public class CardManager : MonoBehaviour
 
         // Draw the top card
         ActionCard drawnCard = potLuckCards[0];
+        
+        ShowCardUI(drawnCard);
 
         // Remove it from the top and add it to the bottom
         potLuckCards.RemoveAt(0);
@@ -226,12 +242,36 @@ public class CardManager : MonoBehaviour
 
         // Log what has been drawn
         Debug.Log($"Drew Pot Luck card: {drawnCard.description}");
+        gameEngine.logText.text = $"Drew Pot Luck card: {drawnCard.description}\n\n" + gameEngine.logText.text;
 
         // Execute the card's action(s)
         ExecuteCardActions(drawnCard);
 
         // Return the drawn card
         return drawnCard;
+    }
+
+    private void ShowCardUI(ActionCard card)
+    {
+        cardUI.SetActive(true);
+        string spriteName = (card.cardNum).ToString();
+        Sprite cardSprite = Resources.Load<Sprite>($"cards/{spriteName}");
+
+        if (cardSprite != null)
+        {
+            cardImage.sprite = cardSprite;
+        }
+        else
+        {
+            Debug.LogWarning($"Missing card image: {spriteName}");
+        }
+
+        acknowledgeButton.onClick.RemoveAllListeners();
+        acknowledgeButton.onClick.AddListener(() =>
+        {
+            cardUI.SetActive(false);
+            ExecuteCardActions(card);
+        });
     }
 
     private void ExecuteCardActions(ActionCard card)
@@ -261,11 +301,13 @@ public class CardManager : MonoBehaviour
             case Action.Actions.pay_player:
                 Debug.Log($"Pay player {action.amount}");
                 gameEngine.currentPlayer.addMoney(action.amount);
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} received {action.amount}\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.pay_bank:
                 Debug.Log($"Player pays bank {action.amount}");
                 gameEngine.currentPlayer.takeMoney(action.amount);
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} paid bank {action.amount}\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.move:
@@ -284,7 +326,15 @@ public class CardManager : MonoBehaviour
                 
                 if (targetTile != null)
                 {
+                    // Remove player from current tile's player list
                     Tile currentTile = gameEngine.currentPlayer.getCurrentTile();
+                    if (gameEngine.playersOnTiles.ContainsKey(currentTile))
+                    {
+                        gameEngine.playersOnTiles[currentTile].Remove(gameEngine.currentPlayer);
+                        // Reposition remaining players on this tile
+                        gameEngine.PosPlayerOnTile(currentTile);
+                    }
+
                     int currentTileIndex = board.tiles.IndexOf(currentTile);
                     int targetTileIndex = board.tiles.IndexOf(targetTile);
 
@@ -293,16 +343,27 @@ public class CardManager : MonoBehaviour
                         gameEngine.passGo();
                     }
 
+                    // Set player's current tile
                     gameEngine.currentPlayer.setCurrentTile(targetTile);
-
+                    
+                    // Add player to new tile's player list
+                    if (!gameEngine.playersOnTiles.ContainsKey(targetTile))
+                    {
+                        gameEngine.playersOnTiles.Add(targetTile, new List<Player>());
+                    }
+                    gameEngine.playersOnTiles[targetTile].Add(gameEngine.currentPlayer);
+                    
+                    // Position players on this tile
+                    gameEngine.PosPlayerOnTile(targetTile);
+                    
                     gameEngine.CheckForActionEvent(gameEngine.currentPlayer);
+                    gameEngine.CheckForRent(gameEngine.currentPlayer, 0); // Use 0 for dice value since not from dice roll
                 }
                 else
                 {
-                Debug.LogError($"Could not find property with name: {action.property}");
+                    Debug.LogError($"Could not find property with name: {action.property}");
                 }
                 break;
-            
                 
             case Action.Actions.opportunity_knocks:
                 Debug.Log("Draw an Opportunity Knocks card");
@@ -314,6 +375,7 @@ public class CardManager : MonoBehaviour
                 
                 gameEngine.parkingFines += action.amount;
                 gameEngine.currentPlayer.takeMoney(action.amount);
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} put {action.amount} in Free Parking\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.jail:
@@ -321,29 +383,65 @@ public class CardManager : MonoBehaviour
                 if (gameEngine.currentPlayer.hasGOOJ)
                 {
                     Debug.Log("Player used Get Out of Jail Free card");
+                    gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} used Get Out of Jail Free card\n\n" + gameEngine.logText.text;
                     gameEngine.currentPlayer.hasGOOJ = false;
                 }
                 else
                 {
-                    gameEngine.GoToJail();
+                    // Find the Jail tile
+                    GameObject jailTile = GameObject.FindGameObjectWithTag("Jail");
+                    if (jailTile != null)
+                    {
+                        Tile jailTileComponent = jailTile.GetComponent<Tile>();
+                        
+                        // Remove player from current tile's list
+                        Tile currentTile = gameEngine.currentPlayer.getCurrentTile();
+                        if (gameEngine.playersOnTiles.ContainsKey(currentTile))
+                        {
+                            gameEngine.playersOnTiles[currentTile].Remove(gameEngine.currentPlayer);
+                            // Reposition remaining players on this tile
+                            gameEngine.PosPlayerOnTile(currentTile);
+                        }
+                        
+                        // Update player's tile
+                        gameEngine.currentPlayer.setCurrentTile(jailTileComponent);
+                        gameEngine.currentPlayer.setInJail(3);
+                        
+                        // Add player to jail tile's list
+                        if (!gameEngine.playersOnTiles.ContainsKey(jailTileComponent))
+                        {
+                            gameEngine.playersOnTiles.Add(jailTileComponent, new List<Player>());
+                        }
+                        gameEngine.playersOnTiles[jailTileComponent].Add(gameEngine.currentPlayer);
+                        
+                        // Position players on jail tile
+                        gameEngine.PosPlayerOnTile(jailTileComponent);
+                        
+                        Debug.Log($"{gameEngine.currentPlayer.playerName} has been sent to Jail!");
+                        gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} has been sent to Jail!\n\n" + gameEngine.logText.text;
+                    }
                 }
                 break;
                 
             case Action.Actions.receive_player:
                 Debug.Log($"Receive {action.amount} from each player");
+                int totalReceived = 0;
                 foreach (Player player in gameEngine.players)
                 {
                     if (player != gameEngine.currentPlayer)
                     {
                         player.takeMoney(action.amount);
                         gameEngine.currentPlayer.addMoney(action.amount);
+                        totalReceived += action.amount;
                     }
                 }
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} received {totalReceived} from other players\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.avoid_jail:
                 Debug.Log("Player gets a Get Out of Jail Free card");
                 gameEngine.currentPlayer.hasGOOJ = true;
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} received a Get Out of Jail Free card\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.pay_bank_per_house:
@@ -362,6 +460,7 @@ public class CardManager : MonoBehaviour
                 int totalPayment = houseCount * action.amount;
                 Debug.Log($"Player pays {totalPayment} for {houseCount} houses");
                 gameEngine.currentPlayer.takeMoney(totalPayment);
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} paid {totalPayment} for {houseCount} houses\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.pay_bank_per_hotel:
@@ -380,6 +479,7 @@ public class CardManager : MonoBehaviour
                 int totalHotelPayment = hotelCount * action.amount;
                 Debug.Log($"Player pays {totalHotelPayment} for {hotelCount} hotels");
                 gameEngine.currentPlayer.takeMoney(totalHotelPayment);
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} paid {totalHotelPayment} for {hotelCount} hotels\n\n" + gameEngine.logText.text;
                 break;
                 
             case Action.Actions.move_back:
@@ -393,12 +493,33 @@ public class CardManager : MonoBehaviour
                 int targetIndex = (playerTileIndex - action.spaces + board.TotalTiles) % board.TotalTiles;
                 Tile backwardsTile = board.tiles[targetIndex];
                 
-                // Move the player to the target tile
+                // Remove player from current tile's list
+                if (gameEngine.playersOnTiles.ContainsKey(playerTile))
+                {
+                    gameEngine.playersOnTiles[playerTile].Remove(gameEngine.currentPlayer);
+                    // Reposition remaining players on this tile
+                    gameEngine.PosPlayerOnTile(playerTile);
+                }
+                
+                // Set player's current tile
                 gameEngine.currentPlayer.setCurrentTile(backwardsTile);
-                gameEngine.currentPlayer.transform.position = backwardsTile.transform.position;
+                
+                // Add player to new tile's list
+                if (!gameEngine.playersOnTiles.ContainsKey(backwardsTile))
+                {
+                    gameEngine.playersOnTiles.Add(backwardsTile, new List<Player>());
+                }
+                gameEngine.playersOnTiles[backwardsTile].Add(gameEngine.currentPlayer);
+                
+                // Position players on this tile
+                gameEngine.PosPlayerOnTile(backwardsTile);
+                
+                Debug.Log($"{gameEngine.currentPlayer.playerName} moved back to {backwardsTile.GetName()}");
+                gameEngine.logText.text = $"{gameEngine.currentPlayer.playerName} moved back to {backwardsTile.GetName()}\n\n" + gameEngine.logText.text;
                 
                 // Check for action on the new tile
                 gameEngine.CheckForActionEvent(gameEngine.currentPlayer);
+                gameEngine.CheckForRent(gameEngine.currentPlayer, 0); // Use 0 for dice value since not from dice roll
                 break;
                 
             default:
