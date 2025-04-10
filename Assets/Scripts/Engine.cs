@@ -692,7 +692,7 @@ public class Engine : MonoBehaviour
         if (player.getCurrentTile().GetComponent<Property>() != null)
         {
             Property property = player.getCurrentTile().GetComponent<Property>();
-            if (property.IsOwned() && property.GetOwner() != player)
+            if (property.IsOwned() && property.GetOwner() != player && property.GetMortgaged() == false)
             {
                 if (property.IsStation() == false && property.IsUtility() == false)
                 {
