@@ -544,7 +544,8 @@ public class Engine : MonoBehaviour
                 }
                 else if (property.IsStation() == false && property.IsUtility() == true)
                 {
-                    int multiplier = property.GetRent(property.GetOwner().CountUtilities());
+                    int i = property.GetOwner().CountUtilities()-1;
+                    int multiplier = property.GetRent(i);
                     int rent = multiplier * diceValue;
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);

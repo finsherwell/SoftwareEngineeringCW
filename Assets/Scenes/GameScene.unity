@@ -7938,7 +7938,7 @@ MonoBehaviour:
   group: Utility
   price: 150
   houseCost: 150
-  rentLevels: 
+  rentLevels: 020000000a000000
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0
@@ -27722,7 +27722,7 @@ MonoBehaviour:
   group: Utility
   price: 150
   houseCost: 0
-  rentLevels: 
+  rentLevels: 020000000a000000
   button: {fileID: 0}
   sellbutton: {fileID: 0}
   isOwned: 0

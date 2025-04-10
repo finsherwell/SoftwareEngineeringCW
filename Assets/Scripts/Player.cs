@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
         int count = 0;
         foreach (Property property in ownedproperties)
         {
-            if (property.IsUtility())
+            if (property.IsUtility()== true)
             {
                 count++;
             }
