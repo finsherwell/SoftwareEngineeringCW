@@ -6,9 +6,9 @@ public class MenuPlayer
     public Colours colour;
     public Icon icon;
 
-    public bool isAI;
+    public int isAI;
 
-    public MenuPlayer(string pName, Colours pColour, Icon pIcon, bool pisIA)
+    public MenuPlayer(string pName, Colours pColour, Icon pIcon, int pisIA)
     {
         name = pName;
         colour = pColour;

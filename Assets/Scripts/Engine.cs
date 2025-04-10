@@ -391,6 +391,7 @@ public class Engine : MonoBehaviour
             newPlayerScript.colour = p.colour;
             newPlayerScript.icon = p.icon;
             newPlayerScript.setIcon();
+            newPlayerScript.setAIMode(p.isAI);
             players.Add(newPlayerScript);
             playerCount++;
         }
@@ -442,7 +443,7 @@ public class Engine : MonoBehaviour
         newPlayerScript3.setIcon();
         players.Add(newPlayerScript3);
         playerCount++;
-        Debug.Log("player count is "+playerCount);
+        Debug.Log("player count is " + playerCount);
     }
 
     private void initializeGame()
@@ -662,7 +663,8 @@ public class Engine : MonoBehaviour
                 }
                 else if (property.IsStation() == false && property.IsUtility() == true)
                 {
-                    int multiplier = property.GetRent(property.GetOwner().CountUtilities());
+                    int i = property.GetOwner().CountUtilities()-1;
+                    int multiplier = property.GetRent(i);
                     int rent = multiplier * diceValue;
                     player.takeMoney(rent);
                     property.GetOwner().addMoney(rent);

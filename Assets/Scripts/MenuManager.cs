@@ -100,7 +100,7 @@ public class MenuManager : MonoBehaviour
     {
         //show new player screen, a temp player object is created to store what info is needed 
         newPlayerScreen.SetActive(true);
-        tempPlayer = new MenuPlayer("", Colours.Grey, Icon.Empty, false);
+        tempPlayer = new MenuPlayer("", Colours.Grey, Icon.Empty, 0);
         playerNameInput.text = "";
         iconSelect.SetActive(false);
         colourSelect.SetActive(false);
@@ -287,7 +287,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void addAI()
+    public void addEasyAI()
     {
         //dont add the ai if there are already 5 players
         if (menuPlayers.Count >= 5)
@@ -296,11 +296,26 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
-        tempPlayer = new MenuPlayer("AI", Colours.Grey, Icon.Robot, true);
+        tempPlayer = new MenuPlayer("AI", Colours.Grey, Icon.Robot, 1);
         menuPlayers.Add(tempPlayer);
         drawCards();
-
     }
+
+    public void addHardAI()
+    {
+        //dont add the ai if there are already 5 players
+        if (menuPlayers.Count >= 5)
+        {
+            Debug.Log("too many players");
+            return;
+        }
+
+        tempPlayer = new MenuPlayer("AI", Colours.Grey, Icon.Robot, 2);
+        menuPlayers.Add(tempPlayer);
+        drawCards();
+    }
+
+
     public void addPlayer()
     {
         //dont add the player if there is already 5!!!
@@ -396,7 +411,7 @@ public class MenuManager : MonoBehaviour
             int counter = 1;
             foreach (MenuPlayer p in menuPlayers)
             {
-                if (p.isAI)
+                if (p.isAI > 0)
                 {
                     p.name = "AI" + counter.ToString();
                     p.icon = availibleIcons[0];

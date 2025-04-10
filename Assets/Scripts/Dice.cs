@@ -33,7 +33,7 @@ public class Dice : MonoBehaviour
             yield return new WaitForSeconds(0.05f); // Wait between changes
         }
         diceRolling = false; // Dice roll is finished
-        finalValue = diceNum; // Store the final rolled value
+        finalValue = 6;//diceNum // Store the final rolled value
 
         // After roll is finished, trigger the callback to return the final value
         onRollComplete(finalValue);
