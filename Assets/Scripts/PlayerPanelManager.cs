@@ -29,7 +29,7 @@ public class PlayerPanelManager : MonoBehaviour
                 continue;
             }
 
-            playerNameText[id].text = (player.playerName+"\n£"+player.money);
+            playerNameText[id].text = (player.playerName+"\nï¿½"+player.money);
 
             Image cardImage = playercards[id].GetComponent<Image>();
             if (cardImage != null)
@@ -134,7 +134,7 @@ public class PlayerPanelManager : MonoBehaviour
             }
 
             // Update player name and money
-            playerNameText[i].text = player.playerName + "\n£" + player.money;
+            playerNameText[i].text = player.playerName + "\nï¿½" + player.money;
         }
     }
 
@@ -145,7 +145,7 @@ public class PlayerPanelManager : MonoBehaviour
         return GetColorFromEnum(player.colour);
     }
 
-    private Color GetColorFromEnum(MenuEnums.Colours colour)
+    public Color GetColorFromEnum(MenuEnums.Colours colour)
     {
         Color playerColor;
         switch (colour)

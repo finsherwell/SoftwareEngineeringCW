@@ -270,7 +270,6 @@ public class CardManager : MonoBehaviour
         acknowledgeButton.onClick.AddListener(() =>
         {
             cardUI.SetActive(false);
-            ExecuteCardActions(card);
         });
     }
 
