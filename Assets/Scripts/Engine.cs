@@ -410,15 +410,45 @@ public class Engine : MonoBehaviour
         print(GameData.Players);
         foreach (MenuPlayer p in GameData.Players)
         {
-            GameObject newPlayer = Instantiate(playerPrefab);
-            Player newPlayerScript = newPlayer.GetComponent<Player>();
-            newPlayerScript.playerName = p.name;
-            newPlayerScript.colour = p.colour;
-            newPlayerScript.icon = p.icon;
-            newPlayerScript.setIcon();
-            newPlayerScript.setAIMode(p.isAI);
-            players.Add(newPlayerScript);
-            playerCount++;
+            if (p.isAI == 0)
+            {
+                GameObject newPlayer = Instantiate(playerPrefab);
+                Player newPlayerScript = newPlayer.GetComponent<Player>();
+                newPlayerScript.playerName = p.name;
+                newPlayerScript.colour = p.colour;
+                newPlayerScript.icon = p.icon;
+                newPlayerScript.setIcon();
+                newPlayerScript.setAIMode(p.isAI);
+                players.Add(newPlayerScript);
+                playerCount++;
+            }
+            else if (p.isAI > 0)
+            {
+                GameObject newPlayerAI = Instantiate(AIPlayerPrefab);
+                Player newPlayerScript = newPlayerAI.GetComponent<AiPlayer>();
+
+                // Set shared Player properties
+                newPlayerScript.playerName = p.name;
+                newPlayerScript.colour = p.colour;
+                newPlayerScript.icon = p.icon;
+                newPlayerScript.setIcon();
+                newPlayerScript.setAIMode(1);
+
+                // Cast to AiPlayer to access AI-specific fields/methods
+                AiPlayer newPlayerScriptAI = newPlayerScript as AiPlayer;
+                if (newPlayerScriptAI != null)
+                {
+                    newPlayerScriptAI.state = "default";
+                }
+                else
+                {
+                    Debug.LogError("The instantiated player is not an AiPlayer.");
+                }
+
+                players.Add(newPlayerScript);
+                playerCount++;
+            }
+            
         }
         Debug.Log($"Found and added {players.Count} players");
     }
