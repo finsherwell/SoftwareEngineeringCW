@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public bool hasCompletedCircuit = false;
     private int positionID;
 
-    private int isAI = 0;   //0 = actual player, 1 = easy ai, 2 = hard ai
+    public int isAI = 0;   //0 = actual player, 1 = easy ai, 2 = hard ai
 
     public int totalAssetValue = 0; //stores the value of players property portfolio + house portfolio + cash on hand
 
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        // Initialize the player’s starting tile if needed.
+
     }
 
     // Returns the player's current position ID
@@ -264,6 +264,10 @@ public class Player : MonoBehaviour
     {
         // 0 = player, 1 = easy ai, 2 = hard ai
         isAI = ai;
+    }
+    public int getAIMode()
+    {
+        return isAI;
     }
 }
 
