@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
     public GameObject lobbyScreen;
     public GameObject newPlayerScreen;
     public GameObject changeTimeScreen;
+    public GameObject instructionScreen;
 
     private List<MenuPlayer> menuPlayers = new List<MenuPlayer>();
     private List<Icon> availibleIcons;
@@ -57,6 +58,7 @@ public class MenuManager : MonoBehaviour
         mainScreen.SetActive(true);
         lobbyScreen.SetActive(false);
         newPlayerScreen.SetActive(false);
+        instructionScreen.SetActive(false);
         emptyPlayerList();
 
         cardArray = new CardLobby[] { card1, card2, card3, card4, card5 };
@@ -72,6 +74,7 @@ public class MenuManager : MonoBehaviour
         mainScreen.SetActive(false);
         lobbyScreen.SetActive(true);
         newPlayerScreen.SetActive(false);
+        instructionScreen.SetActive(false);
         emptyPlayerList();
         //make sure all of the icons are availible to select when the lobby is first entered
         availibleIcons = new List<Icon>() { Icon.Boot, Icon.Cat, Icon.HatStand, Icon.Iron, Icon.Smartphone, Icon.Ship };
@@ -83,6 +86,7 @@ public class MenuManager : MonoBehaviour
         mainScreen.SetActive(true);
         lobbyScreen.SetActive(false);
         newPlayerScreen.SetActive(false);
+        instructionScreen.SetActive(false);
         menuPlayers.Clear();
         drawCards();
         //make all the of the buttons in the new player window enabled
@@ -241,6 +245,13 @@ public class MenuManager : MonoBehaviour
     {
         newPlayerScreen.SetActive(false);
         drawCards();
+    }
+
+    public void switchToInstructions()
+    {
+        lobbyScreen.SetActive(false);
+        mainScreen.SetActive(false);
+        instructionScreen.SetActive(true);
     }
 
     public void updateTempPlayerText(string n)
