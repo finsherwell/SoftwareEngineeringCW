@@ -251,16 +251,12 @@ public class CardManager : MonoBehaviour
     {
         int spriteNum = card.cardNum - 1;
         
-        Debug.Log($"Card #{card.cardNum}: '{card.description}' - using sprite index {spriteNum}");
-        Debug.Log($"Card action type: {card.action1.action}, amount: {card.action1.amount}");
-        
         if (spriteNum >= 0 && spriteNum < cardSprites.Count)
         {
             Sprite cardSprite = cardSprites[spriteNum];
             if (cardSprite != null)
             {
                 cardImage.sprite = cardSprite;
-                Debug.Log($"Sprite set successfully: {cardSprite.name}");
                 cardUI.SetActive(true);
             }
             else
