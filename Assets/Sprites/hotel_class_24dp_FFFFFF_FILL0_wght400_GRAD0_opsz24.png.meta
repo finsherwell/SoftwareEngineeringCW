@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 33bab843b6b18c54c915b2a58db1287c
+guid: 24efe5f2ca9f838459de951e14492606
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5175148029312991847
-    second: instructions_0
+      213: 3275345757888318198
+    second: hotel_class_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: instructions_0
+      name: hotel_class_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 3000
-        height: 3000
+        y: 2
+        width: 24
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99d7cb4594e2e28b0800000000000000
-      internalID: -5175148029312991847
+      spriteID: 6fa048ffc9d547d20800000000000000
+      internalID: 3275345757888318198
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      instructions_0: -5175148029312991847
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

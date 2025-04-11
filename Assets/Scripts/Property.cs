@@ -2,6 +2,7 @@ using System.Data.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Property : Tile
 {
@@ -17,6 +18,14 @@ public class Property : Tile
     [SerializeField] private int houses = 0; // Updates if you upgrade houses
     [SerializeField] private Player owner = null; // Assigned to the player that owns the property
     [SerializeField] private Sprite rent_s; // Assigned to the player that owns the property
+
+    [SerializeField] public GameObject housePrefab;
+    [SerializeField] public GameObject hotelPrefab;
+
+    private List<GameObject> houseObjects = new List<GameObject>();
+    private  float houseSpacing = 1.15f; // Space between houses
+    private float houseCenterOffset = 2.95f; // Houses offset off centre
+    private GameObject hotelObject;
 
 
     private void Awake()
@@ -80,6 +89,7 @@ public class Property : Tile
         owner.takeMoney(houseCost);
         owner.houseBought(houseCost);
         houses++;
+        UpdateHouseDisplay();
     }
 
     public void DowngradeProperty() // allows player to sell houses for their property
@@ -89,8 +99,158 @@ public class Property : Tile
             owner.addMoney(houseCost);
             owner.houseSold(houseCost);
             houses--;
+            UpdateHouseDisplay();
         }
     }
+
+    private void UpdateHouseDisplay()
+    {
+        ClearHouses();
+        
+        // Handle hotel (5 houses)
+        if (houses == 5)
+        {
+            AddHotel();
+            return;
+        }
+        
+        // Add houses
+        for (int i = 0; i < houses; i++)
+        {
+            AddHouse(i);
+        }
+    }
+
+    private void ClearHouses()
+    {
+        foreach (GameObject house in houseObjects)
+        {
+            Destroy(house);
+        }
+        houseObjects.Clear();
+        
+        if (hotelObject != null)
+        {
+            Destroy(hotelObject);
+            hotelObject = null;
+        }
+    }
+
+    private void AddHouse(int houseIndex)
+    {
+        GameObject house = Instantiate(housePrefab, transform, false);
+        house.transform.localScale = new Vector3(1f, 1f, 1f);
+        house.transform.localPosition = new Vector3(0, 0, 0);
+
+        houseObjects.Add(house);
+        
+        Engine.TileOrientation orientation = GetTileOrientationFromGroup();
+        PositionHouse(house, houseIndex, orientation);
+    }
+
+    private void AddHotel()
+    {
+        hotelObject = Instantiate(hotelPrefab, transform, false);
+        hotelObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f); 
+        hotelObject.transform.localPosition = new Vector3(0, 0, 0);
+
+        SpriteRenderer propertyRenderer = hotelObject.GetComponent<SpriteRenderer>();
+        if (propertyRenderer != null)
+        {
+            propertyRenderer.color = Color.red;
+        }
+        
+        Engine.TileOrientation orientation = GetTileOrientationFromGroup();
+        PositionHotel(hotelObject, orientation);
+    }
+
+    private void PositionHouse(GameObject house, int houseIndex, Engine.TileOrientation orientation)
+    {
+        house.transform.localPosition = new Vector3(0, 0, 0);
+        float totalWidth = (houses - 1) * houseSpacing;
+        float startX = -totalWidth / 2f;
+        float positionX = startX + (houseIndex * houseSpacing);
+        
+        Vector3 position = Vector3.zero;
+        Quaternion rotation = Quaternion.identity;
+        
+        switch (orientation)
+        {
+            case Engine.TileOrientation.Bottom:
+                position = new Vector3(positionX, houseCenterOffset, 0);
+                rotation = Quaternion.identity;
+                break;
+                
+            case Engine.TileOrientation.Left:
+                position = new Vector3(houseCenterOffset, positionX, 0);
+                rotation = Quaternion.Euler(0, 90, 0);
+                break;
+                
+            case Engine.TileOrientation.Top:
+                position = new Vector3(positionX, -houseCenterOffset, 0);
+                rotation = Quaternion.Euler(0, 180, 0);
+                break;
+                
+            case Engine.TileOrientation.Right:
+                position = new Vector3(-houseCenterOffset, positionX, 0);
+                rotation = Quaternion.Euler(0, 270, 0);
+                break;
+        }
+        
+        house.transform.localPosition = position;
+        house.transform.localRotation = rotation;
+    }
+
+    private void PositionHotel(GameObject hotel, Engine.TileOrientation orientation)
+    {
+        hotel.transform.localPosition = new Vector3(0, 0, 0);
+        Vector3 position = Vector3.zero;
+        Quaternion rotation = Quaternion.identity;
+        
+        switch (orientation)
+        {
+            case Engine.TileOrientation.Bottom:
+                position = new Vector3(0, houseCenterOffset, 0);
+                rotation = Quaternion.identity;
+                break;
+                
+            case Engine.TileOrientation.Left:
+                position = new Vector3(houseCenterOffset, 0, 0);
+                rotation = Quaternion.Euler(0, 90, 0);
+                break;
+                
+            case Engine.TileOrientation.Top:
+                position = new Vector3(0, -houseCenterOffset, 0);
+                rotation = Quaternion.Euler(0, 180, 0);
+                break;
+                
+            case Engine.TileOrientation.Right:
+                position = new Vector3(-houseCenterOffset, 0, 0);
+                rotation = Quaternion.Euler(0, 270, 0);
+                break;
+        }
+        
+        hotel.transform.localPosition = position;
+        hotel.transform.localRotation = rotation;
+    }
+
+    private Engine.TileOrientation GetTileOrientationFromGroup()
+    {
+        if (group == "Brown" || group == "Lblue")
+            return Engine.TileOrientation.Bottom;
+
+        if (group == "Purple" || group == "Orange")
+            return Engine.TileOrientation.Left;
+
+        else if (group == "Red" || group == "Yellow")
+            return Engine.TileOrientation.Top;
+
+        else if (group == "Green" || group == "Dblue")
+            return Engine.TileOrientation.Right;
+
+        return Engine.TileOrientation.Bottom;
+    }
+
     private void UpdateSellButtonText()
     {
         if (sellbutton != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)

@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 33bab843b6b18c54c915b2a58db1287c
+guid: 218c16579bc59a24793950a4afcb726c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5175148029312991847
-    second: instructions_0
+      213: -4652504577469254839
+    second: hotel_class_40dp_FFFFFF_FILL0_wght400_GRAD0_opsz40_0
+  - first:
+      213: 2016374111559088141
+    second: hotel_class_40dp_FFFFFF_FILL0_wght400_GRAD0_opsz40_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: instructions_0
+      name: hotel_class_40dp_FFFFFF_FILL0_wght400_GRAD0_opsz40_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 3000
-        height: 3000
+        y: 4
+        width: 36
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99d7cb4594e2e28b0800000000000000
-      internalID: -5175148029312991847
+      spriteID: 943f010acbbfe6fb0800000000000000
+      internalID: -4652504577469254839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hotel_class_40dp_FFFFFF_FILL0_wght400_GRAD0_opsz40_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 4
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d08f5cd32999bfb10800000000000000
+      internalID: 2016374111559088141
       vertices: []
       indices: 
       edges: []
@@ -147,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      instructions_0: -5175148029312991847
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
