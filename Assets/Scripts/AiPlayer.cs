@@ -1,108 +1,126 @@
-//using System.Collections.Generic;
-//using UnityEngine;
-//using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
 
-//public class AiPlayer : Player
-//{
-//    private Player aiPlayer;
-//    private string state;
-//    private float currentPrice;
-//    [SerializeField] public Engine gameEngine;
+public class AiPlayer : Player
+{
+    private Player aiPlayer;
+    public string state;
+    private float currentPrice;
+    [SerializeField] public Engine gameEngine;
 
-//    void Start()
-//    {
-//        aiPlayer = new Player();
-//        gameEngine = FindObjectOfType<Engine>();
-//    }
+    void Start()
+    {
+        aiPlayer = this; // This should refer to the current AiPlayer instance.
+        gameEngine = FindObjectOfType<Engine>();
+    }
+    // Your original takeTurn() method that is executed after the wait
+    public void takeTurn()
+    {
+        switch (state)
+        {
+            case "jail":
+                if (aiPlayer.getMoney() > 200)
+                {
+                    pressGOJ();
+                }
+                else
+                {
+                    pressRollDice();
+                }
+                break;
 
-//    public void takeTurn()
-//    {
-//        switch (state)
-//        {
-//            case "jail":
-//                if (aiPlayer.getMoney() > 200)
-//                {
-//                    pressGOJ();
-//                }
-//                else
-//                {
-//                    pressRollDice();
-//                }
-//                break;
+            case "auction":
+                string propset = "someGroup"; // Replace with actual group name/logic
+                if (ownedproperties.Any(p => p.GetGroup() == propset))
+                {
+                    if (money > 2.5f * currentPrice)
+                    {
+                        bid();
+                    }
+                }
+                break;
 
-//            case "auction":
-//                string propset = "someGroup"; // Replace with actual group name/logic
-//                if (ownedproperties.Any(p => p.GetGroup() == propset))
-//                {
-//                    if (money > 2.5f * currentPrice)
-//                    {
-//                        bid();
-//                    }
-//                }
-//                break;
+            default:
+                pressRollDice();
 
-//            default:
-//                pressRollDice();
+                // Get the current tile of the AI player
+                Tile currentTile = getTile();
+                ActionSpace actionSpace = currentTile.GetComponent<ActionSpace>();
+                if (actionSpace != null)
+                {
+                    // If ActionSpace exists, exit the current logic and break (end turn or action)
+                    break;
+                }
 
-//                Property property = aiPlayer.getCurrentTile().GetComponent<Property>();
-//                if (property != null)
-//                {
-//                    if (property.GetOwner() == null)
-//                    {
-//                        propset = "someGroup"; // Replace with property.set or similar logic
-//                        if (property.GetGroup() == propset)
-//                        {
-//                            if (money > 2.5f * property.GetPrice())
-//                            {
-//                                buyproperty();
-//                            }
-//                        }
-//                        else if (money > 2.5f)
-//                        {
-//                            buyproperty();
-//                        }
-//                    }
-//                    else
-//                    {
-//                        payrent();
-//                    }
-//                }
+                // If ownedproperties is not null, proceed with upgrading properties
+                if (ownedproperties != null)
+                {
+                    foreach (var prop in ownedproperties)
+                    {
+                        // If the AI has enough money to upgrade a property
+                        if (money > 2.0f * prop.getHouseCost())
+                        {
+                            prop.UpgradeProperty(); // Upgrade the property
+                        }
+                    }
+                }
+                else
+                {
+                    // If ownedproperties is null or empty
+                    Debug.LogWarning("ownedproperties is null or empty.");
+                }
+                gameEngine.nextTurnButtonAI();
+                break;
+        }
+    }
 
-//                if (aiPlayer.getCurrentTile().GetComponent<ActionSpace>() != null)
-//                {
-//                    break;
-//                }
+    // Empty method stubs
+    private void pressGOJ()
+    {
+        gameEngine.PayBail();
+    }
 
-//                foreach (var prop in ownedproperties)
-//                {
-//                    if (money > 2.0f * prop.GetHouseCost())
-//                    {
-//                        prop.UpgradeProperty();
-//                    }
-//                }
-//                break;
-//        }
-//    }
+    private void pressRollDice()
+    {
+        gameEngine.rollDice();
+    }
 
-//    // Empty method stubs
-//    private void pressGOJ() {
-//        gameEngine.PayBail();
-//    }
+    private void bid()
+    {
+        return;
+    }
 
-//    private void pressRollDice() {
-//        gameEngine.rollDice();
-//    }
 
-//    private void bid() {
-//        return;
-//    }
+    private void payrent()
+    {
+        return;
+        //engine handles this automatically 
+    }
 
-//    private void buyproperty() {
-//        gameEngine.purchasePropertyAI();
-//    }
+    private Tile getCurrentTile()
+    {
+        return currentTile;
+    }
+    public int decidePurchase(Property property)
+    {
+        string propertyGroup = "someGroup"; // Use a unique name for the property group
 
-//    private void payrent() {
-//        return;
-//        //engine handles this automatically 
-//    }
-//}
+        // Check if the property group matches and AI has enough money to buy
+        if (property.GetGroup() == propertyGroup)
+        {
+            if (money > 2.5f * property.GetPrice())
+            {
+                return 1; // AI buys the property
+            }
+        }
+        // If the property group doesn't match, AI buys if they have enough money
+        else if (money > 2.5f)
+        {
+            return 1; // AI buys the property
+        }
+        return 0;
+    }
+}
+

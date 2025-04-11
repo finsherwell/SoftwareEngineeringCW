@@ -93,18 +93,23 @@ public class Property : Tile
     }
     private void UpdateSellButtonText()
     {
-        if (sellbutton != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
+        if (sellbutton == null)
         {
-            if (houses > 0)
-            {
-                sellbutton.GetComponentInChildren<TextMeshProUGUI>().text = $"Sell House for ${houseCost}";
-            }
-            else
-            {
-                sellbutton.GetComponentInChildren<TextMeshProUGUI>().text = "No Houses";
-            }
+            Debug.LogWarning("Sell button is not assigned.");
+            return;
         }
+
+        var textComponent = sellbutton.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (textComponent == null)
+        {
+            Debug.LogWarning("No TextMeshProUGUI found in sell button.");
+            return;
+        }
+
+        textComponent.text = $"Sell House for ${houseCost}";
     }
+
     private void UpdatebuyButtonText()
     {
         if (button != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
@@ -118,6 +123,10 @@ public class Property : Tile
                 button.GetComponentInChildren<TextMeshProUGUI>().text = "Fully Upgraded";
             }
         }
+    }
+    public int getHouseCost()
+    {
+        return houseCost;
     }
     public Sprite getSprite()
     {

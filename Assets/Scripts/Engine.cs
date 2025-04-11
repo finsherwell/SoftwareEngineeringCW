@@ -10,6 +10,7 @@ public class Engine : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
     public GameObject playerPrefab;
+    public GameObject AIPlayerPrefab;
     [SerializeField] public CardManager cardManager;
     [SerializeField] public int parkingFines = 0;
     [SerializeField] private int startingMoney = 1500;
@@ -36,6 +37,7 @@ public class Engine : MonoBehaviour
     [SerializeField] private Button unmortgageButton;
     [SerializeField] private Button viewAllButton;
     [SerializeField] private Button doneViewAllButton;
+    [SerializeField] private Button purchaseButton;
 
     [SerializeField] private Button GOOJButton;
     [SerializeField] private Tile startTile;
@@ -328,6 +330,18 @@ public class Engine : MonoBehaviour
                     {
                         purchasePropertyUI(currentPlayer, currentPlayer.currentTile);
                     }
+                    if (currentPlayer.getAIMode() > 0 && property != null)
+                    {
+                        if (currentPlayer is AiPlayer aiPlayer)
+                        {
+                            Debug.LogWarning("ai player is taking its turn");
+                            int choice = aiPlayer.decidePurchase(property);
+                            if(choice == 1)
+                            { 
+                                purchaseButton.onClick.Invoke();
+                            }
+                        }
+                    }
                 }
                 nextTurnButton.gameObject.SetActive(true);
             });
@@ -428,14 +442,14 @@ public class Engine : MonoBehaviour
 
     private void addDebugPlayers()
     {
-        GameObject newPlayer = Instantiate(playerPrefab);
-        Player newPlayerScript = newPlayer.GetComponent<Player>();
-        newPlayerScript.playerName = "boot";
-        newPlayerScript.colour = MenuEnums.Colours.Green;
-        newPlayerScript.icon = MenuEnums.Icon.Boot;
-        newPlayerScript.setIcon();
-        players.Add(newPlayerScript);
-        playerCount++;
+        //GameObject newPlayer = Instantiate(playerPrefab);
+        //Player newPlayerScript = newPlayer.GetComponent<Player>();
+        //newPlayerScript.playerName = "boot";
+        //newPlayerScript.colour = MenuEnums.Colours.Green;
+        //newPlayerScript.icon = MenuEnums.Icon.Boot;
+        //newPlayerScript.setIcon();
+        //players.Add(newPlayerScript);
+        //playerCount++;
 
         GameObject newPlayer2 = Instantiate(playerPrefab);
         Player newPlayerScript2 = newPlayer2.GetComponent<Player>();
@@ -455,6 +469,32 @@ public class Engine : MonoBehaviour
         players.Add(newPlayerScript3);
         playerCount++;
         Debug.Log("player count is " + playerCount);
+
+        GameObject newPlayerAI = Instantiate(AIPlayerPrefab);
+        Player newPlayerScript = newPlayerAI.GetComponent<AiPlayer>();
+
+        // Set shared Player properties
+        newPlayerScript.playerName = "AI";
+        newPlayerScript.colour = MenuEnums.Colours.Green;
+        newPlayerScript.icon = MenuEnums.Icon.Cat;
+        newPlayerScript.setIcon();
+        newPlayerScript.setAIMode(1);
+
+        // Cast to AiPlayer to access AI-specific fields/methods
+        AiPlayer newPlayerScriptAI = newPlayerScript as AiPlayer;
+        if (newPlayerScriptAI != null)
+        {
+            newPlayerScriptAI.state = "default";
+        }
+        else
+        {
+            Debug.LogError("The instantiated player is not an AiPlayer.");
+        }
+
+        players.Add(newPlayerScript);
+        playerCount++;
+
+
     }
 
     private void initializeGame()
@@ -796,7 +836,7 @@ public class Engine : MonoBehaviour
 
     private void OnTileLanded()
     {
-        Debug.Log($"{currentPlayer.playerName} has landed on a tile.");
+        Debug.LogWarning($"{currentPlayer.playerName} has landed on a tile.");
     }
 
     public void hideWarningPanel()
@@ -834,11 +874,22 @@ public class Engine : MonoBehaviour
             endGame(maxAssetPlayer());
         }
         nextTurnButton.gameObject.SetActive(false);
+
         rollButton.gameObject.SetActive(true);
         updateTurnText(currentPlayer);
         PPM.updateArrow(currentPlayerIndex);
         currentPlayer.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+        Debug.LogWarning(currentPlayer.getAIMode());
+        if (currentPlayer.getAIMode() > 0)
+        {
+            if(currentPlayer is AiPlayer aiPlayer)
+            {
+                Debug.LogWarning("ai turn ");
 
+                takeAIturn();
+            }
+        }
+        Debug.LogWarning("non ai turn");
         if (currentPlayer.GetJailTime() > 0)
         {
             doubleRolled = false;
@@ -849,6 +900,18 @@ public class Engine : MonoBehaviour
             }
             JailDescriptionText.text = $"Turns until freedom: " + currentPlayer.GetJailTime() + " turns";
         }
+    }
+    public void takeAIturn()
+    {
+        if (currentPlayer is AiPlayer aiPlayer)
+        {
+            Debug.LogWarning("ai player is taking its turn");
+            aiPlayer.takeTurn();  
+        }
+    }
+    public void nextTurnButtonAI()
+    {
+        nextTurnButton.onClick.Invoke();
     }
 
 
