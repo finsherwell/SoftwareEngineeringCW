@@ -696,7 +696,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 125852430}
+  - {fileID: 1670232855}
   m_Father: {fileID: 276200425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1705,6 +1705,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -2014771838305702419, guid: 3f3d680ca26ba2243a09b57edeca6932, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &101378632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3009,6 +3011,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -7371509505491802261, guid: 59469b5ac8b28c144817f80a3442d8c5, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!1 &203545483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3574790339663530287, guid: 724504761ec03804b875de301080b8d4, type: 3}
@@ -3043,6 +3047,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -4178046375966092550, guid: 47f7cf49891958c42b78d6c60ed1f780, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!222 &209778239
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4940,6 +4946,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 3207579745489812468, guid: 5c2a35a5d68e120468d7223ef12f3cf6, type: 3}
+  housePrefab: {fileID: 0}
+  hotelPrefab: {fileID: 0}
 --- !u!114 &352981952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5034,6 +5042,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -164082725380277428, guid: 2c99bda2a87613d4395ee512860b1a17, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &354716123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6718,6 +6728,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 6894999169920593895, guid: a8bee1d1d46e48844bb1f92c0e6b2787, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!1 &492530771
 GameObject:
   m_ObjectHideFlags: 0
@@ -7479,6 +7491,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -1540426309290004842, guid: 5d51a630c75fc1b4dbd3fc5b46bbd8ac, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &531419745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8199,6 +8213,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -796155573255488767, guid: 2fb423012a0cfca4aa8924f565e48560, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!1 &606711605
 GameObject:
   m_ObjectHideFlags: 0
@@ -8574,6 +8590,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 5181654206020448988, guid: 6f1e720053444aa48b85b3624c7c30c0, type: 3}
+  housePrefab: {fileID: 0}
+  hotelPrefab: {fileID: 0}
 --- !u!1 &621792120
 GameObject:
   m_ObjectHideFlags: 0
@@ -9981,6 +9999,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -4093987921198194536, guid: 9ce6c9e963c37ba4f9141642b4a80af6, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &717444884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13551,6 +13571,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 7680820834086852892, guid: acc4b49b6e2294442be80a92f61c9cd9, type: 3}
+  housePrefab: {fileID: 0}
+  hotelPrefab: {fileID: 0}
 --- !u!114 &870785153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13580,6 +13602,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 6660783624410144326, guid: 039ea675330610440b05fb7b635247a7, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &870785154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13609,6 +13633,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 7157561037332017152, guid: a1a55f40f5de90e40b6b0b671d1c59f3, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &870785161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14030,6 +14056,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 4113829005332862926, guid: e11e03f4c0b73414ea24c49f92c0e9be, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &900146673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16848,6 +16876,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 8102358098348255977, guid: ff489da88c7d6a24899fd62c06bd7c4f, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1132576776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17375,6 +17405,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 6937817954938267909, guid: 7d7723fdddf53454a8421b47e2ee6558, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1149960562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17829,6 +17861,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 4349915267927364619, guid: 9587247ded469e449970bec69adb3f1d, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1172259625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18470,6 +18504,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 7028616704906629411, guid: 3facca973a0072345a346bd3076427f7, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1184485879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20157,6 +20193,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -8038976213705442086, guid: dbdf223ab389a2842a4b327e3d6fb487, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1256293687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20489,6 +20527,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 3465286685962602723, guid: aa0cfd472c1bff946b8da8ab11c427a6, type: 3}
+  housePrefab: {fileID: 0}
+  hotelPrefab: {fileID: 0}
 --- !u!114 &1290899636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22171,6 +22211,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -5099292496197868168, guid: 2cb853fc830c22f46bdacd9be2facf32, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!61 &1459323693
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22262,7 +22304,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1134179060}
+  - {fileID: 1744347873}
   m_Father: {fileID: 1848587790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -22502,6 +22544,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 4164744761163438241, guid: bcbf0b6db5bc72d47848fc68f7526277, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1492500508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24913,6 +24957,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661635758}
   m_CullTransparentMesh: 1
+--- !u!1 &1670232854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670232855}
+  - component: {fileID: 1670232857}
+  - component: {fileID: 1670232856}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1670232855
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670232854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 50911870}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.00012207031, y: -82.999695}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1670232856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670232854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Button
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1670232857
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670232854}
+  m_CullTransparentMesh: 1
 --- !u!1 &1677919720
 GameObject:
   m_ObjectHideFlags: 0
@@ -25684,6 +25864,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731822949}
   m_CullTransparentMesh: 1
+--- !u!1 &1744347872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744347873}
+  - component: {fileID: 1744347875}
+  - component: {fileID: 1744347874}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1744347873
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744347872}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1478713323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 104.00012, y: 101.950195}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1744347874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744347872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Button
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1744347875
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744347872}
+  m_CullTransparentMesh: 1
 --- !u!1 &1753471850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3173392959634435868, guid: 724504761ec03804b875de301080b8d4, type: 3}
@@ -25718,6 +26034,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -6270953770400647376, guid: f0b0fca1e8af6db48930b12ea9558758, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!1 &1762364802
 GameObject:
   m_ObjectHideFlags: 0
@@ -25914,6 +26232,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -1045133410153605164, guid: ec0740d38cc5f5f4a82497bda3896bed, type: 3}
+  housePrefab: {fileID: 0}
+  hotelPrefab: {fileID: 0}
 --- !u!114 &1789955200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26731,6 +27051,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: -5622901713081898559, guid: fc893aa0d3c9e1d4da870d776a4ba5b0, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1857278141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26825,6 +27147,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 1192843865154028290, guid: cb05111a4a30c314da3d95a6d6bccbff, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1857547056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27071,6 +27395,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 5272401415994956661, guid: 93fac1f4c51ffcb4fbfac32178f94504, type: 3}
+  housePrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
+  hotelPrefab: {fileID: 7966872199927390781, guid: b7fee84a0cdc112458f01d8157e4fb5d, type: 3}
 --- !u!114 &1871777342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30040,6 +30366,8 @@ MonoBehaviour:
   houses: 0
   owner: {fileID: 0}
   rent_s: {fileID: 8389134475083476877, guid: 3f68b1cb1bb88e84d8a81f57442f281a, type: 3}
+  housePrefab: {fileID: 0}
+  hotelPrefab: {fileID: 0}
 --- !u!114 &2137230218
 MonoBehaviour:
   m_ObjectHideFlags: 0
