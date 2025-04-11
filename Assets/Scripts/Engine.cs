@@ -291,16 +291,14 @@ public class Engine : MonoBehaviour
         dice1.GetComponent<Animation>().Play("diceGo1");
         dice1.rollAndReturn(value1 =>
         {
-            //int dice1Value = value1;
-            int dice1Value = 40;
+            int dice1Value = value1;
             Debug.Log($"Dice 1 rolled: {dice1Value}");
 
             // Trigger animation on dice2 before rolling
             dice2.GetComponent<Animation>().Play("diceGo2");
             dice2.rollAndReturn(value2 =>
             {
-                //int dice2Value = value2;
-                int dice2Value = 1;
+                int dice2Value = value2;
                 Debug.Log($"Dice 2 rolled: {dice2Value}");
                 int totalDiceValue = dice1Value + dice2Value;
                 Debug.Log($"Total Dice Value: {totalDiceValue}");

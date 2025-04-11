@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hotel_class_40dp_FFFFFF_FILL0_wght400_GRAD0_opsz40_0: -4652504577469254839
+      hotel_class_40dp_FFFFFF_FILL0_wght400_GRAD0_opsz40_1: 2016374111559088141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hotel_class_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24_0: 3275345757888318198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
