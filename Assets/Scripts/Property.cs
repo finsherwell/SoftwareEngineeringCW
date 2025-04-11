@@ -86,20 +86,20 @@ public class Property : Tile
     {
         if (houses > 0)
         {
-        owner.addMoney(houseCost);
-        owner.houseSold(houseCost);
-        houses--;
+            owner.addMoney(houseCost);
+            owner.houseSold(houseCost);
+            houses--;
         }
     }
     private void UpdateSellButtonText()
     {
-        if(sellbutton!= null && button.GetComponentInChildren<TextMeshProUGUI>()!= null)
+        if (sellbutton != null && button.GetComponentInChildren<TextMeshProUGUI>() != null)
         {
             if (houses > 0)
             {
                 sellbutton.GetComponentInChildren<TextMeshProUGUI>().text = $"Sell House for ${houseCost}";
             }
-            else 
+            else
             {
                 sellbutton.GetComponentInChildren<TextMeshProUGUI>().text = "No Houses";
             }
@@ -133,7 +133,7 @@ public class Property : Tile
         isMortgaged = value;
     }
 
-    
+
     public int GetPrice()
     {
         return price;
