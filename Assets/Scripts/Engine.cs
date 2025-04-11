@@ -968,7 +968,7 @@ public class Engine : MonoBehaviour
                 currentPlayer.transform.position = jailTile.transform.position;
 
                 // Set player status to jailed
-                currentPlayer.setInJail(3);
+                currentPlayer.setInJail(2);
 
                 Debug.Log($"{currentPlayer.playerName} has been sent to Jail!");
                 logText.text = $"{currentPlayer.playerName} has been sent to Jail!" + "\n\n" + logText.text;
